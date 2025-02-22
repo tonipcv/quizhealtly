@@ -245,11 +245,12 @@ export default function QuizModal({ isOpen, onClose }: { isOpen: boolean; onClos
           </div>
         ) : (
           <div className="space-y-6">
-            <Progress 
-              value={((currentStep + 1) / steps.length) * 100} 
-              className="bg-white/10"
-              indicatorClassName="bg-white"
-            />
+            <div className="relative h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+              <div 
+                className="absolute h-full bg-white transition-all duration-500 ease-in-out"
+                style={{ width: `${((currentStep + 1) / steps.length) * 100}%` }}
+              />
+            </div>
             {renderStep()}
             <Button
               onClick={handleNext}
