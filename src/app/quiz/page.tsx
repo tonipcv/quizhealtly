@@ -4267,26 +4267,28 @@ export default function Quiz() {
         <div className="max-w-xl mx-auto pt-8 pb-12">
           {/* Header Section */}
           <div className="relative flex justify-center items-center mb-8">
-            {/* Back Arrow - Updated for better mobile responsiveness */}
+            {/* Back Arrow */}
             {currentStep > 0 && (
               <button 
                 onClick={() => setCurrentStep(currentStep - 1)}
                 className="absolute left-0 text-[#505050] hover:text-[#404040] transition-colors
-                         p-2 -ml-2 md:ml-0" // Added padding and negative margin for better touch area
+                         p-2 -ml-2 md:ml-0"
               >
                 <ArrowLeft className="w-5 h-5 md:w-6 md:h-6" />
               </button>
             )}
             
             {/* Logo */}
-            <Image
-              src="/RH-Pilates-Logo.png"
-              alt="RH Pilates"
-              width={120}
-              height={36}
-              className="h-9 w-auto"
-              priority
-            />
+            <div className="bg-[#027bbd] p-2 rounded-lg">
+              <Image
+                src="/logo.png"
+                alt="Logo"
+                width={120}
+                height={36}
+                className="h-8 w-auto"
+                priority
+              />
+            </div>
           </div>
 
           {/* Progress Bar */}

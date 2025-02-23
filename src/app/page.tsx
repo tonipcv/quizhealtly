@@ -13,13 +13,15 @@ export default function Home() {
       <header className="fixed w-full top-0 bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
-            <Image
-              src="/RH-Pilates-Logo.png"
-              alt="RH Pilates"
-              width={120}
-              height={36}
-              className="h-8 w-auto"
-            />
+            <div className="bg-[#027bbd] p-2 rounded-lg">
+              <Image
+                src="/logo.png"
+                alt="Logo"
+                width={120}
+                height={36}
+                className="h-8 w-auto"
+              />
+            </div>
             
             {/* Mobile Menu */}
             <Link href="/quiz">
@@ -37,7 +39,7 @@ export default function Home() {
               <Link href="/quiz">
                 <Button
                   variant="ghost"
-                  className="text-[#263853] hover:text-[#027bbd] tracking-[-0.03em]"
+                  className="text-[#263853] hover:text-[#027bbd] tracking-[-0.03em] font-medium"
                 >
                   Start Your Journey
                 </Button>
@@ -63,7 +65,7 @@ export default function Home() {
               <Link href="/quiz">
                 <Button
                   size="lg"
-                  className="bg-[#027bbd] hover:bg-[#0269a3] text-white tracking-[-0.03em]"
+                  className="bg-[#027bbd] hover:bg-[#0269a3] text-white tracking-[-0.03em] font-medium"
                 >
                   Start Your Journey
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -129,7 +131,7 @@ export default function Home() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="bg-white text-[#027bbd] hover:bg-white/90 border-none tracking-[-0.03em]"
+                  className="bg-white text-[#027bbd] hover:bg-white/90 border-none tracking-[-0.03em] font-medium"
                 >
                   Start Now
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -143,13 +145,15 @@ export default function Home() {
       <footer className="py-8 border-t border-gray-100">
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <Image
-              src="/RH-Pilates-Logo.png"
-              alt="RH Pilates"
-              width={100}
-              height={30}
-              className="h-6 w-auto"
-            />
+            <div className="bg-[#027bbd] p-1.5 rounded-lg">
+              <Image
+                src="/logo.png"
+                alt="Logo"
+                width={100}
+                height={30}
+                className="h-6 w-auto"
+              />
+            </div>
             <p className="text-sm text-[#505050] tracking-[-0.03em]">
               © 2024 RH Pilates. All rights reserved.
             </p>
