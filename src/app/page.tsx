@@ -13,13 +13,13 @@ export default function Home() {
       <header className="fixed w-full top-0 bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
-            <div className="bg-[#027bbd] p-2 rounded-lg">
+            <div className="bg-[#027bbd] p-2.5 rounded-lg">
               <Image
                 src="/logo.png"
                 alt="Logo"
-                width={120}
-                height={36}
-                className="h-8 w-auto"
+                width={140}
+                height={42}
+                className="h-10 w-auto"
               />
             </div>
             
@@ -122,7 +122,7 @@ export default function Home() {
             <Card className="p-12 bg-[#027bbd] text-white text-center">
               <h2 className="text-3xl font-bold mb-4 tracking-[-0.03em]">
                 Ready to Transform Your Life?
-              </h2>
+                </h2>
               <p className="text-white/90 mb-8 max-w-2xl mx-auto tracking-[-0.03em]">
                 Take the first step towards a healthier, more vibrant you. 
                 Our personalized programs are designed to meet you where you are.
@@ -145,17 +145,17 @@ export default function Home() {
       <footer className="py-8 border-t border-gray-100">
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div className="bg-[#027bbd] p-1.5 rounded-lg">
+            <div className="bg-[#027bbd] p-2 rounded-lg">
               <Image
                 src="/logo.png"
                 alt="Logo"
-                width={100}
-                height={30}
-                className="h-6 w-auto"
+                width={120}
+                height={36}
+                className="h-8 w-auto"
               />
             </div>
             <p className="text-sm text-[#505050] tracking-[-0.03em]">
-              © 2024 RH Pilates. All rights reserved.
+              © 2024 LONGEVIFY. All rights reserved.
             </p>
           </div>
         </div>

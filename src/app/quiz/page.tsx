@@ -4279,14 +4279,13 @@ export default function Quiz() {
             )}
             
             {/* Logo */}
-            <div className="bg-[#027bbd] p-2 rounded-lg">
+            <div className="bg-[#027bbd] p-2.5 rounded-lg">
               <Image
                 src="/logo.png"
                 alt="Logo"
-                width={120}
-                height={36}
-                className="h-8 w-auto"
-                priority
+                width={140}
+                height={42}
+                className="h-10 w-auto"
               />
             </div>
           </div>
