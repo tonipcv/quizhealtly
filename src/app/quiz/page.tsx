@@ -962,10 +962,10 @@ export default function Quiz() {
     <div className="space-y-10">
       {/* Stats */}
       <div className="text-center">
-        <h1 className="text-[#027bbd] text-4xl font-bold mb-3 tracking-[-0.03em]">
+        <h1 className="text-[#c8a080] text-4xl font-bold mb-3 tracking-[-0.03em]">
           500,000+
         </h1>
-        <p className="text-[#263853] text-xl font-medium max-w-[75%] mx-auto leading-snug tracking-[-0.03em]">
+        <p className="text-[#8a7266] text-xl font-medium max-w-[75%] mx-auto leading-snug tracking-[-0.03em]">
           women have already joined
         </p>
       </div>
@@ -984,7 +984,7 @@ export default function Quiz() {
 
       {/* Description */}
       <div className="text-center">
-        <h2 className="text-[#263853] text-[28px] font-medium leading-tight tracking-[-0.03em]">
+        <h2 className="text-[#8a7266] text-[28px] font-medium leading-tight tracking-[-0.03em]">
           Designed for women's bodies'
           <br />
           changing needs over 40
@@ -995,14 +995,14 @@ export default function Quiz() {
       <div className="mt-8">
         <button 
           onClick={() => setCurrentStep(1)}
-          className="w-full h-12 bg-[#027bbd] rounded-full relative group 
+          className="w-full h-12 bg-[#d4b69b] rounded-full relative group 
                    flex items-center justify-center transition-all duration-300
-                   hover:bg-[#0269a3] hover:shadow-md hover:shadow-[#027bbd]/20"
+                   hover:bg-[#c8a080] hover:shadow-md hover:shadow-[#d4b69b]/20"
         >
           <span className="text-white text-lg font-medium">Continue</span>
-          <div className="absolute right-3 w-8 h-8 bg-[#3b99cb] rounded-full 
+          <div className="absolute right-3 w-8 h-8 bg-[#c8a080] rounded-full 
                        flex items-center justify-center transition-transform 
-                       group-hover:scale-105 group-hover:bg-[#4ba5d4]">
+                       group-hover:scale-105 group-hover:bg-[#b89276]">
             <ArrowRight className="w-5 h-5 text-white" />
           </div>
         </button>
@@ -1025,30 +1025,19 @@ export default function Quiz() {
           </p>
         </div>
 
-        {/* Goals Selection */}
-        <div className="space-y-4">
+        {/* Goals Selection - Two Column Layout */}
+        <div className="grid grid-cols-2 gap-4">
           {goals.map((goal) => (
             <button
               key={goal.id}
               onClick={() => toggleGoal(goal.id)}
-              className={`w-full p-4 rounded-xl flex items-center justify-between transition-all duration-300
+              className={`flex flex-col items-center transition-all duration-300 rounded-xl p-3 sm:p-4
                 ${goal.selected 
-                  ? 'bg-[#f5fafc] border-2 border-[#027bbd]/20' 
+                  ? 'bg-[#f5fafc] border-2 border-[#d4b69b]/20' 
                   : 'bg-[#f5fafc]'}`}
             >
-              <div className="flex items-center gap-4">
-                <div className={`w-6 h-6 rounded-full flex items-center justify-center transition-all
-                  ${goal.selected 
-                    ? 'bg-[#027bbd]/10 border-2 border-[#027bbd]' 
-                    : 'bg-[#f5fafc] border-2 border-[#d3dee2]'}`}
-                >
-                  {goal.selected && (
-                    <Check className="w-4 h-4 text-[#027bbd]" />
-                  )}
-                </div>
-                <span className="text-[#263853] text-lg md:text-xl font-medium">{goal.text}</span>
-              </div>
-              <div className="w-16 h-16 relative rounded-lg overflow-hidden">
+              {/* Larger Image - Adjusted size for better quality */}
+              <div className="w-full sm:w-[85%] md:w-[80%] aspect-square relative rounded-lg overflow-hidden mb-3 mx-auto">
                 <Image
                   src={goal.image}
                   alt={goal.text}
@@ -1056,25 +1045,39 @@ export default function Quiz() {
                   className="object-cover"
                 />
               </div>
+              
+              {/* Text and Checkbox Below */}
+              <div className="flex items-center gap-2 w-full">
+                <div className={`w-5 h-5 sm:w-6 sm:h-6 rounded-full flex-shrink-0 flex items-center justify-center transition-all
+                  ${goal.selected 
+                    ? 'bg-[#d4b69b]/10 border-2 border-[#d4b69b]' 
+                    : 'bg-[#f5fafc] border-2 border-[#d3dee2]'}`}
+                >
+                  {goal.selected && (
+                    <Check className="w-3 h-3 sm:w-4 sm:h-4 text-[#d4b69b]" />
+                  )}
+                </div>
+                <span className="text-[#263853] text-sm sm:text-base font-medium">{goal.text}</span>
+              </div>
             </button>
           ))}
         </div>
 
-        {/* Continue Button */}
-        <div className="mt-8">
+        {/* Continue Button - Fixed on Mobile */}
+        <div className="mt-6 md:mt-8 sticky md:relative bottom-4 left-0 right-0 px-4 md:px-0 z-30">
           <button 
             onClick={() => hasSelectedGoals && setCurrentStep(currentStep + 1)}
-            className={`w-full h-12 rounded-full relative flex items-center justify-center transition-all duration-300
+            className={`w-full h-12 md:h-14 rounded-full relative flex items-center justify-center transition-all duration-300 shadow md:shadow-none
               ${hasSelectedGoals 
-                ? 'bg-[#027bbd] hover:bg-[#0269a3] hover:shadow-md hover:shadow-[#027bbd]/20' 
-                : 'bg-[#027bbd]/50 cursor-not-allowed'}`}
+                ? 'bg-[#d4b69b] hover:bg-[#c8a080] hover:shadow-md hover:shadow-[#d4b69b]/20' 
+                : 'bg-[#d4b69b]/50 cursor-not-allowed'}`}
           >
-            <span className="text-white text-lg font-medium">Continue</span>
+            <span className="text-white text-base md:text-lg font-medium">Continue</span>
             {hasSelectedGoals && (
-              <div className="absolute right-3 w-8 h-8 bg-[#3b99cb] rounded-full 
+              <div className="absolute right-3 w-7 h-7 md:w-8 md:h-8 bg-[#c8a080] rounded-full 
                            flex items-center justify-center transition-transform 
-                           group-hover:scale-105 group-hover:bg-[#4ba5d4]">
-                <ArrowRight className="w-5 h-5 text-white" />
+                           group-hover:scale-105 group-hover:bg-[#b89276]">
+                <ArrowRight className="w-4 h-4 md:w-5 md:h-5 text-white" />
               </div>
             )}
           </button>
@@ -1116,87 +1119,91 @@ export default function Quiz() {
 
   const renderStep4 = () => {
     return (
-      <div className="space-y-10">
-        {/* Title */}
-        <div className="text-center">
-          <h1 className="text-[#263853] text-[36px] font-bold tracking-[-0.03em] leading-tight mb-6">
-            Wall Pilates - the most effective
-            <br />
-            exercise for women over 40
-          </h1>
-          <div className="space-y-2">
-            <p className="text-[#263853] text-lg tracking-[-0.03em] font-medium">
-              Strengthen and tone your body like never before
-            </p>
-            <p className="text-[#263853] text-lg tracking-[-0.03em] font-medium">
-              with low-impact exercises. The wall intensifies
-            </p>
-            <p className="text-[#263853] text-lg tracking-[-0.03em] font-medium">
-              each exercise while providing support.
-            </p>
+      <div className="pb-24 relative"> {/* Added padding-bottom for fixed button */}
+        <div className="space-y-8">
+          {/* Title */}
+          <div className="text-center">
+            <h1 className="text-[#263853] text-3xl md:text-4xl font-bold tracking-[-0.03em] leading-tight mb-4 bg-gradient-to-r from-[#027bbd] to-[#239b77] inline-block text-transparent bg-clip-text">
+              Wall Pilates - the most effective
+              <br />
+              exercise for women over 40
+            </h1>
+            <div className="mt-6 bg-[#f5fafc] p-4 rounded-xl shadow-sm">
+              <p className="text-[#263853] text-lg md:text-xl tracking-[-0.03em] font-medium leading-relaxed">
+                Strengthen and tone your body like never before with low-impact exercises. The wall intensifies each exercise while providing support.
+              </p>
+            </div>
+          </div>
+
+          {/* Benefits Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="bg-[#f0f7fc] rounded-2xl p-6 transition-transform hover:scale-105 shadow-sm hover:shadow-md">
+              <div className="text-center space-y-3">
+                <span className="text-5xl block animate-bounce">🤩</span>
+                <div>
+                  <p className="text-[#263853] text-base font-medium">
+                    No need for expensive equipment or to leave your home - just your mat.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-[#f4faf8] rounded-2xl p-6 transition-transform hover:scale-105 shadow-sm hover:shadow-md">
+              <div className="text-center space-y-3">
+                <span className="text-5xl block">💪🏼</span>
+                <div>
+                  <p className="text-[#263853] text-base font-medium">
+                    Low-impact exercise to protect your joints and strengthen your core.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-[#fcf9f0] rounded-2xl p-6 transition-transform hover:scale-105 shadow-sm hover:shadow-md">
+              <div className="text-center space-y-3">
+                <span className="text-5xl block">✅</span>
+                <p className="text-[#263853] text-base font-medium">
+                  Accessible for all fitness levels
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Why Pilates Image */}
+          <div className="rounded-xl overflow-hidden shadow-lg">
+            <div className="relative">
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                <h2 className="text-white text-xl font-bold">Why Pilates</h2>
+              </div>
+              <Image
+                src="/P4-E1-why-pilates.avif"
+                alt="Why Pilates"
+                width={600}
+                height={400}
+                className="w-full h-auto"
+                priority
+              />
+            </div>
           </div>
         </div>
 
-        {/* Benefits Card */}
-        <div className="bg-[#fcf9f0] rounded-2xl p-6 space-y-6">
-          <div className="text-center space-y-4">
-            <span className="text-4xl block">🤩</span>
-            <div className="space-y-1">
-              <p className="text-[#263853] text-sm tracking-[-0.03em]">
-                No need for expensive equipment or to leave
-              </p>
-              <p className="text-[#263853] text-sm tracking-[-0.03em]">
-                your home - just your mat.
-              </p>
-            </div>
+        {/* Fixed Continue Button */}
+        <div className="fixed bottom-4 left-0 right-0 px-4 z-50">
+          <div className="max-w-xl mx-auto">
+            <button 
+              onClick={() => setCurrentStep(currentStep + 1)}
+              className="w-full h-14 bg-gradient-to-r from-[#027bbd] to-[#0269a3] rounded-full relative group 
+                       flex items-center justify-center transition-all duration-300
+                       shadow-lg hover:shadow-xl hover:shadow-[#027bbd]/30"
+            >
+              <span className="text-white text-lg font-bold">Continue</span>
+              <div className="absolute right-4 w-10 h-10 bg-[#c8a080] rounded-full 
+                           flex items-center justify-center transition-transform 
+                           group-hover:scale-105 group-hover:bg-[#b89276]">
+                <ArrowRight className="w-6 h-6 text-white" />
+              </div>
+            </button>
           </div>
-
-          <div className="text-center space-y-4">
-            <span className="text-4xl block">💪🏼</span>
-            <div className="space-y-1">
-              <p className="text-[#263853] text-sm tracking-[-0.03em]">
-                Low-impact exercise to protect your joints
-              </p>
-              <p className="text-[#263853] text-sm tracking-[-0.03em]">
-                and strengthen your core.
-              </p>
-            </div>
-          </div>
-
-          <div className="text-center space-y-4">
-            <span className="text-4xl block">✅</span>
-            <p className="text-[#263853] text-sm tracking-[-0.03em]">
-              Accessible for all fitness levels
-            </p>
-          </div>
-
-          <div className="rounded-xl overflow-hidden">
-            <Image
-              src="/P4-E1-why-pilates.avif"
-              alt="Why Pilates"
-              width={600}
-              height={400}
-              className="w-full h-auto"
-              priority
-            />
-          </div>
-        </div>
-
-        {/* Continue Button */}
-        <div className="mt-8">
-          <button 
-            onClick={() => setCurrentStep(currentStep + 1)}
-            className="w-full h-12 bg-[#027bbd] rounded-full relative group 
-                     flex items-center justify-center transition-all duration-300
-                     hover:bg-[#0269a3] hover:shadow-md hover:shadow-[#027bbd]/20"
-          >
-            <span className="text-white text-lg font-medium">Continue</span>
-            <div className="absolute right-3 w-8 h-8 bg-[#3b99cb] rounded-full 
-                         flex items-center justify-center transition-transform 
-                         group-hover:scale-105 group-hover:bg-[#4ba5d4]">
-              <ArrowRight className="w-5 h-5 text-white" />
-            </div>
-          </button>
         </div>
       </div>
     );
@@ -1390,7 +1397,7 @@ export default function Quiz() {
                 disabled={isWholeBodySelected && !zone.isWholeBody}
                 className={`w-full h-14 rounded-xl flex items-center gap-5 px-5 transition-all duration-300
                   ${zone.selected 
-                    ? 'bg-[#f5fafc] border-2 border-[#027bbd]/20' 
+                    ? 'bg-[#f5fafc] border-2 border-[#d4b69b]/20' 
                     : 'bg-[#f5fafc]'}
                   ${isWholeBodySelected && !zone.isWholeBody 
                     ? 'opacity-50 cursor-not-allowed' 
@@ -1398,11 +1405,11 @@ export default function Quiz() {
               >
                 <div className={`w-7 h-7 rounded-full flex items-center justify-center transition-all
                   ${zone.selected 
-                    ? 'bg-[#027bbd]/10 border-2 border-[#027bbd]' 
+                    ? 'bg-[#d4b69b]/10 border-2 border-[#d4b69b]' 
                     : 'border-2 border-[#d3dee2] bg-[#f5fafc]'}`}
                 >
                   {zone.selected && (
-                    <Check className="w-4 h-4 text-[#027bbd]" />
+                    <Check className="w-4 h-4 text-[#d4b69b]" />
                   )}
                 </div>
                 <span className="text-[#263853] text-lg">{zone.text}</span>
@@ -1411,23 +1418,25 @@ export default function Quiz() {
           </div>
         </div>
 
-        {/* Continue Button */}
-        <button 
-          onClick={() => hasSelectedZones && setCurrentStep(currentStep + 1)}
-          className={`w-full h-14 rounded-full relative flex items-center justify-center transition-all duration-300
-            ${hasSelectedZones 
-              ? 'bg-[#027bbd] hover:bg-[#0269a3] hover:shadow-md hover:shadow-[#027bbd]/20' 
-              : 'bg-[#027bbd]/50 cursor-not-allowed'}`}
-        >
-          <span className="text-white text-lg font-medium">Continue</span>
-          {hasSelectedZones && (
-            <div className="absolute right-4 w-10 h-10 bg-[#3b99cb] rounded-full 
-                         flex items-center justify-center transition-transform 
-                         group-hover:scale-105 group-hover:bg-[#4ba5d4]">
-              <ArrowRight className="w-6 h-6 text-white" />
-            </div>
-          )}
-        </button>
+        {/* Continue Button - Fixed on Mobile */}
+        <div className="mt-6 md:mt-8 sticky md:relative bottom-4 left-0 right-0 px-4 md:px-0 z-30">
+          <button 
+            onClick={() => hasSelectedZones && setCurrentStep(currentStep + 1)}
+            className={`w-full h-12 md:h-14 rounded-full relative flex items-center justify-center transition-all duration-300 shadow md:shadow-none
+              ${hasSelectedZones 
+                ? 'bg-[#d4b69b] hover:bg-[#c8a080] hover:shadow-md hover:shadow-[#d4b69b]/20' 
+                : 'bg-[#d4b69b]/50 cursor-not-allowed'}`}
+          >
+            <span className="text-white text-base md:text-lg font-medium">Continue</span>
+            {hasSelectedZones && (
+              <div className="absolute right-3 w-7 h-7 md:w-8 md:h-8 bg-[#c8a080] rounded-full 
+                           flex items-center justify-center transition-transform 
+                           group-hover:scale-105 group-hover:bg-[#b89276]">
+                <ArrowRight className="w-4 h-4 md:w-5 md:h-5 text-white" />
+              </div>
+            )}
+          </button>
+        </div>
       </div>
     );
   };
@@ -1471,14 +1480,14 @@ export default function Quiz() {
             onClick={() => hasSelectedSuccess && setCurrentStep(currentStep + 1)}
             className={`w-full h-14 rounded-full relative flex items-center justify-center transition-all duration-300
               ${hasSelectedSuccess 
-                ? 'bg-[#027bbd] hover:bg-[#0269a3] hover:shadow-md hover:shadow-[#027bbd]/20' 
-                : 'bg-[#027bbd]/50 cursor-not-allowed'}`}
+                ? 'bg-[#d4b69b] hover:bg-[#c8a080] hover:shadow-md hover:shadow-[#d4b69b]/20' 
+                : 'bg-[#d4b69b]/50 cursor-not-allowed'}`}
           >
             <span className="text-white text-lg font-medium">Continue</span>
             {hasSelectedSuccess && (
-              <div className="absolute right-4 w-10 h-10 bg-[#3b99cb] rounded-full 
+              <div className="absolute right-4 w-10 h-10 bg-[#c8a080] rounded-full 
                            flex items-center justify-center transition-transform 
-                           group-hover:scale-105 group-hover:bg-[#4ba5d4]">
+                           group-hover:scale-105 group-hover:bg-[#b89276]">
                 <ArrowRight className="w-6 h-6 text-white" />
               </div>
             )}
@@ -1490,63 +1499,73 @@ export default function Quiz() {
 
   const renderStep22 = () => {
     return (
-      <div className="space-y-10">
-        {/* Title */}
-        <div className="text-center">
-          <h1 className="text-[#263853] text-3xl md:text-4xl font-medium tracking-[-0.03em] leading-tight">
-            99% of exercise programs are
-            <br />
-            fantastic
-          </h1>
-        </div>
-
-        {/* Info Card */}
-        <div className="bg-[#fcf9f0] rounded-2xl p-6 space-y-6">
-          <div className="text-center space-y-2">
-            <p className="text-[#263853] text-sm tracking-[-0.03em]">
-              However, they rarely focus on women's bodies
-            </p>
-            <p className="text-[#263853] text-sm tracking-[-0.03em]">
-              changing needs over 40. Our program is
-            </p>
-            <p className="text-[#263853] text-sm tracking-[-0.03em]">
-              designed to take into account these
-            </p>
-            <p className="text-[#263853] text-sm tracking-[-0.03em]">
-              physiological changes so you can achieve
-            </p>
-            <p className="text-[#263853] text-sm tracking-[-0.03em]">
-              your goals of your best body yet!
-            </p>
+      <div className="pb-24 relative"> {/* Added padding-bottom for fixed button */}
+        <div className="space-y-8">
+          {/* Title */}
+          <div className="text-center">
+            <h1 className="text-[#263853] text-3xl md:text-4xl font-bold tracking-[-0.03em] leading-tight mb-4">
+              <span className="bg-gradient-to-r from-[#027bbd] to-[#239b77] inline-block text-transparent bg-clip-text">
+                99% of exercise programs are fantastic
+              </span>
+            </h1>
           </div>
 
-          <div className="rounded-xl overflow-hidden">
-            <Image
-              src="/P22-E1-reached-goals-answer.avif"
-              alt="Reached goals"
-              width={600}
-              height={400}
-              className="w-full h-auto"
-              priority
-            />
-          </div>
-        </div>
+          {/* Info Card */}
+          <div className="bg-gradient-to-br from-[#f8f9fa] to-[#fcf9f0] rounded-2xl p-8 shadow-lg">
+            <div className="relative">
+              {/* Decorative elements */}
+              <div className="absolute -top-4 -right-4 w-16 h-16 bg-[#d4b69b]/10 rounded-full blur-xl"></div>
+              <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-[#239b77]/10 rounded-full blur-xl"></div>
+              
+              <div className="mb-6">
+                <p className="text-[#263853] text-lg md:text-xl font-medium tracking-[-0.03em] leading-relaxed">
+                  However, they rarely focus on women's bodies changing needs over 40.
+                </p>
+                <div className="h-1 w-20 bg-gradient-to-r from-[#027bbd] to-[#239b77] rounded-full my-4"></div>
+                <p className="text-[#263853] text-lg tracking-[-0.03em] leading-relaxed">
+                  Our program is designed to take into account these physiological changes so you can achieve your goals of your best body yet!
+                </p>
+              </div>
 
-        {/* Continue Button */}
-        <div className="mt-8">
-          <button 
-            onClick={() => setCurrentStep(currentStep + 1)}
-            className="w-full h-14 rounded-full relative flex items-center justify-center 
-                     bg-[#027bbd] transition-all duration-300
-                     hover:bg-[#0269a3] hover:shadow-md hover:shadow-[#027bbd]/20"
-          >
-            <span className="text-white text-lg font-medium">Continue</span>
-            <div className="absolute right-4 w-10 h-10 bg-[#3b99cb] rounded-full 
-                         flex items-center justify-center transition-transform 
-                         group-hover:scale-105 group-hover:bg-[#4ba5d4]">
-              <ArrowRight className="w-6 h-6 text-white" />
+              <div className="rounded-xl overflow-hidden shadow-md">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                  <Image
+                    src="/P22-E1-reached-goals-answer.avif"
+                    alt="Reached goals"
+                    width={600}
+                    height={400}
+                    className="w-full h-auto object-cover"
+                    priority
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 p-4">
+                    <div className="bg-white/80 backdrop-blur-sm rounded-lg p-3 inline-block">
+                      <p className="text-[#263853] font-bold">Designed specifically for women over 40</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </button>
+          </div>
+        </div>
+
+        {/* Fixed Continue Button */}
+        <div className="fixed bottom-4 left-0 right-0 px-4 z-50">
+          <div className="max-w-xl mx-auto">
+            <button 
+              onClick={() => setCurrentStep(currentStep + 1)}
+              className="w-full h-14 bg-gradient-to-r from-[#027bbd] to-[#0269a3] rounded-full relative group 
+                       flex items-center justify-center transition-all duration-300
+                       shadow-lg hover:shadow-xl hover:shadow-[#027bbd]/30"
+            >
+              <span className="text-white text-lg font-bold">Continue</span>
+              <div className="absolute right-4 w-10 h-10 bg-[#c8a080] rounded-full 
+                           flex items-center justify-center transition-transform 
+                           group-hover:scale-105 group-hover:bg-[#b89276]">
+                <ArrowRight className="w-6 h-6 text-white" />
+              </div>
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -1626,14 +1645,14 @@ export default function Quiz() {
             onClick={() => isValid && setCurrentStep(currentStep + 1)}
             className={`w-full h-14 rounded-full relative flex items-center justify-center transition-all duration-300
               ${isValid 
-                ? 'bg-[#027bbd] hover:bg-[#0269a3] hover:shadow-md hover:shadow-[#027bbd]/20' 
-                : 'bg-[#027bbd]/50 cursor-not-allowed'}`}
+                ? 'bg-[#d4b69b] hover:bg-[#c8a080] hover:shadow-md hover:shadow-[#d4b69b]/20' 
+                : 'bg-[#d4b69b]/50 cursor-not-allowed'}`}
           >
             <span className="text-white text-lg font-medium">Continue</span>
             {isValid && (
-              <div className="absolute right-4 w-10 h-10 bg-[#3b99cb] rounded-full 
+              <div className="absolute right-4 w-10 h-10 bg-[#c8a080] rounded-full 
                            flex items-center justify-center transition-transform 
-                           group-hover:scale-105 group-hover:bg-[#4ba5d4]">
+                           group-hover:scale-105 group-hover:bg-[#b89276]">
                 <ArrowRight className="w-6 h-6 text-white" />
               </div>
             )}
@@ -1778,7 +1797,7 @@ export default function Quiz() {
 
         {/* Validation Error */}
         {showError && (
-          <div className="p-4 rounded-xl border-2 border-dashed border-[#027bbd]/20 bg-[#f5fafc]">
+          <div className="p-4 rounded-xl border-2 border-dashed border-[#d4b69b]/20 bg-[#f5fafc]">
             <p className="text-[#263853] text-sm leading-relaxed">
               🙋🏻‍♀️️ Hello there! It seems that there might be an issue with the number you entered.
               Please review and input your height again. We're here to help you successfully reach
@@ -1793,14 +1812,14 @@ export default function Quiz() {
             onClick={() => isValid && !showError && setCurrentStep(currentStep + 1)}
             className={`w-full h-14 rounded-full relative flex items-center justify-center transition-all duration-300
               ${isValid && !showError
-                ? 'bg-[#027bbd] hover:bg-[#0269a3] hover:shadow-md hover:shadow-[#027bbd]/20' 
-                : 'bg-[#027bbd]/50 cursor-not-allowed'}`}
+                ? 'bg-[#d4b69b] hover:bg-[#c8a080] hover:shadow-md hover:shadow-[#d4b69b]/20' 
+                : 'bg-[#d4b69b]/50 cursor-not-allowed'}`}
           >
             <span className="text-white text-lg font-medium">Continue</span>
             {isValid && !showError && (
-              <div className="absolute right-4 w-10 h-10 bg-[#3b99cb] rounded-full 
+              <div className="absolute right-4 w-10 h-10 bg-[#c8a080] rounded-full 
                            flex items-center justify-center transition-transform 
-                           group-hover:scale-105 group-hover:bg-[#4ba5d4]">
+                           group-hover:scale-105 group-hover:bg-[#b89276]">
                 <ArrowRight className="w-6 h-6 text-white" />
               </div>
             )}
@@ -1968,14 +1987,14 @@ export default function Quiz() {
             onClick={() => isValid && setCurrentStep(currentStep + 1)}
             className={`w-full h-14 rounded-full relative flex items-center justify-center transition-all duration-300
               ${isValid 
-                ? 'bg-[#027bbd] hover:bg-[#0269a3] hover:shadow-md hover:shadow-[#027bbd]/20' 
-                : 'bg-[#027bbd]/50 cursor-not-allowed'}`}
+                ? 'bg-[#d4b69b] hover:bg-[#c8a080] hover:shadow-md hover:shadow-[#d4b69b]/20' 
+                : 'bg-[#d4b69b]/50 cursor-not-allowed'}`}
           >
             <span className="text-white text-lg font-medium">Continue</span>
             {isValid && (
-              <div className="absolute right-4 w-10 h-10 bg-[#3b99cb] rounded-full 
+              <div className="absolute right-4 w-10 h-10 bg-[#c8a080] rounded-full 
                            flex items-center justify-center transition-transform 
-                           group-hover:scale-105 group-hover:bg-[#4ba5d4]">
+                           group-hover:scale-105 group-hover:bg-[#b89276]">
                 <ArrowRight className="w-6 h-6 text-white" />
               </div>
             )}
@@ -2159,14 +2178,14 @@ export default function Quiz() {
             onClick={() => isValid && weightValidation === 'valid' && setCurrentStep(currentStep + 1)}
             className={`w-full h-14 rounded-full relative flex items-center justify-center transition-all duration-300
               ${isValid && weightValidation === 'valid'
-                ? 'bg-[#027bbd] hover:bg-[#0269a3] hover:shadow-md hover:shadow-[#027bbd]/20' 
-                : 'bg-[#027bbd]/50 cursor-not-allowed'}`}
+                ? 'bg-[#d4b69b] hover:bg-[#c8a080] hover:shadow-md hover:shadow-[#d4b69b]/20' 
+                : 'bg-[#d4b69b]/50 cursor-not-allowed'}`}
           >
             <span className="text-white text-lg font-medium">Continue</span>
             {isValid && weightValidation === 'valid' && (
-              <div className="absolute right-4 w-10 h-10 bg-[#3b99cb] rounded-full 
+              <div className="absolute right-4 w-10 h-10 bg-[#c8a080] rounded-full 
                            flex items-center justify-center transition-transform 
-                           group-hover:scale-105 group-hover:bg-[#4ba5d4]">
+                           group-hover:scale-105 group-hover:bg-[#b89276]">
                 <ArrowRight className="w-6 h-6 text-white" />
               </div>
             )}
@@ -2206,50 +2225,69 @@ export default function Quiz() {
   // Add the renderStep28
   const renderStep28 = () => {
     return (
-      <div className="space-y-10">
-        {/* Title */}
-        <div className="text-center">
-          <h1 className="text-[#263853] text-[32px] font-medium tracking-[-0.03em]">
-            Body mass index
-          </h1>
-        </div>
-
-        {/* Description */}
-        <div className="text-center">
-          <p className="text-[#263853] text-sm tracking-[-0.03em] leading-relaxed">
-            Based on quiz answers your BMI shows that your
-            <br />
-            weight may increase if you don't act now!
-          </p>
-        </div>
-
-        {/* BMI Image */}
-        <div className="rounded-2xl overflow-hidden">
-          <Image
-            src="/P28-E1-body-mass-index.avif"
-            alt="Body mass index"
-            width={600}
-            height={400}
-            className="w-full h-auto"
-            priority
-          />
-        </div>
-
-        {/* Continue Button */}
-        <div className="mt-8">
-          <button 
-            onClick={() => setCurrentStep(currentStep + 1)}
-            className="w-full h-14 rounded-full relative flex items-center justify-center 
-                     bg-[#027bbd] transition-all duration-300
-                     hover:bg-[#0269a3] hover:shadow-md hover:shadow-[#027bbd]/20"
-          >
-            <span className="text-white text-lg font-medium">Continue</span>
-            <div className="absolute right-4 w-10 h-10 bg-[#3b99cb] rounded-full 
-                         flex items-center justify-center transition-transform 
-                         group-hover:scale-105 group-hover:bg-[#4ba5d4]">
-              <ArrowRight className="w-6 h-6 text-white" />
+      <div className="pb-24 relative">
+        <div className="space-y-8">
+          {/* Title with Alert Badge */}
+          <div className="text-center">
+            <div className="inline-flex items-center bg-[#fef2f2] text-[#ef4444] px-4 py-2 rounded-full mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+              </svg>
+              <span className="font-bold">Action Required</span>
             </div>
-          </button>
+            <h1 className="text-[#263853] text-3xl md:text-4xl font-bold tracking-[-0.03em] mb-4">
+              Body Mass Index
+            </h1>
+            <div className="max-w-md mx-auto bg-[#fee2e2] p-4 rounded-lg border-l-4 border-[#ef4444] shadow-sm">
+              <p className="text-[#ef4444] text-lg font-medium tracking-[-0.03em] leading-relaxed">
+                Based on your quiz answers, your BMI shows that your weight may increase if you don't act now!
+              </p>
+            </div>
+          </div>
+
+          {/* BMI Image with Interactive Elements */}
+          <div className="rounded-2xl overflow-hidden shadow-lg relative">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10"></div>
+            <Image
+              src="/P28-E1-body-mass-index.avif"
+              alt="Body mass index"
+              width={600}
+              height={400}
+              className="w-full h-auto"
+              priority
+            />
+            <div className="absolute bottom-0 left-0 right-0 p-4 z-20">
+              <div className="bg-white/80 backdrop-blur-sm rounded-lg p-3">
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-3 h-3 rounded-full bg-[#ef4444]"></div>
+                    <p className="text-[#263853] font-medium">Your current BMI</p>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <div className="w-3 h-3 rounded-full bg-[#27ae60]"></div>
+                    <p className="text-[#263853] font-medium">Target BMI</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Continue Button */}
+          <div className="mt-8">
+            <button 
+              onClick={() => setCurrentStep(currentStep + 1)}
+              className="w-full h-14 rounded-full relative flex items-center justify-center 
+                       bg-[#d4b69b] transition-all duration-300
+                       hover:bg-[#c8a080] hover:shadow-md hover:shadow-[#d4b69b]/20"
+            >
+              <span className="text-white text-lg font-medium">Continue</span>
+              <div className="absolute right-4 w-10 h-10 bg-[#c8a080] rounded-full 
+                           flex items-center justify-center transition-transform 
+                           group-hover:scale-105 group-hover:bg-[#b89276]">
+                <ArrowRight className="w-6 h-6 text-white" />
+              </div>
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -2270,28 +2308,35 @@ export default function Quiz() {
       <div className="space-y-10">
         {/* Title */}
         <div className="text-center">
-          <h1 className="text-[#263853] text-3xl md:text-4xl font-medium tracking-[-0.03em] leading-tight">
-            Your potential improvement
-            <br />
-            in 12 weeks
+          <div className="inline-flex items-center bg-[#f0fdf4] text-[#22c55e] px-4 py-2 rounded-full mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            </svg>
+            <span className="font-bold">12-Week Program</span>
+          </div>
+          <h1 className="text-[#263853] text-3xl md:text-4xl font-bold tracking-[-0.03em] leading-tight mb-4">
+            Your Potential Improvement
           </h1>
-        </div>
-
-        {/* Description */}
-        <div className="text-center">
-          <p className="text-[#263853] text-sm tracking-[-0.03em]">
-            We estimate that you can potentially reach{' '}
-            <span className="text-[#027bbd]">{targetWeightDisplay}</span>
-            {' '}weight target.
-          </p>
+          <div className="max-w-md mx-auto bg-gradient-to-r from-[#f0fdf4] to-[#dcfce7] p-6 rounded-lg shadow-sm">
+            <p className="text-[#263853] text-xl font-medium tracking-[-0.03em] mb-2">
+              We estimate that you can potentially reach:
+            </p>
+            <div className="text-[#22c55e] text-4xl font-bold my-3">
+              {targetWeightDisplay}
+            </div>
+            <p className="text-[#263853] text-lg">target weight</p>
+          </div>
         </div>
 
         {/* Weight Progress Visualization */}
-        <div className="bg-[#fcf9f0] rounded-2xl p-6">
-          <p className="text-[#263853] text-sm font-medium text-center mb-8">
-            Your achievable weight:
-          </p>
-          
+        <div className="bg-white rounded-2xl p-6 shadow-lg border border-[#e5e7eb]">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-[#263853] text-lg font-bold">Your achievable weight:</h3>
+            <div className="bg-[#22c55e] text-white text-sm font-bold px-3 py-1 rounded-full">
+              12 weeks
+            </div>
+          </div>
+        
           <div className="relative h-[200px]">
             {/* Curved Progress Line with Gradient */}
             <div className="absolute inset-0">
@@ -2317,7 +2362,7 @@ export default function Quiz() {
 
             {/* Current Weight Label */}
             <div className="absolute top-[40px] left-[40px]">
-              <div className="bg-[#027bbd] text-white px-4 py-2 rounded-lg text-sm">
+              <div className="bg-[#d4b69b] text-white px-4 py-2 rounded-lg text-sm">
                 {currentWeightDisplay}
               </div>
               <div className="h-20 border-l-2 border-dashed border-[#d3dee2] ml-6 mt-2">
@@ -2328,12 +2373,12 @@ export default function Quiz() {
             {/* Target Weight Label with Tooltip */}
             <div className="absolute bottom-[40px] right-[40px]">
               <div className="relative">
-                <div className="bg-[#027bbd] text-white px-4 py-2 rounded-lg text-sm">
+                <div className="bg-[#d4b69b] text-white px-4 py-2 rounded-lg text-sm">
                   {targetWeightDisplay}
                 </div>
                 <div className="absolute -top-8 left-1/2 -translate-x-1/2">
                   <div className="relative">
-                    <div className="w-4 h-4 bg-[#027bbd] rounded-full" />
+                    <div className="w-4 h-4 bg-[#d4b69b] rounded-full" />
                     <div className="absolute -top-16 left-1/2 -translate-x-1/2 whitespace-nowrap">
                       <div className="bg-[#505050] text-white text-xs px-3 py-1 rounded">
                         Your weight after 12 weeks
@@ -2365,13 +2410,13 @@ export default function Quiz() {
           <button 
             onClick={() => setCurrentStep(currentStep + 1)}
             className="w-full h-14 rounded-full relative flex items-center justify-center 
-                     bg-[#027bbd] transition-all duration-300
-                     hover:bg-[#0269a3] hover:shadow-md hover:shadow-[#027bbd]/20"
+                     bg-[#d4b69b] transition-all duration-300
+                     hover:bg-[#c8a080] hover:shadow-md hover:shadow-[#d4b69b]/20"
           >
             <span className="text-white text-lg font-medium">Continue</span>
-            <div className="absolute right-4 w-10 h-10 bg-[#3b99cb] rounded-full 
+            <div className="absolute right-4 w-10 h-10 bg-[#c8a080] rounded-full 
                          flex items-center justify-center transition-transform 
-                         group-hover:scale-105 group-hover:bg-[#4ba5d4]">
+                         group-hover:scale-105 group-hover:bg-[#b89276]">
               <ArrowRight className="w-6 h-6 text-white" />
             </div>
           </button>
@@ -2447,13 +2492,13 @@ export default function Quiz() {
         <button
           onClick={() => setCurrentStep(currentStep + 1)}
           className="w-full h-14 rounded-full relative flex items-center justify-center 
-                   bg-[#027bbd] transition-all duration-300
-                   hover:bg-[#0269a3] hover:shadow-md hover:shadow-[#027bbd]/20"
+                   bg-[#d4b69b] transition-all duration-300
+                   hover:bg-[#c8a080] hover:shadow-md hover:shadow-[#d4b69b]/20"
         >
           <span className="text-white text-lg font-medium">Continue</span>
-          <div className="absolute right-4 w-10 h-10 bg-[#3b99cb] rounded-full 
+          <div className="absolute right-4 w-10 h-10 bg-[#c8a080] rounded-full 
                        flex items-center justify-center transition-transform 
-                       group-hover:scale-105 group-hover:bg-[#4ba5d4]">
+                       group-hover:scale-105 group-hover:bg-[#b89276]">
             <ArrowRight className="w-6 h-6 text-white" />
           </div>
         </button>
@@ -2465,52 +2510,71 @@ export default function Quiz() {
   const renderStep31 = () => {
     return (
       <div className="space-y-10">
-        {/* Title */}
+        {/* Title with Badge */}
         <div className="text-center">
-          <h1 className="text-[#263853] text-3xl md:text-4xl font-medium tracking-[-0.03em] leading-tight">
-            The best women's lifestyle
+          <div className="inline-flex items-center bg-[#eff6ff] text-[#3b82f6] px-4 py-2 rounded-full mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+            <span className="font-bold">Top Rated 2025</span>
+          </div>
+          <h1 className="text-[#263853] text-3xl md:text-4xl font-bold tracking-[-0.03em] leading-tight mb-4">
+            The Best Women's Lifestyle
             <br />
-            & fitness app in 2025
+            <span className="bg-gradient-to-r from-[#3b82f6] to-[#8b5cf6] text-transparent bg-clip-text">
+              & Fitness App in 2025
+            </span>
           </h1>
+          <div className="max-w-md mx-auto bg-[#eff6ff] p-4 rounded-lg shadow-sm mb-6">
+            <p className="text-[#263853] text-lg font-medium tracking-[-0.03em] leading-relaxed">
+              Join thousands of women who have transformed their lives with our award-winning app
+            </p>
+          </div>
         </div>
 
-        {/* App Images */}
-        <div className="space-y-4">
-          <div className="rounded-2xl overflow-hidden">
+        {/* App Images with Captions */}
+        <div className="space-y-6">
+          <div className="rounded-2xl overflow-hidden shadow-lg relative group">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
             <Image
               src="/P31-E1-best-fitness-app.jpg"
-              alt="Best fitness app"
+              alt="Fitness app"
               width={600}
               height={400}
-              className="w-full h-auto"
+              className="w-full h-auto group-hover:scale-105 transition-transform duration-500"
               priority
             />
           </div>
-          <div className="rounded-2xl overflow-hidden">
+          <div className="rounded-2xl overflow-hidden shadow-lg relative group">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
             <Image
               src="/P31-E2-best-fitness-app-women.avif"
-              alt="Best fitness app for women"
+              alt="Fitness app for women"
               width={600}
               height={400}
-              className="w-full h-auto"
+              className="w-full h-auto group-hover:scale-105 transition-transform duration-500"
               priority
             />
+            <div className="absolute bottom-0 left-0 right-0 p-4 z-20">
+              <p className="text-white text-lg font-bold">Community Support</p>
+              <p className="text-white/80 text-sm">Connect with women on the same journey</p>
+            </div>
           </div>
         </div>
 
-        {/* Continue Button */}
-        <div className="mt-8">
+        {/* Continue Button - Fixed on Mobile */}
+        <div className="mt-6 md:mt-8 sticky md:relative bottom-4 left-0 right-0 px-4 md:px-0 z-30">
           <button 
             onClick={() => setCurrentStep(currentStep + 1)}
-            className="w-full h-14 rounded-full relative flex items-center justify-center 
-                     bg-[#027bbd] transition-all duration-300
-                     hover:bg-[#0269a3] hover:shadow-md hover:shadow-[#027bbd]/20"
+            className="w-full h-12 md:h-14 rounded-full relative flex items-center justify-center 
+                     bg-[#d4b69b] transition-all duration-300 shadow md:shadow-none
+                     hover:bg-[#c8a080] hover:shadow-md hover:shadow-[#d4b69b]/20"
           >
-            <span className="text-white text-lg font-medium">Continue</span>
-            <div className="absolute right-4 w-10 h-10 bg-[#3b99cb] rounded-full 
-                         flex items-center justify-center transition-transform 
-                         group-hover:scale-105 group-hover:bg-[#4ba5d4]">
-              <ArrowRight className="w-6 h-6 text-white" />
+            <span className="text-white text-base md:text-lg font-medium">Continue</span>
+            <div className="absolute right-3 w-7 h-7 md:w-8 md:h-8 bg-[#c8a080] rounded-full 
+                       flex items-center justify-center transition-transform 
+                       group-hover:scale-105 group-hover:bg-[#b89276]">
+              <ArrowRight className="w-4 h-4 md:w-5 md:h-5 text-white" />
             </div>
           </button>
         </div>
@@ -2530,132 +2594,179 @@ export default function Quiz() {
 
     return (
       <div className="space-y-10">
-        {/* Title */}
-        <div className="text-center">
-          <h1 className="text-[#263853] text-3xl md:text-4xl font-medium tracking-[-0.03em] leading-tight">
-            Enter your email to receive your{' '}
-            <span className="text-[#027bbd]">Wall Pilates</span>
-            {' '}plan
-          </h1>
-        </div>
+          {/* Title with Badge */}
+          <div className="text-center">
+            <div className="inline-flex items-center bg-[#f0f9ff] text-[#0ea5e9] px-4 py-2 rounded-full mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+              </svg>
+              <span className="font-bold">Final Step</span>
+            </div>
+            <h1 className="text-[#263853] text-3xl md:text-4xl font-bold tracking-[-0.03em] leading-tight mb-4">
+              Enter Your Email to Receive Your
+              <br />
+              <span className="bg-gradient-to-r from-[#0ea5e9] to-[#38bdf8] text-transparent bg-clip-text">
+                Wall Pilates Plan
+              </span>
+            </h1>
+            <div className="max-w-md mx-auto bg-[#f0f9ff] p-4 rounded-lg shadow-sm mb-6">
+              <p className="text-[#263853] text-lg font-medium tracking-[-0.03em] leading-relaxed">
+                Your personalized fitness journey is just one click away!
+              </p>
+            </div>
+          </div>
 
-        {/* Email Input */}
-        <div className="relative">
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email address"
-            className="w-full h-16 px-6 rounded-xl border border-[#d1d1d1] bg-white
-                     placeholder-[#b0b0b0] text-[#263853] text-lg outline-none
-                     focus:border-[#027bbd] transition-colors"
-          />
-        </div>
+          {/* Email Input with Icon */}
+          <div className="relative max-w-md mx-auto">
+            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#0ea5e9]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email address"
+              className="w-full h-16 pl-12 pr-6 rounded-xl border-2 border-[#e5e7eb] bg-white
+                       placeholder-[#94a3b8] text-[#263853] text-lg outline-none
+                       focus:border-[#0ea5e9] focus:ring-2 focus:ring-[#0ea5e9]/20 transition-all"
+            />
+          </div>
 
-        {/* Stats Card */}
-        <div className="bg-[#fcf9f0] rounded-2xl p-6 text-center">
-          <h2 className="text-[#027bbd] text-4xl font-bold mb-2">
+          {/* Stats Card */}
+          <div className="bg-gradient-to-r from-[#f9f3ef] to-[#f2e8e0] rounded-2xl p-6 text-center shadow-md border border-[#e6d6c7]">
+          <h2 className="text-[#c8a080] text-4xl font-bold mb-2">
             500,000+
           </h2>
-          <p className="text-[#263853] text-lg">
+          <p className="text-[#8a7266] text-lg">
             women have already joined
           </p>
         </div>
 
         {/* Email Consent */}
-        <div className="flex items-start gap-4">
-          <button
-            onClick={() => setEmailConsent(!emailConsent)}
-            className={`w-6 h-6 rounded border flex-shrink-0 flex items-center justify-center 
-              transition-all duration-300 cursor-pointer
-              ${emailConsent 
-                ? 'bg-[#273854] border-[#273854]' 
-                : 'border-[#C5CDE4] bg-white hover:border-[#273854]'}`}
-          >
-            {emailConsent && (
-              <Check className="w-4 h-4 text-white" />
-            )}
-          </button>
-          <p className="text-[#475966] text-xs leading-relaxed">
-            I agree to receive future emails from Reverse Health and its affiliates 
-            with tips, offers, products and more.
-          </p>
-        </div>
-
-        {/* Terms Acceptance */}
-        <div className="flex items-start gap-4">
-          <button
-            onClick={() => setTermsAccepted(!termsAccepted)}
-            className={`w-6 h-6 rounded border flex-shrink-0 flex items-center justify-center 
-              transition-all duration-300 cursor-pointer
-              ${termsAccepted 
-                ? 'bg-[#273854] border-[#273854]' 
-                : 'border-[#C5CDE4] bg-white hover:border-[#273854]'}`}
-          >
-            {termsAccepted && (
-              <Check className="w-4 h-4 text-white" />
-            )}
-          </button>
-          <p className="text-[#475966] text-xs leading-relaxed">
-            I acknowledge that I have read, understood, and accepted the{' '}
-            <button 
-              onClick={() => setShowTerms(true)}
-              className="text-[#027bbd] underline hover:text-[#0269a3] transition-colors"
-            >
-              Terms of Use
-            </button>
-            {' '}and{' '}
+        <div className="max-w-md mx-auto bg-white rounded-xl p-4 shadow-sm border border-[#e5e7eb]">
+          <div className="flex items-start gap-4 mb-4">
             <button
-              onClick={() => setShowTerms(true)}
-              className="text-[#027bbd] underline hover:text-[#0269a3] transition-colors"
+              onClick={() => setEmailConsent(!emailConsent)}
+              className={`w-6 h-6 rounded-md border-2 flex-shrink-0 flex items-center justify-center 
+                transition-all duration-300 cursor-pointer
+                ${emailConsent 
+                  ? 'bg-[#d4b69b] border-[#c8a080]' 
+                  : 'border-[#e6d6c7] bg-white hover:border-[#c8a080]'}`}
             >
-              Privacy Policy
+              {emailConsent && (
+                <Check className="w-4 h-4 text-white" />
+              )}
             </button>
-            .
-          </p>
+            <p className="text-[#475966] text-sm leading-relaxed">
+              I agree to receive future emails from Reverse Health and its affiliates 
+              with tips, offers, products and more.
+            </p>
+          </div>
+
+          {/* Terms Acceptance */}
+          <div className="flex items-start gap-4">
+            <button
+              onClick={() => setTermsAccepted(!termsAccepted)}
+              className={`w-6 h-6 rounded-md border-2 flex-shrink-0 flex items-center justify-center 
+                transition-all duration-300 cursor-pointer
+                ${termsAccepted 
+                  ? 'bg-[#d4b69b] border-[#c8a080]' 
+                  : 'border-[#e6d6c7] bg-white hover:border-[#c8a080]'}`}
+            >
+              {termsAccepted && (
+                <Check className="w-4 h-4 text-white" />
+              )}
+            </button>
+            <p className="text-[#475966] text-sm leading-relaxed">
+              I acknowledge that I have read, understood, and accepted the{' '}
+              <button 
+                onClick={() => setShowTerms(true)}
+                className="text-[#c8a080] font-medium hover:text-[#b89276] transition-colors"
+              >
+                Terms of Use
+              </button>
+              {' '}and{' '}
+              <button
+                onClick={() => setShowTerms(true)}
+                className="text-[#c8a080] font-medium hover:text-[#b89276] transition-colors"
+              >
+                Privacy Policy
+              </button>
+              .
+            </p>
+          </div>
         </div>
 
         {/* Continue Button */}
-        <div className="mt-8">
+        <div className="mt-8 max-w-md mx-auto">
           <button 
             onClick={() => isValid && setCurrentStep(currentStep + 1)}
             className={`w-full h-14 rounded-full relative flex items-center justify-center 
-              transition-all duration-300
+              transition-all duration-300 group
               ${isValid 
-                ? 'bg-[#027bbd] hover:bg-[#0269a3] hover:shadow-md hover:shadow-[#027bbd]/20' 
-                : 'bg-[#027bbd]/50 cursor-not-allowed'}`}
+                ? 'bg-gradient-to-r from-[#d4b69b] to-[#c8a080] hover:shadow-lg hover:shadow-[#d4b69b]/30 hover:from-[#c8a080] hover:to-[#b89276]' 
+                : 'bg-gradient-to-r from-[#d4b69b]/50 to-[#c8a080]/50 cursor-not-allowed'}`}
           >
-            <span className="text-white text-lg font-medium">Continue</span>
+            <span className="text-white text-lg font-bold">Get My Wall Pilates Plan</span>
             {isValid && (
-              <div className="absolute right-4 w-10 h-10 bg-[#3b99cb] rounded-full 
+              <div className="absolute right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full 
                            flex items-center justify-center transition-transform 
-                           group-hover:scale-105 group-hover:bg-[#4ba5d4]">
+                           group-hover:scale-110 group-hover:bg-white/30">
                 <ArrowRight className="w-6 h-6 text-white" />
               </div>
             )}
           </button>
+          {!isValid && (
+            <p className="text-[#475966] text-xs text-center mt-2">Please complete all fields to continue</p>
+          )}
         </div>
 
         {/* Terms Modal */}
         {showTerms && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-            <div className="bg-white rounded-2xl p-8 max-w-2xl w-full mx-4 max-h-[80vh] overflow-y-auto">
-              <div className="flex justify-between items-start mb-6">
-                <h2 className="text-[#263853] text-3xl font-medium">
-                  Terms & Privacy Policy
-                </h2>
+          <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
+            <div className="bg-white rounded-2xl p-6 md:p-8 max-w-2xl w-full mx-4 max-h-[80vh] overflow-y-auto shadow-xl border border-[#e5e7eb] animate-fadeIn">
+              <div className="flex justify-between items-center mb-6 border-b border-[#e5e7eb] pb-4">
+                <div>
+                  <div className="inline-flex items-center bg-[#f0f9ff] text-[#0ea5e9] px-3 py-1 rounded-full mb-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                    </svg>
+                    <span className="text-xs font-bold">Important Information</span>
+                  </div>
+                  <h2 className="text-[#263853] text-2xl md:text-3xl font-bold">
+                    Terms & Privacy Policy
+                  </h2>
+                </div>
                 <button 
                   onClick={() => setShowTerms(false)}
-                  className="text-[#505050] hover:text-[#263853] transition-colors"
+                  className="text-[#94a3b8] hover:text-[#0ea5e9] transition-colors p-2 rounded-full hover:bg-[#f0f9ff]"
                 >
                   <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </button>
               </div>
-              <div className="prose prose-sm max-w-none">
-                {/* Add your terms content here */}
-                <p>Terms and Privacy Policy content goes here...</p>
+              <div className="prose prose-sm max-w-none prose-headings:text-[#263853] prose-headings:font-bold prose-p:text-[#475966] prose-a:text-[#0ea5e9] prose-a:no-underline hover:prose-a:underline">
+                <h3>Privacy Policy</h3>
+                <p>We respect your privacy and are committed to protecting your personal data. This Privacy Policy will inform you as to how we look after your personal data when you visit our website and tell you about your privacy rights and how the law protects you.</p>
+                
+                <h3>Terms of Use</h3>
+                <p>By accessing and using our services, you agree to comply with these Terms of Use. Our services are intended for personal use only, and you agree not to misuse any information provided.</p>
+                
+                <h3>Data Collection</h3>
+                <p>We collect information that you provide directly to us, such as when you create an account, subscribe to our newsletter, or fill out a form. This may include your name, email address, and other personal details.</p>
+                
+                <div className="mt-6 pt-4 border-t border-[#e5e7eb]">
+                  <button 
+                    onClick={() => setShowTerms(false)}
+                    className="w-full md:w-auto px-6 py-3 bg-[#0ea5e9] hover:bg-[#0284c7] text-white font-bold rounded-full transition-colors"
+                  >
+                    I Understand
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -2718,13 +2829,13 @@ export default function Quiz() {
           <button 
             onClick={() => setCurrentStep(currentStep + 1)}
             className="w-full h-14 rounded-full relative flex items-center justify-center 
-                     bg-[#027bbd] transition-all duration-300
-                     hover:bg-[#0269a3] hover:shadow-md hover:shadow-[#027bbd]/20"
+                     bg-[#d4b69b] transition-all duration-300
+                     hover:bg-[#c8a080] hover:shadow-md hover:shadow-[#d4b69b]/20"
           >
             <span className="text-white text-lg font-medium">Continue</span>
-            <div className="absolute right-4 w-10 h-10 bg-[#3b99cb] rounded-full 
+            <div className="absolute right-4 w-10 h-10 bg-[#c8a080] rounded-full 
                          flex items-center justify-center transition-transform 
-                         group-hover:scale-105 group-hover:bg-[#4ba5d4]">
+                         group-hover:scale-105 group-hover:bg-[#b89276]">
               <ArrowRight className="w-6 h-6 text-white" />
             </div>
           </button>
@@ -2836,13 +2947,13 @@ export default function Quiz() {
           <button 
             onClick={() => setCurrentStep(currentStep + 1)}
             className="w-full h-14 rounded-full relative flex items-center justify-center 
-                     bg-[#027bbd] transition-all duration-300
-                     hover:bg-[#0269a3] hover:shadow-md hover:shadow-[#027bbd]/20"
+                     bg-[#d4b69b] transition-all duration-300
+                     hover:bg-[#c8a080] hover:shadow-md hover:shadow-[#d4b69b]/20"
           >
             <span className="text-white text-lg font-medium">Continue</span>
-            <div className="absolute right-4 w-10 h-10 bg-[#3b99cb] rounded-full 
+            <div className="absolute right-4 w-10 h-10 bg-[#c8a080] rounded-full 
                          flex items-center justify-center transition-transform 
-                         group-hover:scale-105 group-hover:bg-[#4ba5d4]">
+                         group-hover:scale-105 group-hover:bg-[#b89276]">
               <ArrowRight className="w-6 h-6 text-white" />
             </div>
           </button>
@@ -3017,7 +3128,7 @@ export default function Quiz() {
                 </div>
 
                 {/* Get Plan Button */}
-                <a href="#select-membership" className="bg-[#027bbc] text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-[#0269a3] transition-colors">
+                <a href="#select-membership" className="bg-[#027bbc] text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-[#c8a080] transition-colors">
                   Get plan
                 </a>
               </div>
@@ -3028,30 +3139,36 @@ export default function Quiz() {
         {/* Main Content */}
         <div className="mt-24 space-y-8 pb-8">
           {/* Progress Comparison */}
-          <div className="bg-[#f6fbfd] p-6 rounded-xl">
+          <div className="bg-gradient-to-r from-[#f6fbfd] to-[#f0f9ff] p-8 rounded-xl shadow-md">
+            <h3 className="text-[#172554] text-center text-xl font-bold mb-6">Your Body Transformation Journey</h3>
             <div className="grid grid-cols-2 gap-8">
               {/* Current State */}
-              <div>
-                <h3 className="text-[#172554] text-center mb-4">Now</h3>
-                <Image
-                  src="/P36-E1-flabby.webp"
-                  alt="Current body"
-                  width={200}
-                  height={300}
-                  className="mx-auto mb-4"
-                />
-                <div className="space-y-2">
-                  <div className="flex justify-between">
-                    <span>Body fat</span>
-                    <span>30%</span>
+              <div className="bg-white p-4 rounded-lg shadow-sm transition-all duration-300 hover:shadow-md">
+                <h3 className="text-[#172554] text-center text-lg font-semibold mb-2 bg-[#f1f5f9] py-1 rounded-md">Current body</h3>
+                <div className="relative">
+                  <Image
+                    src="/P36-E1-flabby.webp"
+                    alt="Current body"
+                    width={200}
+                    height={300}
+                    className="mx-auto mb-4 rounded-md"
+                  />
+                  <div className="absolute top-2 right-2 bg-[#fef2f2] text-[#ef4444] px-2 py-1 rounded-full text-xs font-medium">
+                    Before
                   </div>
-                  <div className="flex justify-between">
-                    <span>Healthy weight</span>
+                </div>
+                <div className="space-y-3 mt-2">
+                  <div className="flex justify-between items-center bg-[#f8fafc] p-2 rounded">
+                    <span className="font-medium text-[#475569]">Body fat</span>
+                    <span className="font-bold text-[#ef4444]">30%</span>
+                  </div>
+                  <div className="flex justify-between items-center bg-[#f8fafc] p-2 rounded">
+                    <span className="font-medium text-[#475569]">Healthy weight</span>
                     <div className="flex gap-1">
                       {[1,2,3,4,5].map((i) => (
                         <div 
                           key={i}
-                          className={`w-2 h-2 rounded-full ${i <= 3 ? 'bg-[#027bbc]' : 'bg-[#cbd5e1]'}`}
+                          className={`w-3 h-3 rounded-full ${i <= 3 ? 'bg-[#027bbc]' : 'bg-[#cbd5e1]'}`}
                         />
                       ))}
                     </div>
@@ -3060,27 +3177,32 @@ export default function Quiz() {
               </div>
 
               {/* Target State */}
-              <div>
-                <h3 className="text-[#219a77] text-center mb-4">After the plan</h3>
-                <Image
-                  src="/P36-E2-fit.webp"
-                  alt="Target body"
-                  width={200}
-                  height={300}
-                  className="mx-auto mb-4"
-                />
-                <div className="space-y-2">
-                  <div className="flex justify-between">
-                    <span>Body fat</span>
-                    <span>20%</span>
+              <div className="bg-white p-4 rounded-lg shadow-sm transition-all duration-300 hover:shadow-md">
+                <h3 className="text-[#219a77] text-center text-lg font-semibold mb-2 bg-[#f0fdf4] py-1 rounded-md">Target body</h3>
+                <div className="relative">
+                  <Image
+                    src="/P36-E2-fit.webp"
+                    alt="Target body"
+                    width={200}
+                    height={300}
+                    className="mx-auto mb-4 rounded-md"
+                  />
+                  <div className="absolute top-2 right-2 bg-[#ecfdf5] text-[#10b981] px-2 py-1 rounded-full text-xs font-medium">
+                    After
                   </div>
-                  <div className="flex justify-between">
-                    <span>Healthy weight</span>
+                </div>
+                <div className="space-y-3 mt-2">
+                  <div className="flex justify-between items-center bg-[#f8fafc] p-2 rounded">
+                    <span className="font-medium text-[#475569]">Body fat</span>
+                    <span className="font-bold text-[#10b981]">20%</span>
+                  </div>
+                  <div className="flex justify-between items-center bg-[#f8fafc] p-2 rounded">
+                    <span className="font-medium text-[#475569]">Healthy weight</span>
                     <div className="flex gap-1">
                       {[1,2,3,4,5].map((i) => (
                         <div 
                           key={i}
-                          className="w-2 h-2 rounded-full bg-[#027bbc]"
+                          className="w-3 h-3 rounded-full bg-[#027bbc]"
                         />
                       ))}
                     </div>
@@ -3350,7 +3472,7 @@ export default function Quiz() {
                 placeholder="Enter your email address"
                 className="w-full h-16 px-6 rounded-xl border border-[#d1d1d1] bg-white
                          placeholder-[#b0b0b0] text-[#263853] text-lg outline-none
-                         focus:border-[#027bbd] transition-colors"
+                         focus:border-[#d4b69b] transition-colors"
               />
             </div>
           </div>
@@ -3544,7 +3666,7 @@ export default function Quiz() {
               {/* Submit Button */}
               <button className="w-full h-12 bg-[#027bbc] rounded-full text-white 
                              flex items-center justify-center gap-2
-                             hover:bg-[#0269a3] transition-colors">
+                             hover:bg-[#c8a080] transition-colors">
                 <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
                   <path d="M12 15V17M6 9V7C6 4.79086 7.79086 3 10 3H14C16.2091 3 18 4.79086 18 7V9M6 9H18M6 9C4.89543 9 4 9.89543 4 11V19C4 20.1046 4.89543 21 6 21H18C19.1046 21 20 20.1046 20 19V11C20 9.89543 19.1046 9 18 9" 
                         stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
@@ -3561,39 +3683,45 @@ export default function Quiz() {
   // Add the renderStep27
   const renderStep27 = () => {
     return (
-      <div className="space-y-10">
-        {/* Title */}
-        <div className="text-center">
-          <h1 className="text-[#263853] text-3xl md:text-4xl font-medium tracking-[-0.03em] leading-tight">
-            Your fitness level naturally
-            <br />
-            declines over time…
-            <br />
-            but it's not too late!
-          </h1>
-        </div>
+      <div className="pb-24 relative">
+        <div className="space-y-8">
+          {/* Title */}
+          <div className="text-center">
+            <div className="inline-block bg-[#f5fafc] px-6 py-3 rounded-full mb-4">
+              <h2 className="text-[#027bbd] font-bold text-lg">Health index</h2>
+            </div>
+            <h1 className="text-[#263853] text-3xl md:text-4xl font-bold tracking-[-0.03em] leading-tight">
+              <span className="text-[#e74c3c]">Your fitness level naturally declines</span>
+              <br />
+              <span>over time… <span className="text-[#27ae60] font-extrabold">but it's not too late!</span></span>
+            </h1>
+          </div>
 
-        {/* Image */}
-        <div className="rounded-2xl overflow-hidden shadow-lg">
-          <Image
-            src="/P27-E1-health-index.avif"
-            alt="Health index"
-            width={600}
-            height={400}
-            className="w-full h-auto"
-            priority
-          />
-        </div>
+          {/* Image with Overlay */}
+          <div className="rounded-2xl overflow-hidden shadow-lg relative">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10"></div>
+            <Image
+              src="/P27-E1-health-index.avif"
+              alt="Health index"
+              width={600}
+              height={400}
+              className="w-full h-auto"
+              priority
+            />
+            <div className="absolute bottom-0 left-0 right-0 p-4 z-20">
+              <div className="flex items-center space-x-2">
+                <div className="w-3 h-3 rounded-full bg-[#e74c3c] animate-pulse"></div>
+                <p className="text-white font-medium">Your current fitness level</p>
+              </div>
+            </div>
+          </div>
 
-        {/* Description */}
-        <div className="space-y-6">
-          <p className="text-[#263853] text-lg md:text-xl tracking-[-0.03em] leading-relaxed font-medium">
-            Don't worry, you're not alone. All our customers
-            <br className="hidden md:block" />
-            experience the same decline as they get older,
-            <br className="hidden md:block" />
-            it's a normal part of aging.
-          </p>
+          {/* Description */}
+          <div className="bg-[#f8f9fa] rounded-xl p-6 border-l-4 border-[#d4b69b] shadow-sm">
+            <p className="text-[#263853] text-lg md:text-xl tracking-[-0.03em] leading-relaxed font-medium">
+              Don't worry, you're not alone. All our customers experience the same decline as they get older, it's a normal part of aging.
+            </p>
+          </div>
 
           <p className="text-[#263853] text-lg md:text-xl tracking-[-0.03em] leading-relaxed font-medium">
             What's more important is what comes next. You
@@ -3609,13 +3737,13 @@ export default function Quiz() {
           <button 
             onClick={() => setCurrentStep(currentStep + 1)}
             className="w-full h-14 rounded-full relative flex items-center justify-center 
-                     bg-[#027bbd] transition-all duration-300
-                     hover:bg-[#0269a3] hover:shadow-md hover:shadow-[#027bbd]/20"
+                     bg-[#d4b69b] transition-all duration-300
+                     hover:bg-[#c8a080] hover:shadow-md hover:shadow-[#d4b69b]/20"
           >
             <span className="text-white text-lg font-medium">Learn more</span>
-            <div className="absolute right-4 w-10 h-10 bg-[#3b99cb] rounded-full 
+            <div className="absolute right-4 w-10 h-10 bg-[#c8a080] rounded-full 
                          flex items-center justify-center transition-transform 
-                         group-hover:scale-105 group-hover:bg-[#4ba5d4]">
+                         group-hover:scale-105 group-hover:bg-[#b89276]">
               <ArrowRight className="w-6 h-6 text-white" />
             </div>
           </button>
@@ -3648,7 +3776,7 @@ export default function Quiz() {
               }}
               className={`w-full h-14 rounded-xl flex items-center gap-4 px-5 transition-all duration-300
                 ${level.selected 
-                  ? 'bg-[#f5fafc] border-2 border-[#027bbd]/20' 
+                  ? 'bg-[#f5fafc] border-2 border-[#d4b69b]/20' 
                   : 'bg-[#f5fafc]'}`}
             >
               <span className="text-3xl">{level.emoji}</span>
@@ -3661,13 +3789,13 @@ export default function Quiz() {
         <button
           onClick={() => setCurrentStep(currentStep + 1)}
           className="w-full h-14 rounded-full relative flex items-center justify-center 
-                   bg-[#027bbd] transition-all duration-300
-                   hover:bg-[#0269a3] hover:shadow-md hover:shadow-[#027bbd]/20"
+                   bg-[#d4b69b] transition-all duration-300
+                   hover:bg-[#c8a080] hover:shadow-md hover:shadow-[#d4b69b]/20"
         >
           <span className="text-white text-lg font-medium">Continue</span>
-          <div className="absolute right-4 w-10 h-10 bg-[#3b99cb] rounded-full 
+          <div className="absolute right-4 w-10 h-10 bg-[#c8a080] rounded-full 
                        flex items-center justify-center transition-transform 
-                       group-hover:scale-105 group-hover:bg-[#4ba5d4]">
+                       group-hover:scale-105 group-hover:bg-[#b89276]">
             <ArrowRight className="w-6 h-6 text-white" />
           </div>
         </button>
@@ -3719,7 +3847,7 @@ export default function Quiz() {
               <div className="flex items-center gap-4 md:gap-6">
                 <div className={`w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center border-2 transition-all
                   ${condition.selected 
-                    ? 'border-[#027bbd] bg-[#027bbd]' 
+                    ? 'border-[#d4b69b] bg-[#d4b69b]' 
                     : 'border-[#d3dee2] bg-[#f5fafc]'}`}
                 >
                   {condition.selected && (
@@ -3746,14 +3874,14 @@ export default function Quiz() {
           className={`w-full h-14 md:h-16 rounded-full relative flex items-center justify-center 
             transition-all duration-300
             ${hasSelectedConditions 
-              ? 'bg-[#027bbd] hover:bg-[#0269a3] hover:shadow-md hover:shadow-[#027bbd]/20' 
-              : 'bg-[#027bbd]/50 cursor-not-allowed'}`}
+              ? 'bg-[#d4b69b] hover:bg-[#c8a080] hover:shadow-md hover:shadow-[#d4b69b]/20' 
+              : 'bg-[#d4b69b]/50 cursor-not-allowed'}`}
         >
           <span className="text-white text-lg md:text-xl font-medium">Continue</span>
           {hasSelectedConditions && (
-            <div className="absolute right-4 w-10 h-10 md:w-12 md:h-12 bg-[#3b99cb] rounded-full 
+            <div className="absolute right-4 w-10 h-10 md:w-12 md:h-12 bg-[#c8a080] rounded-full 
                          flex items-center justify-center transition-transform 
-                         group-hover:scale-105 group-hover:bg-[#4ba5d4]">
+                         group-hover:scale-105 group-hover:bg-[#b89276]">
               <ArrowRight className="w-6 h-6 md:w-7 md:h-7 text-white" />
             </div>
           )}
@@ -3786,7 +3914,7 @@ export default function Quiz() {
               }}
               className={`w-full h-16 rounded-xl flex items-center gap-6 px-6 transition-all duration-300 hover:bg-[#f8fcfe]
                 ${frequency.selected 
-                  ? 'bg-[#f5fafc] border-2 border-[#027bbd] shadow-md' 
+                  ? 'bg-[#f5fafc] border-2 border-[#d4b69b] shadow-md' 
                   : 'bg-[#f5fafc]'}`}
             >
               <span className="text-3xl">{frequency.emoji}</span>
@@ -3799,13 +3927,13 @@ export default function Quiz() {
         <button
           onClick={() => setCurrentStep(currentStep + 1)}
           className="w-full h-14 rounded-full relative flex items-center justify-center 
-                   bg-[#027bbd] transition-all duration-300
-                   hover:bg-[#0269a3] hover:shadow-md hover:shadow-[#027bbd]/20"
+                   bg-[#d4b69b] transition-all duration-300
+                   hover:bg-[#c8a080] hover:shadow-md hover:shadow-[#d4b69b]/20"
         >
           <span className="text-white text-lg font-medium">Continue</span>
-          <div className="absolute right-4 w-10 h-10 bg-[#3b99cb] rounded-full 
+          <div className="absolute right-4 w-10 h-10 bg-[#c8a080] rounded-full 
                        flex items-center justify-center transition-transform 
-                       group-hover:scale-105 group-hover:bg-[#4ba5d4]">
+                       group-hover:scale-105 group-hover:bg-[#b89276]">
             <ArrowRight className="w-6 h-6 text-white" />
           </div>
         </button>
@@ -3837,7 +3965,7 @@ export default function Quiz() {
               }}
               className={`w-full h-14 rounded-xl flex items-center gap-4 px-5 transition-all duration-300
                 ${duration.selected 
-                  ? 'bg-[#f5fafc] border-2 border-[#027bbd]/20' 
+                  ? 'bg-[#f5fafc] border-2 border-[#d4b69b]/20' 
                   : 'bg-[#f5fafc]'}`}
             >
               <span className="text-3xl">{duration.emoji}</span>
@@ -3850,13 +3978,13 @@ export default function Quiz() {
         <button
           onClick={() => setCurrentStep(currentStep + 1)}
           className="w-full h-14 rounded-full relative flex items-center justify-center 
-                 bg-[#027bbd] transition-all duration-300
-                 hover:bg-[#0269a3] hover:shadow-md hover:shadow-[#027bbd]/20"
+                 bg-[#d4b69b] transition-all duration-300
+                 hover:bg-[#c8a080] hover:shadow-md hover:shadow-[#d4b69b]/20"
         >
           <span className="text-white text-lg font-medium">Continue</span>
-          <div className="absolute right-4 w-10 h-10 bg-[#3b99cb] rounded-full 
+          <div className="absolute right-4 w-10 h-10 bg-[#c8a080] rounded-full 
                        flex items-center justify-center transition-transform 
-                       group-hover:scale-105 group-hover:bg-[#4ba5d4]">
+                       group-hover:scale-105 group-hover:bg-[#b89276]">
             <ArrowRight className="w-6 h-6 text-white" />
           </div>
         </button>
@@ -3888,7 +4016,7 @@ export default function Quiz() {
               }}
               className={`w-full h-14 rounded-xl flex items-center gap-4 px-5 transition-all duration-300
                 ${capability.selected 
-                  ? 'bg-[#f5fafc] border-2 border-[#027bbd]/20' 
+                  ? 'bg-[#f5fafc] border-2 border-[#d4b69b]/20' 
                   : 'bg-[#f5fafc]'}`}
             >
               <span className="text-3xl">{capability.emoji}</span>
@@ -3901,13 +4029,13 @@ export default function Quiz() {
         <button
           onClick={() => setCurrentStep(currentStep + 1)}
           className="w-full h-14 rounded-full relative flex items-center justify-center 
-                 bg-[#027bbd] transition-all duration-300
-                 hover:bg-[#0269a3] hover:shadow-md hover:shadow-[#027bbd]/20"
+                 bg-[#d4b69b] transition-all duration-300
+                 hover:bg-[#c8a080] hover:shadow-md hover:shadow-[#d4b69b]/20"
         >
           <span className="text-white text-lg font-medium">Continue</span>
-          <div className="absolute right-4 w-10 h-10 bg-[#3b99cb] rounded-full 
+          <div className="absolute right-4 w-10 h-10 bg-[#c8a080] rounded-full 
                        flex items-center justify-center transition-transform 
-                       group-hover:scale-105 group-hover:bg-[#4ba5d4]">
+                       group-hover:scale-105 group-hover:bg-[#b89276]">
             <ArrowRight className="w-6 h-6 text-white" />
           </div>
         </button>
@@ -3939,7 +4067,7 @@ export default function Quiz() {
               }}
               className={`w-full h-14 rounded-xl flex items-center gap-4 px-5 transition-all duration-300
                 ${capability.selected 
-                  ? 'bg-[#f5fafc] border-2 border-[#027bbd]/20' 
+                  ? 'bg-[#f5fafc] border-2 border-[#d4b69b]/20' 
                   : 'bg-[#f5fafc]'}`}
             >
               <span className="text-3xl">{capability.emoji}</span>
@@ -3952,13 +4080,13 @@ export default function Quiz() {
         <button
           onClick={() => setCurrentStep(currentStep + 1)}
           className="w-full h-14 rounded-full relative flex items-center justify-center 
-                 bg-[#027bbd] transition-all duration-300
-                 hover:bg-[#0269a3] hover:shadow-md hover:shadow-[#027bbd]/20"
+                 bg-[#d4b69b] transition-all duration-300
+                 hover:bg-[#c8a080] hover:shadow-md hover:shadow-[#d4b69b]/20"
         >
           <span className="text-white text-lg font-medium">Continue</span>
-          <div className="absolute right-4 w-10 h-10 bg-[#3b99cb] rounded-full 
+          <div className="absolute right-4 w-10 h-10 bg-[#c8a080] rounded-full 
                        flex items-center justify-center transition-transform 
-                       group-hover:scale-105 group-hover:bg-[#4ba5d4]">
+                       group-hover:scale-105 group-hover:bg-[#b89276]">
             <ArrowRight className="w-6 h-6 text-white" />
           </div>
         </button>
@@ -3990,7 +4118,7 @@ export default function Quiz() {
               }}
               className={`w-full h-20 md:h-24 rounded-xl flex items-center gap-6 px-6 transition-all duration-300
                 ${duration.selected 
-                  ? 'bg-[#f5fafc] border-2 border-[#027bbd]/20' 
+                  ? 'bg-[#f5fafc] border-2 border-[#d4b69b]/20' 
                   : 'bg-[#f5fafc]'}`}
             >
               <span className="text-4xl md:text-5xl">{duration.emoji}</span>
@@ -4003,13 +4131,13 @@ export default function Quiz() {
         <button
           onClick={() => setCurrentStep(currentStep + 1)}
           className="w-full h-14 rounded-full relative flex items-center justify-center 
-                 bg-[#027bbd] transition-all duration-300
-                 hover:bg-[#0269a3] hover:shadow-md hover:shadow-[#027bbd]/20"
+                 bg-[#d4b69b] transition-all duration-300
+                 hover:bg-[#c8a080] hover:shadow-md hover:shadow-[#d4b69b]/20"
         >
           <span className="text-white text-lg font-medium">Continue</span>
-          <div className="absolute right-4 w-10 h-10 bg-[#3b99cb] rounded-full 
+          <div className="absolute right-4 w-10 h-10 bg-[#c8a080] rounded-full 
                      flex items-center justify-center transition-transform 
-                     group-hover:scale-105 group-hover:bg-[#4ba5d4]">
+                     group-hover:scale-105 group-hover:bg-[#b89276]">
             <ArrowRight className="w-6 h-6 text-white" />
           </div>
         </button>
@@ -4041,7 +4169,7 @@ export default function Quiz() {
               }}
               className={`w-full h-14 rounded-xl flex items-center gap-4 px-5 transition-all duration-300
                 ${intake.selected 
-                  ? 'bg-[#f5fafc] border-2 border-[#027bbd]/20' 
+                  ? 'bg-[#f5fafc] border-2 border-[#d4b69b]/20' 
                   : 'bg-[#f5fafc]'}`}
             >
               <span className="text-3xl">{intake.emoji}</span>
@@ -4054,13 +4182,13 @@ export default function Quiz() {
         <button
           onClick={() => setCurrentStep(currentStep + 1)}
           className="w-full h-14 rounded-full relative flex items-center justify-center 
-                 bg-[#027bbd] transition-all duration-300
-                 hover:bg-[#0269a3] hover:shadow-md hover:shadow-[#027bbd]/20"
+                 bg-[#d4b69b] transition-all duration-300
+                 hover:bg-[#c8a080] hover:shadow-md hover:shadow-[#d4b69b]/20"
         >
           <span className="text-white text-lg font-medium">Continue</span>
-          <div className="absolute right-4 w-10 h-10 bg-[#3b99cb] rounded-full 
+          <div className="absolute right-4 w-10 h-10 bg-[#c8a080] rounded-full 
                        flex items-center justify-center transition-transform 
-                       group-hover:scale-105 group-hover:bg-[#4ba5d4]">
+                       group-hover:scale-105 group-hover:bg-[#b89276]">
             <ArrowRight className="w-6 h-6 text-white" />
           </div>
         </button>
@@ -4092,7 +4220,7 @@ export default function Quiz() {
               }}
               className={`w-full h-14 rounded-xl flex items-center gap-4 px-5 transition-all duration-300
                 ${time.selected 
-                  ? 'bg-[#f5fafc] border-2 border-[#027bbd]/20' 
+                  ? 'bg-[#f5fafc] border-2 border-[#d4b69b]/20' 
                   : 'bg-[#f5fafc]'}`}
             >
               <span className="text-3xl">{time.emoji}</span>
@@ -4105,13 +4233,13 @@ export default function Quiz() {
         <button
           onClick={() => setCurrentStep(currentStep + 1)}
           className="w-full h-14 rounded-full relative flex items-center justify-center 
-                 bg-[#027bbd] transition-all duration-300
-                 hover:bg-[#0269a3] hover:shadow-md hover:shadow-[#027bbd]/20"
+                 bg-[#d4b69b] transition-all duration-300
+                 hover:bg-[#c8a080] hover:shadow-md hover:shadow-[#d4b69b]/20"
         >
           <span className="text-white text-lg font-medium">Continue</span>
-          <div className="absolute right-4 w-10 h-10 bg-[#3b99cb] rounded-full 
+          <div className="absolute right-4 w-10 h-10 bg-[#c8a080] rounded-full 
                        flex items-center justify-center transition-transform 
-                       group-hover:scale-105 group-hover:bg-[#4ba5d4]">
+                       group-hover:scale-105 group-hover:bg-[#b89276]">
             <ArrowRight className="w-6 h-6 text-white" />
           </div>
         </button>
@@ -4143,7 +4271,7 @@ export default function Quiz() {
               }}
               className={`w-full h-14 rounded-xl flex items-center gap-4 px-5 transition-all duration-300
                 ${status.selected 
-                  ? 'bg-[#f5fafc] border-2 border-[#027bbd]/20' 
+                  ? 'bg-[#f5fafc] border-2 border-[#d4b69b]/20' 
                   : 'bg-[#f5fafc]'}`}
             >
               <span className="text-3xl">{status.emoji}</span>
@@ -4156,13 +4284,13 @@ export default function Quiz() {
         <button
           onClick={() => setCurrentStep(currentStep + 1)}
           className="w-full h-14 rounded-full relative flex items-center justify-center 
-                 bg-[#027bbd] transition-all duration-300
-                 hover:bg-[#0269a3] hover:shadow-md hover:shadow-[#027bbd]/20"
+                 bg-[#d4b69b] transition-all duration-300
+                 hover:bg-[#c8a080] hover:shadow-md hover:shadow-[#d4b69b]/20"
         >
           <span className="text-white text-lg font-medium">Continue</span>
-          <div className="absolute right-4 w-10 h-10 bg-[#3b99cb] rounded-full 
+          <div className="absolute right-4 w-10 h-10 bg-[#c8a080] rounded-full 
                        flex items-center justify-center transition-transform 
-                       group-hover:scale-105 group-hover:bg-[#4ba5d4]">
+                       group-hover:scale-105 group-hover:bg-[#b89276]">
             <ArrowRight className="w-6 h-6 text-white" />
           </div>
         </button>
@@ -4194,7 +4322,7 @@ export default function Quiz() {
               }}
               className={`w-full h-14 rounded-xl flex items-center gap-4 px-5 transition-all duration-300
                 ${diet.selected 
-                  ? 'bg-[#f5fafc] border-2 border-[#027bbd]/20' 
+                  ? 'bg-[#f5fafc] border-2 border-[#d4b69b]/20' 
                   : 'bg-[#f5fafc]'}`}
             >
               <span className="text-3xl">{diet.emoji}</span>
@@ -4207,13 +4335,13 @@ export default function Quiz() {
         <button
           onClick={() => setCurrentStep(currentStep + 1)}
           className="w-full h-14 rounded-full relative flex items-center justify-center 
-                 bg-[#027bbd] transition-all duration-300
-                 hover:bg-[#0269a3] hover:shadow-md hover:shadow-[#027bbd]/20"
+                 bg-[#d4b69b] transition-all duration-300
+                 hover:bg-[#c8a080] hover:shadow-md hover:shadow-[#d4b69b]/20"
         >
           <span className="text-white text-lg font-medium">Continue</span>
-          <div className="absolute right-4 w-10 h-10 bg-[#3b99cb] rounded-full 
+          <div className="absolute right-4 w-10 h-10 bg-[#c8a080] rounded-full 
                        flex items-center justify-center transition-transform 
-                       group-hover:scale-105 group-hover:bg-[#4ba5d4]">
+                       group-hover:scale-105 group-hover:bg-[#b89276]">
             <ArrowRight className="w-6 h-6 text-white" />
           </div>
         </button>
@@ -4254,7 +4382,7 @@ export default function Quiz() {
               disabled={isNoneSelected && !allergy.isNone}
               className={`w-full h-14 rounded-xl flex items-center gap-4 px-5 transition-all duration-300
                 ${allergy.selected 
-                  ? 'bg-[#f5fafc] border-2 border-[#027bbd]/20' 
+                  ? 'bg-[#f5fafc] border-2 border-[#d4b69b]/20' 
                   : 'bg-[#f5fafc]'}
                 ${isNoneSelected && !allergy.isNone 
                   ? 'opacity-50 cursor-not-allowed' 
@@ -4272,14 +4400,14 @@ export default function Quiz() {
           className={`w-full h-14 rounded-full relative flex items-center justify-center 
             transition-all duration-300
             ${hasSelectedAllergies 
-              ? 'bg-[#027bbd] hover:bg-[#0269a3] hover:shadow-md hover:shadow-[#027bbd]/20' 
-              : 'bg-[#027bbd]/50 cursor-not-allowed'}`}
+              ? 'bg-[#d4b69b] hover:bg-[#c8a080] hover:shadow-md hover:shadow-[#d4b69b]/20' 
+              : 'bg-[#d4b69b]/50 cursor-not-allowed'}`}
         >
           <span className="text-white text-lg font-medium">Continue</span>
           {hasSelectedAllergies && (
-            <div className="absolute right-4 w-10 h-10 bg-[#3b99cb] rounded-full 
+            <div className="absolute right-4 w-10 h-10 bg-[#c8a080] rounded-full 
                          flex items-center justify-center transition-transform 
-                         group-hover:scale-105 group-hover:bg-[#4ba5d4]">
+                         group-hover:scale-105 group-hover:bg-[#b89276]">
               <ArrowRight className="w-6 h-6 text-white" />
             </div>
           )}
@@ -4306,13 +4434,13 @@ export default function Quiz() {
             )}
             
             {/* Logo */}
-            <div className="bg-[#027bbd] p-2.5 rounded-lg">
+            <div className="p-2">
               <Image
                 src="/logo.png"
                 alt="Logo"
                 width={140}
                 height={42}
-                className="h-10 w-auto"
+                className="h-10 w-auto brightness-0"
               />
             </div>
           </div>
@@ -4321,7 +4449,7 @@ export default function Quiz() {
           <div className="mb-12">
             <div className="h-1.5 w-full bg-[#f6f6f6] rounded-full overflow-hidden">
               <div 
-                className="h-full bg-[#027bbd] transition-all duration-500 ease-in-out"
+                className="h-full bg-[#d4b69b] transition-all duration-500 ease-in-out"
                 style={{ width: `${((currentStep + 1) / 35) * 100}%` }}
               />
             </div>
@@ -4366,13 +4494,7 @@ export default function Quiz() {
            currentStep === 35 ? renderStep36() :
            renderStep37()}
 
-          {/* Made by KRX */}
-          <div className="pt-8 text-center">
-            <p className="text-[#505050] text-sm tracking-wide opacity-60 hover:opacity-100 transition-opacity">
-              made by{' '}
-              <span className="font-medium tracking-[-0.03em]">krx</span>
-            </p>
-          </div>
+
 
           {/* Payment Modal */}
           {showPaymentModal && (
@@ -4404,8 +4526,8 @@ export default function Quiz() {
                   
                   <button
                     onClick={() => selectedPlan && handlePayment(selectedPlan)}
-                    className="w-full h-14 bg-[#027bbd] rounded-full text-white font-medium
-                             hover:bg-[#0269a3] transition-all duration-300"
+                    className="w-full h-14 bg-[#d4b69b] rounded-full text-white font-medium
+                             hover:bg-[#c8a080] transition-all duration-300"
                   >
                     Pay Now
                   </button>

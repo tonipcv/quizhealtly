@@ -1,12 +1,25 @@
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2025-01-27.acacia',
-});
+// Inicializar o Stripe apenas se a chave estiver disponível
+let stripe: Stripe | null = null;
+
+if (process.env.STRIPE_SECRET_KEY) {
+  stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+    apiVersion: '2025-01-27.acacia',
+  });
+}
 
 export async function POST(request: Request) {
   try {
+    // Verificar se o Stripe foi inicializado
+    if (!stripe) {
+      return NextResponse.json(
+        { error: 'Stripe API key is not configured' },
+        { status: 500 }
+      );
+    }
+
     const { planId, email } = await request.json();
 
     // Get plan details
@@ -40,8 +53,8 @@ export async function POST(request: Request) {
         },
       ],
       mode: 'payment',
-      success_url: `${process.env.NEXT_PUBLIC_BASE_URL}${plan.successUrl}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}${plan.cancelUrl}`,
+      success_url: `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}${plan.successUrl}`,
+      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}${plan.cancelUrl}`,
       customer_email: email,
     });
 

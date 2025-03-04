@@ -14,12 +14,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "LONGEVIFY | Transform Your Life Through Mindful Movement",
-  description: "Discover personalized programs designed for sustainable weight management, improved mobility, and lasting vitality. Start your wellness journey today.",
-  keywords: "longevify, weight management, mindful movement, wellness program, healthy lifestyle, longevity, body transformation, sustainable fitness",
+  title: "Longevify | Natural Treatments for Women Over 40",
+  description: "Discover the best natural treatments for women over 40. Expert guidance on herbal remedies, light therapy, nutrition, and holistic wellness solutions for optimal health and longevity.",
+  keywords: "natural treatments, women over 40, herbal remedies, light therapy, nutritional support, anti-aging, sleep enhancement, heart health, holistic wellness, natural healing",
   openGraph: {
-    title: "LONGEVIFY | Transform Your Life Through Mindful Movement",
-    description: "Personalized programs for sustainable weight management and lasting vitality",
+    title: "Longevify | Natural Treatments for Women Over 40",
+    description: "Expert guidance on natural treatments and holistic wellness solutions for women over 40",
     images: [
       {
         url: "/og-image.jpg",
@@ -33,8 +33,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "LONGEVIFY | Transform Your Life Through Mindful Movement",
-    description: "Personalized programs for sustainable weight management and lasting vitality",
+    title: "Longevify | Natural Treatments for Women Over 40",
+    description: "Expert guidance on natural treatments and holistic wellness solutions for women over 40",
     images: ["/og-image.jpg"],
   },
   robots: {
@@ -53,26 +53,11 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      {
-        url: "/favicon.ico?v=2",
-        sizes: "any",
-      },
-      {
-        url: "/icon.svg?v=2",
-        type: "image/svg+xml",
-      },
-      {
-        url: "/apple-icon.png",
-        type: "image/png",
-        sizes: "180x180",
-      },
-    ],
-    apple: [
-      {
-        url: "/apple-icon.png",
-        sizes: "180x180",
-      },
-    ],
+      { 
+        url: "/favicon.svg",
+        type: "image/svg+xml"
+      }
+    ]
   },
   manifest: "/manifest.json",
 };
@@ -87,12 +72,8 @@ export default function RootLayout({
       <head>
         <link 
           rel="icon" 
-          href="/icon.svg" 
+          href="/favicon.svg" 
           type="image/svg+xml"
-        />
-        <link 
-          rel="alternate icon" 
-          href="/favicon.ico"
         />
       </head>
       <body className="font-satoshi antialiased">
