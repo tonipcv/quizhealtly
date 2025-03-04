@@ -999,7 +999,7 @@ export default function Quiz() {
                    flex items-center justify-center transition-all duration-300
                    hover:bg-[#0269a3] hover:shadow-md hover:shadow-[#027bbd]/20"
         >
-          <span className="text-white text-base font-medium">Continue</span>
+          <span className="text-white text-lg font-medium">Continue</span>
           <div className="absolute right-3 w-8 h-8 bg-[#3b99cb] rounded-full 
                        flex items-center justify-center transition-transform 
                        group-hover:scale-105 group-hover:bg-[#4ba5d4]">
@@ -1026,7 +1026,7 @@ export default function Quiz() {
         </div>
 
         {/* Goals Selection */}
-        <div className="space-y-3">
+        <div className="space-y-4">
           {goals.map((goal) => (
             <button
               key={goal.id}
@@ -1046,7 +1046,7 @@ export default function Quiz() {
                     <Check className="w-4 h-4 text-[#027bbd]" />
                   )}
                 </div>
-                <span className="text-[#263853] text-sm">{goal.text}</span>
+                <span className="text-[#263853] text-lg md:text-xl font-medium">{goal.text}</span>
               </div>
               <div className="w-16 h-16 relative rounded-lg overflow-hidden">
                 <Image
@@ -1069,7 +1069,7 @@ export default function Quiz() {
                 ? 'bg-[#027bbd] hover:bg-[#0269a3] hover:shadow-md hover:shadow-[#027bbd]/20' 
                 : 'bg-[#027bbd]/50 cursor-not-allowed'}`}
           >
-            <span className="text-white text-base font-medium">Continue</span>
+            <span className="text-white text-lg font-medium">Continue</span>
             {hasSelectedGoals && (
               <div className="absolute right-3 w-8 h-8 bg-[#3b99cb] rounded-full 
                            flex items-center justify-center transition-transform 
@@ -1096,7 +1096,7 @@ export default function Quiz() {
         </div>
 
         {/* Experience Selection */}
-        <div className="space-y-3">
+        <div className="space-y-4">
           {experiences.map((exp) => (
             <button
               key={exp.id}
@@ -1105,8 +1105,8 @@ export default function Quiz() {
                 hover:bg-white hover:border-2 hover:border-[#f5fafc]
                 bg-[#f5fafc] group`}
             >
-              <span className="text-[#263853] text-sm">{exp.text}</span>
-              <span className="text-2xl">{exp.emoji}</span>
+              <span className="text-[#263853] text-lg md:text-xl font-medium">{exp.text}</span>
+              <span className="text-3xl">{exp.emoji}</span>
             </button>
           ))}
         </div>
@@ -1125,13 +1125,13 @@ export default function Quiz() {
             exercise for women over 40
           </h1>
           <div className="space-y-2">
-            <p className="text-[#263853] text-base tracking-[-0.03em] font-medium">
+            <p className="text-[#263853] text-lg tracking-[-0.03em] font-medium">
               Strengthen and tone your body like never before
             </p>
-            <p className="text-[#263853] text-base tracking-[-0.03em] font-medium">
+            <p className="text-[#263853] text-lg tracking-[-0.03em] font-medium">
               with low-impact exercises. The wall intensifies
             </p>
-            <p className="text-[#263853] text-base tracking-[-0.03em] font-medium">
+            <p className="text-[#263853] text-lg tracking-[-0.03em] font-medium">
               each exercise while providing support.
             </p>
           </div>
@@ -1190,7 +1190,7 @@ export default function Quiz() {
                      flex items-center justify-center transition-all duration-300
                      hover:bg-[#0269a3] hover:shadow-md hover:shadow-[#027bbd]/20"
           >
-            <span className="text-white text-base font-medium">Continue</span>
+            <span className="text-white text-lg font-medium">Continue</span>
             <div className="absolute right-3 w-8 h-8 bg-[#3b99cb] rounded-full 
                          flex items-center justify-center transition-transform 
                          group-hover:scale-105 group-hover:bg-[#4ba5d4]">
@@ -1221,7 +1221,7 @@ export default function Quiz() {
               className="w-full p-4 rounded-xl flex items-center justify-between transition-all duration-300
                 bg-[#f5fafc] hover:bg-white hover:border-2 hover:border-[#f5fafc]"
             >
-              <span className="text-[#263853] text-sm">{type.text}</span>
+              <span className="text-[#263853] text-lg md:text-xl font-medium">{type.text}</span>
               <div className="w-16 h-16 relative rounded-lg overflow-hidden">
                 <Image
                   src={type.image}
@@ -1242,7 +1242,7 @@ export default function Quiz() {
       <div className="space-y-10">
         {/* Question */}
         <div className="text-center">
-          <h1 className="text-[#263853] text-[32px] font-medium tracking-[-0.03em] leading-tight">
+          <h1 className="text-[#263853] text-3xl md:text-4xl font-medium tracking-[-0.03em] leading-tight">
             How long has it been
             <br />
             since you've felt good
@@ -1252,7 +1252,7 @@ export default function Quiz() {
         </div>
 
         {/* Time Options */}
-        <div className="space-y-3">
+        <div className="space-y-4">
           {timeOptions.map((option) => (
             <button
               key={option.id}
@@ -1260,8 +1260,8 @@ export default function Quiz() {
               className="w-full p-4 rounded-xl flex items-center justify-between transition-all duration-300
                 bg-[#f5fafc] hover:bg-white hover:border-2 hover:border-[#f5fafc]"
             >
-              <span className="text-[#263853] text-sm">{option.text}</span>
-              <span className="text-2xl">{option.emoji}</span>
+              <span className="text-[#263853] text-lg md:text-xl font-medium">{option.text}</span>
+              <span className="text-3xl">{option.emoji}</span>
             </button>
           ))}
         </div>
@@ -1280,7 +1280,7 @@ export default function Quiz() {
         </div>
 
         {/* Target Body Type Selection */}
-        <div className="space-y-3">
+        <div className="space-y-4">
           {targetBodyTypes.map((type) => (
             <button
               key={type.id}
@@ -1288,7 +1288,7 @@ export default function Quiz() {
               className="w-full p-4 rounded-xl flex items-center justify-between transition-all duration-300
                 bg-[#f5fafc] hover:bg-white hover:border-2 hover:border-[#f5fafc]"
             >
-              <span className="text-[#263853] text-sm">{type.text}</span>
+              <span className="text-[#263853] text-lg md:text-xl font-medium">{type.text}</span>
               <div className="w-16 h-16 relative rounded-lg overflow-hidden">
                 <Image
                   src={type.image}
@@ -1318,13 +1318,13 @@ export default function Quiz() {
     };
 
     return (
-      <div className="space-y-8">
+      <div className="space-y-10">
         {/* Title with Clear Selection */}
         <div className="text-center space-y-2">
           <h1 className="text-[#263853] text-[32px] font-bold tracking-[-0.03em]">
             Select your target zones
           </h1>
-          <p className="text-[#263853] text-base">
+          <p className="text-[#263853] text-lg">
             Select all that apply
           </p>
           {hasSelectedZones && (
@@ -1405,7 +1405,7 @@ export default function Quiz() {
                     <Check className="w-4 h-4 text-[#027bbd]" />
                   )}
                 </div>
-                <span className="text-[#263853] text-base">{zone.text}</span>
+                <span className="text-[#263853] text-lg">{zone.text}</span>
               </button>
             ))}
           </div>
@@ -1439,7 +1439,7 @@ export default function Quiz() {
       <div className="space-y-10">
         {/* Question */}
         <div className="text-center">
-          <h1 className="text-[#263853] text-[32px] font-medium tracking-[-0.03em] leading-tight">
+          <h1 className="text-[#263853] text-3xl md:text-4xl font-medium tracking-[-0.03em] leading-tight">
             Has any other exercise
             <br />
             program helped you to
@@ -1449,7 +1449,7 @@ export default function Quiz() {
         </div>
 
         {/* Program Success Selection */}
-        <div className="space-y-3">
+        <div className="space-y-4">
           {programSuccesses.map((success) => (
             <button
               key={success.id}
@@ -1460,7 +1460,7 @@ export default function Quiz() {
                   : 'bg-[#f5fafc] hover:bg-white hover:border-2 hover:border-[#f5fafc]'}`}
             >
               <span className="text-[#263853] text-lg">{success.text}</span>
-              <span className="text-2xl">{success.emoji}</span>
+              <span className="text-3xl">{success.emoji}</span>
             </button>
           ))}
         </div>
@@ -1493,7 +1493,7 @@ export default function Quiz() {
       <div className="space-y-10">
         {/* Title */}
         <div className="text-center">
-          <h1 className="text-[#263853] text-[32px] font-medium tracking-[-0.03em] leading-tight">
+          <h1 className="text-[#263853] text-3xl md:text-4xl font-medium tracking-[-0.03em] leading-tight">
             99% of exercise programs are
             <br />
             fantastic
@@ -1692,9 +1692,9 @@ export default function Quiz() {
         <div className="flex rounded-xl overflow-hidden">
           <button
             onClick={() => handleUnitChange('imperial')}
-            className={`flex-1 h-12 font-medium transition-colors
+            className={`flex-1 h-14 font-medium text-lg transition-colors
               ${unit === 'imperial' 
-                ? 'bg-[#239b77] text-white' 
+                ? 'bg-[#239b77] text-white shadow-md' 
                 : 'bg-[#f5fafc] text-[#445664]'}`}
           >
             Imperial
@@ -1724,6 +1724,8 @@ export default function Quiz() {
                   onBlur={() => setIsFtFocused(false)}
                   className="flex-1 bg-transparent outline-none text-[#263853] text-lg"
                   placeholder=""
+                  min="0"
+                  max="8"
                 />
                 <span className={`ml-4 ${isFtFocused ? 'text-[#565656]' : 'text-[#e8f0f4]'}`}>
                   ft
@@ -1740,6 +1742,8 @@ export default function Quiz() {
                   onBlur={() => setIsInFocused(false)}
                   className="flex-1 bg-transparent outline-none text-[#263853] text-lg"
                   placeholder=""
+                  min="0"
+                  max="11"
                 />
                 <span className={`ml-4 ${isInFocused ? 'text-[#565656]' : 'text-[#e8f0f4]'}`}>
                   in
@@ -1878,9 +1882,9 @@ export default function Quiz() {
         <div className="flex rounded-xl overflow-hidden">
           <button
             onClick={() => handleUnitChange('imperial')}
-            className={`flex-1 h-12 font-medium transition-colors
+            className={`flex-1 h-14 font-medium text-lg transition-colors
               ${unit === 'imperial' 
-                ? 'bg-[#239b77] text-white' 
+                ? 'bg-[#239b77] text-white shadow-md' 
                 : 'bg-[#f5fafc] text-[#445664]'}`}
           >
             Imperial
@@ -1984,13 +1988,13 @@ export default function Quiz() {
             <p className="text-[#5e8bff] text-sm font-bold">
               Please review the information you entered again
             </p>
-            <p className="text-[#263853] text-sm">
+            <p className="text-[#263853] text-lg md:text-xl font-medium">
               If this is your correct current weight, we don't recommend you lose any weight given your BMI {'<'} 18.5.
             </p>
-            <p className="text-[#263853] text-sm">
+            <p className="text-[#263853] text-lg md:text-xl font-medium">
               But our program can still help you alleviate common
             </p>
-            <p className="text-[#263853] text-sm">
+            <p className="text-[#263853] text-lg md:text-xl font-medium">
               <span className="text-[#5e8bff] font-bold">menopause</span> symptoms if you choose to proceed.
             </p>
           </div>
@@ -2069,9 +2073,9 @@ export default function Quiz() {
         <div className="flex rounded-xl overflow-hidden">
           <button
             onClick={() => handleUnitChange('imperial')}
-            className={`flex-1 h-12 font-medium transition-colors
+            className={`flex-1 h-14 font-medium text-lg transition-colors
               ${unit === 'imperial' 
-                ? 'bg-[#239b77] text-white' 
+                ? 'bg-[#239b77] text-white shadow-md' 
                 : 'bg-[#f5fafc] text-[#445664]'}`}
           >
             Imperial
@@ -2172,7 +2176,7 @@ export default function Quiz() {
         {/* Validation Messages */}
         {weightValidation === 'too-low' && (
           <div className="text-center space-y-2">
-            <p className="text-[#263853] text-sm">
+            <p className="text-[#263853] text-lg md:text-xl font-medium">
               We're afraid your desired body weight is outside
               <br />
               of our recommended range.
@@ -2185,7 +2189,7 @@ export default function Quiz() {
 
         {weightValidation === 'too-high' && (
           <div className="text-center space-y-2">
-            <p className="text-[#263853] text-sm">
+            <p className="text-[#263853] text-lg md:text-xl font-medium">
               We're sorry, we currently only offer a program
               <br />
               to lose weight, not to gain weight.
@@ -2266,7 +2270,7 @@ export default function Quiz() {
       <div className="space-y-10">
         {/* Title */}
         <div className="text-center">
-          <h1 className="text-[#263853] text-[32px] font-medium tracking-[-0.03em] leading-tight">
+          <h1 className="text-[#263853] text-3xl md:text-4xl font-medium tracking-[-0.03em] leading-tight">
             Your potential improvement
             <br />
             in 12 weeks
@@ -2401,7 +2405,7 @@ export default function Quiz() {
   // Add the renderStep30
   const renderStep30 = () => {
     return (
-      <div className="space-y-8">
+      <div className="space-y-10">
         {/* Title */}
         <div className="text-center">
           <h1 className="text-[32px] md:text-[38px] font-medium tracking-[-0.03em] leading-tight">
@@ -2411,31 +2415,31 @@ export default function Quiz() {
         </div>
 
         {/* Loading Image */}
-        <div className="relative aspect-[16/9] w-full">
+        <div className="relative w-full h-64 md:h-80 lg:h-96">
           <Image
             src="/P30-E1-loading-pilates-program.webp"
             alt="Loading Pilates Program"
             fill
-            className="object-cover rounded-2xl"
+            className="object-contain rounded-2xl"
             priority
           />
         </div>
 
         {/* Loading Progress */}
-        <div className="space-y-3">
+        <div className="space-y-4">
           <div className="h-2 w-full bg-[#f6f6f6] rounded-full overflow-hidden">
             <div 
               className="h-full bg-[#65d26e] transition-all duration-300 ease-linear"
               style={{ width: `${step30LoadingProgress}%` }}
             />
           </div>
-          <p className="text-center text-[#263853] text-base">
+          <p className="text-center text-[#263853] text-lg">
             Your plan is ready!
           </p>
         </div>
 
         {/* Message */}
-        <div className="text-[#263853] text-xl md:text-2xl font-medium leading-relaxed text-left">
+        <div className="text-[#263853] text-xl md:text-3xl font-medium leading-relaxed text-left">
           If you follow our plan, you significantly increase your chances of maintaining a healthy weight for the rest of your life.
         </div>
 
@@ -2463,7 +2467,7 @@ export default function Quiz() {
       <div className="space-y-10">
         {/* Title */}
         <div className="text-center">
-          <h1 className="text-[#263853] text-[32px] font-medium tracking-[-0.03em] leading-tight">
+          <h1 className="text-[#263853] text-3xl md:text-4xl font-medium tracking-[-0.03em] leading-tight">
             The best women's lifestyle
             <br />
             & fitness app in 2025
@@ -2528,7 +2532,7 @@ export default function Quiz() {
       <div className="space-y-10">
         {/* Title */}
         <div className="text-center">
-          <h1 className="text-[#263853] text-[32px] font-medium tracking-[-0.03em] leading-tight">
+          <h1 className="text-[#263853] text-3xl md:text-4xl font-medium tracking-[-0.03em] leading-tight">
             Enter your email to receive your{' '}
             <span className="text-[#027bbd]">Wall Pilates</span>
             {' '}plan
@@ -2637,7 +2641,7 @@ export default function Quiz() {
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
             <div className="bg-white rounded-2xl p-8 max-w-2xl w-full mx-4 max-h-[80vh] overflow-y-auto">
               <div className="flex justify-between items-start mb-6">
-                <h2 className="text-[#263853] text-2xl font-medium">
+                <h2 className="text-[#263853] text-3xl font-medium">
                   Terms & Privacy Policy
                 </h2>
                 <button 
@@ -2735,7 +2739,7 @@ export default function Quiz() {
       <div className="space-y-10">
         {/* Title */}
         <div className="text-center">
-          <h1 className="text-[#263853] text-[32px] font-medium tracking-[-0.03em] leading-tight">
+          <h1 className="text-[#263853] text-3xl md:text-4xl font-medium tracking-[-0.03em] leading-tight">
             Our program and coaches
             <br />
             featured in
@@ -2852,61 +2856,64 @@ export default function Quiz() {
     return (
       <div className="space-y-10">
         {/* Status Bar */}
-        <div className="h-12 bg-[#f5fafc] rounded-full flex items-center px-6">
-          <span className="text-sm text-[#263853]">Almost done!</span>
-          <span className="ml-2">🎉</span>
+        <div className="h-14 bg-gradient-to-r from-[#f5fafc] to-[#e6f4f9] rounded-full flex items-center justify-center px-6 shadow-sm">
+          <span className="text-lg font-medium text-[#263853]">Almost done!</span>
+          <span className="ml-2 text-2xl animate-bounce">🎉</span>
         </div>
 
         {/* Title */}
         <div className="text-center">
-          <h1 className="text-[#263853] text-[32px] font-medium tracking-[-0.03em]">
+          <h1 className="text-[#263853] text-3xl md:text-4xl font-bold tracking-[-0.03em]">
             Are you ready to commit?
           </h1>
         </div>
 
         {/* Description */}
-        <div className="text-center">
-          <p className="text-[#263853] text-sm tracking-[-0.03em]">
-            Our Wall Pilates plan requires only 10-15min per day.
+        <div className="text-center bg-[#f8fcfe] rounded-xl p-4 border border-[#e6f4f9] shadow-sm">
+          <p className="text-[#263853] text-lg md:text-xl font-medium tracking-[-0.03em]">
+            Our Wall Pilates plan requires only <span className="text-[#027bbd] font-bold">10-15min</span> per day.
           </p>
         </div>
 
         {/* Commitment Options */}
-        <div className="space-y-3">
+        <div className="space-y-6">
           <button
             onClick={() => setCurrentStep(currentStep + 1)}
-            className="w-full h-16 rounded-xl flex items-center justify-between px-6
-                     bg-[#f5fafc] hover:bg-white hover:border-2 hover:border-[#f5fafc]
+            className="w-full h-20 rounded-xl flex items-center justify-between px-6
+                     bg-gradient-to-r from-[#f5fafc] to-[#e6f4f9] hover:from-[#e6f4f9] hover:to-[#d7eef7]
+                     border-2 border-[#e6f4f9] hover:border-[#d7eef7] hover:shadow-md
                      transition-all duration-300"
           >
-            <span className="text-[#263853] text-base">
+            <span className="text-[#263853] text-xl font-medium">
               Yes, I will do my first Wall Pilates session tomorrow
             </span>
-            <span className="text-2xl">💪🏼</span>
+            <span className="text-4xl">💪🏼</span>
           </button>
 
           <button
             onClick={() => setCurrentStep(currentStep + 1)}
-            className="w-full h-16 rounded-xl flex items-center justify-between px-6
-                     bg-[#f5fafc] hover:bg-white hover:border-2 hover:border-[#f5fafc]
+            className="w-full h-20 rounded-xl flex items-center justify-between px-6
+                     bg-gradient-to-r from-[#e6f4f9] to-[#d7eef7] hover:from-[#d7eef7] hover:to-[#c8e8f5]
+                     border-2 border-[#d7eef7] hover:border-[#c8e8f5] hover:shadow-md
                      transition-all duration-300"
           >
-            <span className="text-[#263853] text-base">
+            <span className="text-[#263853] text-xl font-medium">
               Yes! I will do my first Wall Pilates session today!
             </span>
-            <span className="text-2xl">🙌🏼</span>
+            <span className="text-4xl">🙌🏼</span>
           </button>
 
           <button
             onClick={() => setCurrentStep(currentStep + 1)}
-            className="w-full h-16 rounded-xl flex items-center justify-between px-6
-                     bg-[#f5fafc] hover:bg-white hover:border-2 hover:border-[#f5fafc]
+            className="w-full h-20 rounded-xl flex items-center justify-between px-6
+                     bg-[#f5fafc] hover:bg-white
+                     border-2 border-[#e6f4f9] hover:border-[#d7eef7]
                      transition-all duration-300"
           >
-            <span className="text-[#263853] text-base">
+            <span className="text-[#263853] text-xl font-medium">
               I'm not sure if I'm ready yet…
             </span>
-            <span className="text-2xl">😅</span>
+            <span className="text-4xl">😅</span>
           </button>
         </div>
       </div>
@@ -2985,26 +2992,35 @@ export default function Quiz() {
               {/* Back Button */}
               <button
                 onClick={() => setCurrentStep(currentStep - 1)}
-                className="absolute left-4 text-[#505050] hover:text-[#404040] transition-colors"
+                className="text-[#505050] hover:text-[#404040] transition-colors"
               >
                 <ArrowLeft className="w-5 h-5" />
               </button>
 
-              {/* Timer */}
-              <div className="flex-1 text-center">
-                <div className="text-[#027bbc] text-2xl font-bold">
-                  {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
-                </div>
-                <div className="text-[#22305d] text-xs">
-                  <span>minutes</span>
-                  <span className="ml-2">seconds</span>
-                </div>
+              {/* Logo */}
+              <div className="mr-4">
+                <Image
+                  src="/logo.png"
+                  alt="Logo"
+                  width={120}
+                  height={30}
+                  className="h-auto w-auto object-contain brightness-0"
+                />
               </div>
 
-              {/* Get Plan Button */}
-              <a href="#select-membership" className="bg-[#027bbc] text-white px-6 py-3 rounded-full">
-                Get my plan
-              </a>
+              {/* Timer */}
+              <div className="flex items-center gap-2">
+                <div className="bg-[#f0f7fc] px-3 py-1 rounded-lg">
+                  <div className="text-[#027bbc] text-lg font-bold">
+                    {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
+                  </div>
+                </div>
+
+                {/* Get Plan Button */}
+                <a href="#select-membership" className="bg-[#027bbc] text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-[#0269a3] transition-colors">
+                  Get plan
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -3075,7 +3091,7 @@ export default function Quiz() {
           </div>
 
           {/* Title */}
-          <h1 className="text-[#172554] text-3xl font-bold text-center">
+          <h1 className="text-[#172554] text-3xl md:text-4xl font-bold text-center leading-tight">
             Your <span className="text-[#027bbc]">Wall Pilates</span> plan for
             <br />
             women over 40 is ready!
@@ -3216,7 +3232,7 @@ export default function Quiz() {
 
           {/* App Screenshots */}
           <div>
-            <h2 className="text-[#172554] text-2xl font-bold text-center mb-8">
+            <h2 className="text-[#172554] text-3xl font-bold text-center mb-8">
               Use our easy-to-use mobile app to reach your goals
             </h2>
             <div className="grid grid-cols-3 gap-4">
@@ -3251,7 +3267,7 @@ export default function Quiz() {
 
           {/* Media Mentions */}
           <div>
-            <h2 className="text-2xl font-bold text-center mb-8">
+            <h2 className="text-3xl font-bold text-center mb-8">
               Our program and coaches featured in
             </h2>
             <div className="grid grid-cols-3 gap-6 mb-6">
@@ -3277,7 +3293,7 @@ export default function Quiz() {
               />
               <span className="font-bold">Theresa</span>
             </div>
-            <div className="text-[#fde047] text-2xl mb-4">❤️❤️❤️❤️❤️</div>
+            <div className="text-[#fde047] text-3xl mb-4">❤️❤️❤️❤️❤️</div>
             <p className="text-sm">
               I've been on so many diets, but this plan is truly different...
             </p>
@@ -3285,7 +3301,7 @@ export default function Quiz() {
 
           {/* FAQ */}
           <div>
-            <h2 className="text-2xl font-bold text-center mb-8">
+            <h2 className="text-3xl font-bold text-center mb-8">
               What members often ask
             </h2>
             <div className="space-y-4">
@@ -3391,7 +3407,7 @@ export default function Quiz() {
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
       <div className="bg-white rounded-2xl p-8 max-w-md w-full mx-4">
         <div className="flex justify-between items-start mb-6">
-          <h2 className="text-[#263853] text-2xl font-medium">
+          <h2 className="text-[#263853] text-3xl font-medium">
             Complete Your Purchase
           </h2>
           <button 
@@ -3405,22 +3421,33 @@ export default function Quiz() {
         </div>
         
         <div className="space-y-6">
+          {/* Limited Spots Alert */}
+          <div className="bg-[#fff8e6] border border-[#ffc107] rounded-lg p-4 text-center">
+            <p className="text-[#e67700] font-medium mb-1">Limited Spots Available!</p>
+            <p className="text-sm text-[#664d03]">Only 7 spots left for today's enrollment</p>
+          </div>
+          
           <div className="text-center">
             <p className="text-[#263853] text-lg mb-2">
               Selected Plan: {pricingPlans.find(p => p.id === selectedPlan)?.duration}
             </p>
-            <p className="text-[#027bbd] text-2xl font-bold">
+            <p className="text-[#027bbd] text-3xl font-bold">
               £{pricingPlans.find(p => p.id === selectedPlan)?.discountedPrice}
             </p>
           </div>
           
           <button
             onClick={() => selectedPlan && handlePayment(selectedPlan)}
-            className="w-full h-14 bg-[#027bbd] rounded-full text-white font-medium
-                     hover:bg-[#0269a3] transition-all duration-300"
+            className="w-full h-14 bg-gradient-to-r from-[#027bbd] to-[#0269a3] rounded-full text-white font-medium
+                     hover:from-[#0269a3] hover:to-[#015a8f] transition-all duration-300 shadow-md
+                     animate-[gentlePulse_3s_ease-in-out_infinite]"
           >
-            Pay Now
+            Secure Your Spot Now
           </button>
+          
+          <p className="text-center text-xs text-[#6b7280]">
+            By proceeding, you'll be redirected to our secure payment processor
+          </p>
         </div>
       </div>
     </div>
@@ -3429,7 +3456,7 @@ export default function Quiz() {
   // Add the renderStep37
   const renderStep37 = () => {
     return (
-      <div className="space-y-8">
+      <div className="space-y-10">
         {/* Back Button */}
         <div className="flex items-center gap-2">
           <button
@@ -3537,7 +3564,7 @@ export default function Quiz() {
       <div className="space-y-10">
         {/* Title */}
         <div className="text-center">
-          <h1 className="text-[#263853] text-[32px] font-medium tracking-[-0.03em] leading-tight">
+          <h1 className="text-[#263853] text-3xl md:text-4xl font-medium tracking-[-0.03em] leading-tight">
             Your fitness level naturally
             <br />
             declines over time…
@@ -3547,7 +3574,7 @@ export default function Quiz() {
         </div>
 
         {/* Image */}
-        <div className="rounded-2xl overflow-hidden">
+        <div className="rounded-2xl overflow-hidden shadow-lg">
           <Image
             src="/P27-E1-health-index.avif"
             alt="Health index"
@@ -3560,20 +3587,20 @@ export default function Quiz() {
 
         {/* Description */}
         <div className="space-y-6">
-          <p className="text-[#263853] text-base tracking-[-0.03em] leading-relaxed">
+          <p className="text-[#263853] text-lg md:text-xl tracking-[-0.03em] leading-relaxed font-medium">
             Don't worry, you're not alone. All our customers
-            <br />
+            <br className="hidden md:block" />
             experience the same decline as they get older,
-            <br />
-            it's normal part of aging.
+            <br className="hidden md:block" />
+            it's a normal part of aging.
           </p>
 
-          <p className="text-[#263853] text-base tracking-[-0.03em] leading-relaxed">
+          <p className="text-[#263853] text-lg md:text-xl tracking-[-0.03em] leading-relaxed font-medium">
             What's more important is what comes next. You
-            <br />
+            <br className="hidden md:block" />
             haven't missed the boat, you're still able to
-            <br />
-            reverse your declining well-being and aging.
+            <br className="hidden md:block" />
+            <span className="text-[#027bbd] font-bold">reverse your declining well-being</span> and aging.
           </p>
         </div>
 
@@ -3600,14 +3627,14 @@ export default function Quiz() {
   // Add renderStep9 function
   const renderStep9 = () => {
     return (
-      <div className="space-y-8">
+      <div className="space-y-10">
         <div className="text-center">
-          <h1 className="text-[#263853] text-[32px] font-medium tracking-[-0.03em] leading-tight">
+          <h1 className="text-[#263853] text-3xl md:text-4xl font-medium tracking-[-0.03em] leading-tight">
             What's your current activity level?
           </h1>
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-4">
           {activityLevels.map((level) => (
             <button
               key={level.id}
@@ -3624,8 +3651,8 @@ export default function Quiz() {
                   ? 'bg-[#f5fafc] border-2 border-[#027bbd]/20' 
                   : 'bg-[#f5fafc]'}`}
             >
-              <span className="text-2xl">{level.emoji}</span>
-              <span className="text-[#263853] text-base">{level.text}</span>
+              <span className="text-3xl">{level.emoji}</span>
+              <span className="text-[#263853] text-lg">{level.text}</span>
             </button>
           ))}
         </div>
@@ -3654,7 +3681,7 @@ export default function Quiz() {
     const isNoneSelected = medicalConditions.find(c => c.isNone)?.selected;
 
     return (
-      <div className="space-y-8">
+      <div className="space-y-10">
         {/* Title */}
         <div className="text-center">
           <h1 className="text-[#263853] text-[28px] md:text-[38px] font-medium tracking-[-0.03em] leading-tight">
@@ -3699,7 +3726,7 @@ export default function Quiz() {
                     <Check className="w-4 h-4 md:w-5 md:h-5 text-white" />
                   )}
                 </div>
-                <span className="text-[#263853] text-base md:text-xl">{condition.text}</span>
+                <span className="text-[#263853] text-lg md:text-xl">{condition.text}</span>
               </div>
               <div className="w-14 h-14 md:w-20 md:h-20 relative">
                 <Image
@@ -3738,14 +3765,14 @@ export default function Quiz() {
   // Add renderStep11 function
   const renderStep11 = () => {
     return (
-      <div className="space-y-8">
+      <div className="space-y-10">
         <div className="text-center">
-          <h1 className="text-[#263853] text-[32px] font-medium tracking-[-0.03em] leading-tight">
+          <h1 className="text-[#263853] text-3xl md:text-4xl font-medium tracking-[-0.03em] leading-tight">
             How many times per week do you want to exercise?
           </h1>
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-4">
           {weeklyFrequencies.map((frequency) => (
             <button
               key={frequency.id}
@@ -3757,13 +3784,13 @@ export default function Quiz() {
                 setWeeklyFrequencies(newFrequencies);
                 setTimeout(() => setCurrentStep(currentStep + 1), 500);
               }}
-              className={`w-full h-14 rounded-xl flex items-center gap-4 px-5 transition-all duration-300
+              className={`w-full h-16 rounded-xl flex items-center gap-6 px-6 transition-all duration-300 hover:bg-[#f8fcfe]
                 ${frequency.selected 
-                  ? 'bg-[#f5fafc] border-2 border-[#027bbd]/20' 
+                  ? 'bg-[#f5fafc] border-2 border-[#027bbd] shadow-md' 
                   : 'bg-[#f5fafc]'}`}
             >
-              <span className="text-2xl">{frequency.emoji}</span>
-              <span className="text-[#263853] text-base">{frequency.text}</span>
+              <span className="text-3xl">{frequency.emoji}</span>
+              <span className="text-[#263853] text-lg">{frequency.text}</span>
             </button>
           ))}
         </div>
@@ -3789,14 +3816,14 @@ export default function Quiz() {
   // Add renderStep12 function
   const renderStep12 = () => {
     return (
-      <div className="space-y-8">
+      <div className="space-y-10">
         <div className="text-center">
-          <h1 className="text-[#263853] text-[32px] font-medium tracking-[-0.03em] leading-tight">
+          <h1 className="text-[#263853] text-3xl md:text-4xl font-medium tracking-[-0.03em] leading-tight">
             How long would you like your sessions to be?
           </h1>
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-4">
           {sessionDurations.map((duration) => (
             <button
               key={duration.id}
@@ -3813,8 +3840,8 @@ export default function Quiz() {
                   ? 'bg-[#f5fafc] border-2 border-[#027bbd]/20' 
                   : 'bg-[#f5fafc]'}`}
             >
-              <span className="text-2xl">{duration.emoji}</span>
-              <span className="text-[#263853] text-base">{duration.text}</span>
+              <span className="text-3xl">{duration.emoji}</span>
+              <span className="text-[#263853] text-lg">{duration.text}</span>
             </button>
           ))}
         </div>
@@ -3840,14 +3867,14 @@ export default function Quiz() {
   // Add renderStep13 function
   const renderStep13 = () => {
     return (
-      <div className="space-y-8">
+      <div className="space-y-10">
         <div className="text-center">
-          <h1 className="text-[#263853] text-[32px] font-medium tracking-[-0.03em] leading-tight">
+          <h1 className="text-[#263853] text-3xl md:text-4xl font-medium tracking-[-0.03em] leading-tight">
             Can you touch your toes with straight knees?
           </h1>
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-4">
           {capabilities.map((capability) => (
             <button
               key={capability.id}
@@ -3864,8 +3891,8 @@ export default function Quiz() {
                   ? 'bg-[#f5fafc] border-2 border-[#027bbd]/20' 
                   : 'bg-[#f5fafc]'}`}
             >
-              <span className="text-2xl">{capability.emoji}</span>
-              <span className="text-[#263853] text-base">{capability.text}</span>
+              <span className="text-3xl">{capability.emoji}</span>
+              <span className="text-[#263853] text-lg">{capability.text}</span>
             </button>
           ))}
         </div>
@@ -3891,14 +3918,14 @@ export default function Quiz() {
   // Add renderStep14 function
   const renderStep14 = () => {
     return (
-      <div className="space-y-8">
+      <div className="space-y-10">
         <div className="text-center">
-          <h1 className="text-[#263853] text-[32px] font-medium tracking-[-0.03em] leading-tight">
+          <h1 className="text-[#263853] text-3xl md:text-4xl font-medium tracking-[-0.03em] leading-tight">
             Can you get up from the couch without using your arms?
           </h1>
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-4">
           {couchCapabilities.map((capability) => (
             <button
               key={capability.id}
@@ -3915,8 +3942,8 @@ export default function Quiz() {
                   ? 'bg-[#f5fafc] border-2 border-[#027bbd]/20' 
                   : 'bg-[#f5fafc]'}`}
             >
-              <span className="text-2xl">{capability.emoji}</span>
-              <span className="text-[#263853] text-base">{capability.text}</span>
+              <span className="text-3xl">{capability.emoji}</span>
+              <span className="text-[#263853] text-lg">{capability.text}</span>
             </button>
           ))}
         </div>
@@ -3942,9 +3969,9 @@ export default function Quiz() {
   // Add renderStep15 function - Sleep Duration
   const renderStep15 = () => {
     return (
-      <div className="space-y-8">
+      <div className="space-y-10">
         <div className="text-center">
-          <h1 className="text-[#263853] text-[32px] font-medium tracking-[-0.03em] leading-tight">
+          <h1 className="text-[#263853] text-3xl md:text-4xl font-medium tracking-[-0.03em] leading-tight">
             How many hours do you sleep per night?
           </h1>
         </div>
@@ -3993,14 +4020,14 @@ export default function Quiz() {
   // Add renderStep16 function - Water Intake
   const renderStep16 = () => {
     return (
-      <div className="space-y-8">
+      <div className="space-y-10">
         <div className="text-center">
-          <h1 className="text-[#263853] text-[32px] font-medium tracking-[-0.03em] leading-tight">
+          <h1 className="text-[#263853] text-3xl md:text-4xl font-medium tracking-[-0.03em] leading-tight">
             How much water do you drink daily?
           </h1>
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-4">
           {waterIntakes.map((intake) => (
             <button
               key={intake.id}
@@ -4017,8 +4044,8 @@ export default function Quiz() {
                   ? 'bg-[#f5fafc] border-2 border-[#027bbd]/20' 
                   : 'bg-[#f5fafc]'}`}
             >
-              <span className="text-2xl">{intake.emoji}</span>
-              <span className="text-[#263853] text-base">{intake.text}</span>
+              <span className="text-3xl">{intake.emoji}</span>
+              <span className="text-[#263853] text-lg">{intake.text}</span>
             </button>
           ))}
         </div>
@@ -4044,14 +4071,14 @@ export default function Quiz() {
   // Add renderStep17 function - Walking Time
   const renderStep17 = () => {
     return (
-      <div className="space-y-8">
+      <div className="space-y-10">
         <div className="text-center">
-          <h1 className="text-[#263853] text-[32px] font-medium tracking-[-0.03em] leading-tight">
+          <h1 className="text-[#263853] text-3xl md:text-4xl font-medium tracking-[-0.03em] leading-tight">
             How much do you walk daily?
           </h1>
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-4">
           {walkingTimes.map((time) => (
             <button
               key={time.id}
@@ -4068,8 +4095,8 @@ export default function Quiz() {
                   ? 'bg-[#f5fafc] border-2 border-[#027bbd]/20' 
                   : 'bg-[#f5fafc]'}`}
             >
-              <span className="text-2xl">{time.emoji}</span>
-              <span className="text-[#263853] text-base">{time.text}</span>
+              <span className="text-3xl">{time.emoji}</span>
+              <span className="text-[#263853] text-lg">{time.text}</span>
             </button>
           ))}
         </div>
@@ -4095,14 +4122,14 @@ export default function Quiz() {
   // Add renderStep18 function - Menopause Status
   const renderStep18 = () => {
     return (
-      <div className="space-y-8">
+      <div className="space-y-10">
         <div className="text-center">
-          <h1 className="text-[#263853] text-[32px] font-medium tracking-[-0.03em] leading-tight">
+          <h1 className="text-[#263853] text-3xl md:text-4xl font-medium tracking-[-0.03em] leading-tight">
             What's your menopause status?
           </h1>
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-4">
           {menopauseStatuses.map((status) => (
             <button
               key={status.id}
@@ -4119,8 +4146,8 @@ export default function Quiz() {
                   ? 'bg-[#f5fafc] border-2 border-[#027bbd]/20' 
                   : 'bg-[#f5fafc]'}`}
             >
-              <span className="text-2xl">{status.emoji}</span>
-              <span className="text-[#263853] text-base">{status.text}</span>
+              <span className="text-3xl">{status.emoji}</span>
+              <span className="text-[#263853] text-lg">{status.text}</span>
             </button>
           ))}
         </div>
@@ -4146,14 +4173,14 @@ export default function Quiz() {
   // Add renderStep19 function - Diet Type
   const renderStep19 = () => {
     return (
-      <div className="space-y-8">
+      <div className="space-y-10">
         <div className="text-center">
-          <h1 className="text-[#263853] text-[32px] font-medium tracking-[-0.03em] leading-tight">
+          <h1 className="text-[#263853] text-3xl md:text-4xl font-medium tracking-[-0.03em] leading-tight">
             What's your diet type?
           </h1>
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-4">
           {dietTypes.map((diet) => (
             <button
               key={diet.id}
@@ -4170,8 +4197,8 @@ export default function Quiz() {
                   ? 'bg-[#f5fafc] border-2 border-[#027bbd]/20' 
                   : 'bg-[#f5fafc]'}`}
             >
-              <span className="text-2xl">{diet.emoji}</span>
-              <span className="text-[#263853] text-base">{diet.text}</span>
+              <span className="text-3xl">{diet.emoji}</span>
+              <span className="text-[#263853] text-lg">{diet.text}</span>
             </button>
           ))}
         </div>
@@ -4200,14 +4227,14 @@ export default function Quiz() {
     const isNoneSelected = foodAllergies.find(a => a.isNone)?.selected;
 
     return (
-      <div className="space-y-8">
+      <div className="space-y-10">
         <div className="text-center">
-          <h1 className="text-[#263853] text-[32px] font-medium tracking-[-0.03em] leading-tight">
+          <h1 className="text-[#263853] text-3xl md:text-4xl font-medium tracking-[-0.03em] leading-tight">
             Do you have any food allergies?
           </h1>
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-4">
           {foodAllergies.map((allergy) => (
             <button
               key={allergy.id}
@@ -4233,8 +4260,8 @@ export default function Quiz() {
                   ? 'opacity-50 cursor-not-allowed' 
                   : ''}`}
             >
-              <span className="text-2xl">{allergy.emoji}</span>
-              <span className="text-[#263853] text-base">{allergy.text}</span>
+              <span className="text-3xl">{allergy.emoji}</span>
+              <span className="text-[#263853] text-lg">{allergy.text}</span>
             </button>
           ))}
         </div>
@@ -4352,7 +4379,7 @@ export default function Quiz() {
             <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
               <div className="bg-white rounded-2xl p-8 max-w-md w-full mx-4">
                 <div className="flex justify-between items-start mb-6">
-                  <h2 className="text-[#263853] text-2xl font-medium">
+                  <h2 className="text-[#263853] text-3xl font-medium">
                     Complete Your Purchase
                   </h2>
                   <button 
@@ -4370,7 +4397,7 @@ export default function Quiz() {
                     <p className="text-[#263853] text-lg mb-2">
                       Selected Plan: {pricingPlans.find(p => p.id === selectedPlan)?.duration}
                     </p>
-                    <p className="text-[#027bbd] text-2xl font-bold">
+                    <p className="text-[#027bbd] text-3xl font-bold">
                       £{pricingPlans.find(p => p.id === selectedPlan)?.discountedPrice}
                     </p>
                   </div>
