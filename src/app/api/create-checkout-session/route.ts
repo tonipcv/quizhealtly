@@ -1,25 +1,13 @@
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
-// Inicializar o Stripe apenas se a chave estiver disponível
-let stripe: Stripe | null = null;
-
-if (process.env.STRIPE_SECRET_KEY) {
-  stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-    apiVersion: '2025-01-27.acacia',
-  });
-}
+// Inicializar o Stripe com a chave diretamente
+const stripe = new Stripe('sk_test_51QuuAJDPMqLYcqY6LPy3EOTjZx9OZC6RiPSO1U2Rji6pFlMNnsm93xFfYWAiiQhfF3pCPIGnDFrEcHBYMlRb1sPO00xiRkIV8S', {
+  apiVersion: '2025-01-27.acacia',
+});
 
 export async function POST(request: Request) {
   try {
-    // Verificar se o Stripe foi inicializado
-    if (!stripe) {
-      return NextResponse.json(
-        { error: 'Stripe API key is not configured' },
-        { status: 500 }
-      );
-    }
-
     const { planId, email } = await request.json();
 
     // Get plan details

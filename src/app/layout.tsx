@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "./fonts.css";
+import { ThemeProvider } from "./components/ThemeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -68,7 +69,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link 
           rel="icon" 
@@ -77,7 +78,9 @@ export default function RootLayout({
         />
       </head>
       <body className="font-satoshi antialiased">
-        {children}
+        <ThemeProvider defaultTheme="dark">
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
