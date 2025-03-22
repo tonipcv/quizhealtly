@@ -8,9 +8,9 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#f8f2ee]">
+    <div className="min-h-screen bg-white font-light">
       {/* Header */}
-      <header className="fixed w-full top-0 bg-[#f8f2ee]/90 backdrop-blur-md z-50 border-b border-[#e6d9d0]">
+      <header className="fixed w-full top-0 bg-white/90 backdrop-blur-md z-50 border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
             <div className="p-2">
@@ -39,7 +39,7 @@ export default function Home() {
               <Link href="/quiz">
                 <Button
                   variant="ghost"
-                  className="text-[#9b7e6b] hover:text-[#7d5f4d] tracking-[-0.03em] font-medium"
+                  className="text-gray-600 hover:text-black tracking-wide font-light"
                 >
                   Start Your Journey
                 </Button>
@@ -51,21 +51,21 @@ export default function Home() {
 
       <main>
         {/* Hero Section */}
-        <section className="relative pt-32 pb-20 bg-gradient-to-b from-[#f8f2ee] to-[#f0e6e0]">
+        <section className="relative pt-32 pb-20 bg-gradient-to-b from-white to-gray-50">
           <div className="max-w-6xl mx-auto px-6 pt-20">
             <div className="max-w-3xl">
-              <h1 className="text-5xl sm:text-6xl font-bold tracking-[-0.03em] mb-8">
-                <span className="text-[#7d5f4d]">Natural wellness for </span>
-                <span className="text-[#c2967d]">women over 40</span>
+              <h1 className="text-5xl sm:text-6xl font-extralight tracking-wide mb-8">
+                <span className="text-black">Natural wellness for </span>
+                <span className="text-gray-600">women over 40</span>
               </h1>
-              <p className="text-xl text-[#9b7e6b] mb-12 leading-relaxed tracking-[-0.03em]">
+              <p className="text-xl text-gray-600 mb-12 leading-relaxed tracking-wide font-light">
                 Experience the power of natural treatments designed specifically for women over 40.
                 Our holistic approach combines ancient wisdom with modern science for optimal health and longevity.
               </p>
               <Link href="/quiz">
                 <Button
                   size="lg"
-                  className="bg-[#c2967d] hover:bg-[#a17a62] text-white tracking-[-0.03em] font-medium"
+                  className="bg-black hover:bg-gray-900 text-white tracking-wide font-light"
                 >
                   Start Your Journey
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -76,13 +76,13 @@ export default function Home() {
         </section>
 
         {/* Benefits Section */}
-        <section className="py-32 bg-[#f0e6e0]">
+        <section className="py-32 bg-gray-50">
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold mb-4 text-[#7d5f4d] tracking-[-0.03em]">
+              <h2 className="text-3xl font-extralight mb-4 text-black tracking-wide">
                 Natural Treatments for Better Living
               </h2>
-              <p className="text-[#9b7e6b] tracking-[-0.03em]">
+              <p className="text-gray-600 tracking-wide font-light">
                 Discover nature's most effective solutions for women's wellness after 40
               </p>
             </div>
@@ -119,13 +119,13 @@ export default function Home() {
                   desc: 'Natural ways to maintain youthful energy and appearance'
                 }
               ].map((benefit) => (
-                <div key={benefit.title} className="group relative overflow-hidden p-8 bg-[#f0e6e0] rounded-lg transition-all duration-300 hover:bg-[#e6d9d0]">
-                  <div className="absolute top-0 left-0 w-1 h-full bg-[#d4bfb3] group-hover:bg-[#c2967d] transition-colors duration-300"></div>
-                  <div className="text-[#a17a62] mb-6 opacity-80 group-hover:opacity-100 transition-opacity duration-300">{benefit.icon}</div>
-                  <h3 className="text-lg font-medium text-[#7d5f4d] mb-3 tracking-[-0.03em]">
+                <div key={benefit.title} className="group relative overflow-hidden p-8 bg-white rounded-lg transition-all duration-300 hover:bg-gray-50 border border-gray-100">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-gray-200 group-hover:bg-black transition-colors duration-300"></div>
+                  <div className="text-gray-400 mb-6 opacity-80 group-hover:opacity-100 transition-opacity duration-300">{benefit.icon}</div>
+                  <h3 className="text-lg font-light text-black mb-3 tracking-wide">
                     {benefit.title}
                   </h3>
-                  <p className="text-sm text-[#9b7e6b] tracking-[-0.03em] leading-relaxed">{benefit.desc}</p>
+                  <p className="text-sm text-gray-600 tracking-wide leading-relaxed font-light">{benefit.desc}</p>
                 </div>
               ))}
             </div>
@@ -135,18 +135,18 @@ export default function Home() {
         {/* CTA Section */}
         <section className="py-32">
           <div className="max-w-6xl mx-auto px-6">
-            <Card className="p-12 bg-gradient-to-r from-[#c2967d] to-[#a17a62] text-white text-center">
-              <h2 className="text-3xl font-bold mb-4 tracking-[-0.03em]">
+            <Card className="p-12 bg-black text-white text-center">
+              <h2 className="text-3xl font-extralight mb-4 tracking-wide">
                 Start Your Natural Wellness Journey Today
-                </h2>
-              <p className="text-white/90 mb-8 max-w-2xl mx-auto tracking-[-0.03em]">
+              </h2>
+              <p className="text-gray-200 mb-8 max-w-2xl mx-auto tracking-wide font-light">
                 Discover your personalized natural treatment plan designed specifically for your needs as a woman over 40. Experience the power of nature's most effective solutions.
               </p>
               <Link href="/quiz">
                 <Button
                   size="lg"
                   variant="outline"
-                  className="bg-white text-[#027bbd] hover:bg-white/90 border-none tracking-[-0.03em] font-medium"
+                  className="bg-white text-black hover:bg-gray-50 border-none tracking-wide font-light"
                 >
                   Start Now
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -157,7 +157,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="py-12 bg-[#f0e6e0] border-t border-[#e6d9d0]">
+      <footer className="py-12 bg-gray-50 border-t border-gray-100">
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <div className="p-2">
@@ -169,7 +169,7 @@ export default function Home() {
                 className="h-8 w-auto brightness-0"
               />
             </div>
-            <p className="text-sm text-[#505050] tracking-[-0.03em]">
+            <p className="text-sm text-gray-600 tracking-wide font-light">
               © 2025 NaturalBloom. All rights reserved. Empowering women over 40 with natural wellness solutions.
             </p>
           </div>
