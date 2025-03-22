@@ -9,7 +9,7 @@ export default function StepTwentyEight() {
   const { setCurrentStep, currentStep } = useQuizContext();
 
   return (
-    <div className="pb-24 relative">
+    <div className="min-h-screen pb-32">
       <div className="space-y-8">
         {/* Title with Alert Badge */}
         <div className="text-center">
@@ -55,23 +55,19 @@ export default function StepTwentyEight() {
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Continue Button */}
-        <div className="mt-8">
-          <button 
-            onClick={() => setCurrentStep(currentStep + 1)}
-            className="w-full h-14 rounded-lg relative flex items-center justify-center 
-                     bg-black transition-all duration-300
-                     hover:bg-gray-900"
-          >
-            <span className="text-white text-lg font-medium">Continue</span>
-            <div className="absolute right-4 w-10 h-10 bg-gray-900 rounded-lg 
-                         flex items-center justify-center transition-transform 
-                         group-hover:scale-105 group-hover:bg-gray-800">
-              <ArrowRight className="w-6 h-6 text-white" />
-            </div>
-          </button>
-        </div>
+      {/* Continue Button */}
+      <div className="fixed bottom-0 left-0 right-0 p-4 bg-white border-t border-gray-100">
+        <button 
+          onClick={() => setCurrentStep(currentStep + 1)}
+          className="w-full h-14 rounded-lg bg-black hover:bg-gray-900 transition-all duration-200 flex items-center justify-center"
+        >
+          <span className="text-white text-lg font-medium">Continue</span>
+          <div className="absolute right-4 w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center">
+            <ArrowRight className="w-6 h-6 text-white" />
+          </div>
+        </button>
       </div>
     </div>
   );

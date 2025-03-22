@@ -8,25 +8,33 @@ const StepOne: React.FC = () => {
   const { setCurrentStep } = useQuizContext();
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       <div className="text-center">
-        <h1 className="text-black text-4xl font-bold mb-3 font-poppins">
+        <h1 className="text-black text-4xl font-bold mb-3 tracking-[-0.03em]">
           500,000+
         </h1>
-        <p className="text-gray-800 text-xl font-bold max-w-[75%] mx-auto leading-snug font-poppins">
+        <p className="text-gray-600 text-xl font-bold max-w-[75%] mx-auto leading-snug tracking-[-0.03em]">
           women have already joined
         </p>
       </div>
       
-      <div className="w-full max-w-[500px] mx-auto">
+      <div className="w-[75%] mx-auto">
         <Image
           src="/P1-E1-join-us.avif"
           alt="Join us"
-          width={500}
-          height={280}
+          width={600}
+          height={338}
           className="w-full h-auto rounded-xl shadow-md"
           priority
         />
+      </div>
+
+      <div className="text-center">
+        <h2 className="text-gray-600 text-xl font-bold leading-tight tracking-[-0.03em]">
+          Designed for women's bodies'
+          <br />
+          changing needs over 40
+        </h2>
       </div>
 
       <div className="flex justify-center">
