@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useQuizContext } from "../Quiz/QuizProvider";
+import { FoodAllergy } from "../../types/quiz.types";
 
 interface AllergyOption {
   id: string;
@@ -62,12 +63,11 @@ export default function StepTwenty() {
   return (
     <div className="space-y-8 pb-24">
       <div className="text-center">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-2">
+        <h1 className="text-black text-3xl font-bold mb-2">
           What food allergies
-        </h2>
-        <h2 className="text-2xl font-semibold text-gray-900 mb-8">
+          <br />
           do you have?
-        </h2>
+        </h1>
       </div>
 
       <div className="grid gap-4">
@@ -112,13 +112,8 @@ export default function StepTwenty() {
       </div>
 
       <button
-        onClick={handleContinue}
-        disabled={!hasSelectedOptions}
-        className={`fixed bottom-0 left-0 right-0 mx-4 mb-4 py-2 px-4 rounded-lg text-white font-medium transition-all duration-200 ${
-          hasSelectedOptions
-            ? "bg-black hover:bg-gray-800"
-            : "bg-gray-300 cursor-not-allowed"
-        }`}
+        onClick={() => setCurrentStep(currentStep + 1)}
+        className="fixed bottom-0 left-1/2 -translate-x-1/2 mb-4 py-2.5 w-72 rounded-full text-white text-base font-medium bg-black hover:bg-gray-800 transition-all duration-200 sm:py-3 sm:w-96 sm:text-lg"
       >
         Continue
       </button>

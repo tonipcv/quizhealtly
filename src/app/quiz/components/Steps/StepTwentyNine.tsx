@@ -1,48 +1,71 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useQuizContext } from "../Quiz/QuizProvider";
+import { ArrowRight } from "lucide-react";
 
 export default function StepTwentyNine() {
   const { 
     setCurrentStep, 
     currentStep, 
     unit, 
-    weightKg, 
     weightSt, 
     weightLbs, 
-    targetWeightKg, 
+    weightKg, 
     targetWeightSt, 
-    targetWeightLbs 
+    targetWeightLbs, 
+    targetWeightKg 
   } = useQuizContext();
 
   // Calculate weights for display
   const currentWeightDisplay = unit === 'imperial'
-    ? `${weightSt} st ${weightLbs} lbs`
-    : `${weightKg} kg`;
+    ? `${weightSt}st ${weightLbs}lbs`
+    : `${weightKg}kg`;
 
   const targetWeightDisplay = unit === 'imperial'
-    ? `${targetWeightSt} st ${targetWeightLbs} lbs`
-    : `${targetWeightKg} kg`;
+    ? `${targetWeightSt}st ${targetWeightLbs}lbs`
+    : `${targetWeightKg}kg`;
+
+  // Add new state variable for loading progress
+  const [step30LoadingProgress, setStep30LoadingProgress] = useState(0);
+
+  // Add useEffect for loading animation
+  useEffect(() => {
+    if (currentStep === 29) {
+      const timer = setInterval(() => {
+        setStep30LoadingProgress(prev => {
+          if (prev >= 100) {
+            clearInterval(timer);
+            return 100;
+          }
+          return prev + 1;
+        });
+      }, 30);
+
+      return () => clearInterval(timer);
+    } else {
+      setStep30LoadingProgress(0); // Reset quando sair do step
+    }
+  }, [currentStep]);
 
   return (
     <div className="space-y-10">
       {/* Title */}
       <div className="text-center">
-        <div className="inline-flex items-center bg-gray-50 text-gray-900 px-4 py-2 rounded-full mb-4">
+        <div className="inline-flex items-center bg-gray-100 text-black px-4 py-2 rounded-full mb-4">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
           </svg>
           <span className="font-bold">12-Week Program</span>
         </div>
-        <h1 className="text-gray-900 text-3xl md:text-4xl font-bold tracking-[-0.03em] leading-tight mb-4">
+        <h1 className="text-black text-3xl md:text-4xl font-bold tracking-[-0.03em] leading-tight mb-4">
           Your Potential Improvement
         </h1>
         <div className="max-w-md mx-auto bg-gray-50 p-6 rounded-lg shadow-sm">
           <p className="text-gray-900 text-xl font-medium tracking-[-0.03em] mb-2">
             We estimate that you can potentially reach:
           </p>
-          <div className="text-gray-900 text-4xl font-bold my-3">
+          <div className="text-black text-4xl font-bold my-3">
             {targetWeightDisplay}
           </div>
           <p className="text-gray-900 text-lg">target weight</p>
@@ -52,7 +75,7 @@ export default function StepTwentyNine() {
       {/* Weight Progress Visualization */}
       <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-200">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-gray-900 text-lg font-bold">Your achievable weight:</h3>
+          <h3 className="text-black text-lg font-bold">Your achievable weight:</h3>
           <div className="bg-black text-white text-sm font-bold px-3 py-1 rounded-full">
             12 weeks
           </div>
@@ -119,7 +142,7 @@ export default function StepTwentyNine() {
       {/* Continue Button */}
       <button
         onClick={() => setCurrentStep(currentStep + 1)}
-        className="fixed bottom-0 left-0 right-0 mx-4 mb-4 py-3 px-4 rounded-lg text-white font-medium transition-all duration-200 bg-black hover:bg-gray-800 flex items-center justify-center"
+        className="fixed bottom-0 left-1/2 -translate-x-1/2 mb-4 py-2.5 w-72 rounded-full text-white text-base font-medium bg-black hover:bg-gray-800 transition-all duration-200 sm:py-3 sm:w-96 sm:text-lg"
       >
         Continue
       </button>
