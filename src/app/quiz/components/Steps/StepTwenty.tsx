@@ -25,52 +25,48 @@ const allergyOptions: AllergyOption[] = [
 export default function StepTwenty() {
   const { setCurrentStep, currentStep, answers } = useQuizContext();
   const [options, setOptions] = useState<AllergyOption[]>(allergyOptions);
+  const [isNoneSelected, setIsNoneSelected] = useState(false);
 
   useEffect(() => {
     if (answers && answers[20]) {
-      const savedAnswers = answers[20];
+      const savedAnswers = answers[20] as string[];
       setOptions(prev => prev.map(option => ({
         ...option,
         selected: savedAnswers.includes(option.id)
       })));
+      setIsNoneSelected(savedAnswers.includes("none"));
     }
   }, [answers]);
 
   const handleSelect = (id: string) => {
-    setOptions(prev => {
-      const newOptions = [...prev];
-      const selectedOption = newOptions.find(opt => opt.id === id);
-      
-      if (!selectedOption) return prev;
-
-      if (id === "none") {
-        // Se selecionar "None", desmarca todas as outras opções
-        return newOptions.map(opt => ({
-          ...opt,
-          selected: opt.id === "none"
-        }));
-      } else {
-        // Se selecionar qualquer outra opção, desmarca "None"
-        return newOptions.map(opt => ({
-          ...opt,
-          selected: opt.id === id ? !opt.selected : opt.id === "none" ? false : opt.selected
-        }));
-      }
-    });
+    if (id === "none") {
+      setIsNoneSelected(!isNoneSelected);
+      setOptions(prev => prev.map(option => ({
+        ...option,
+        selected: option.id === "none" ? !isNoneSelected : false
+      })));
+    } else if (!isNoneSelected) {
+      setOptions(prev => prev.map(option => ({
+        ...option,
+        selected: option.id === id ? !option.selected : option.selected
+      })));
+    }
   };
 
   const handleContinue = () => {
-    const selectedIds = options.filter(opt => opt.selected).map(opt => opt.id);
     setCurrentStep(21);
   };
 
-  const hasSelection = options.some(opt => opt.selected);
+  const hasSelectedOptions = options.some(option => option.selected);
 
   return (
     <div className="space-y-8 pb-24">
       <div className="text-center">
         <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-          Do you have any food allergies?
+          What food allergies
+        </h2>
+        <h2 className="text-2xl font-semibold text-gray-900 mb-8">
+          do you have?
         </h2>
       </div>
 
@@ -83,31 +79,49 @@ export default function StepTwenty() {
               option.selected
                 ? "border-black bg-black/5"
                 : "border-gray-200 hover:border-black/50"
-            }`}
+            } ${isNoneSelected && option.id !== "none" ? "opacity-50 cursor-not-allowed" : ""}`}
+            disabled={isNoneSelected && option.id !== "none"}
           >
-            <div className="flex items-center gap-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
+                  option.selected ? "border-black bg-black" : "border-gray-300"
+                }`}>
+                  {option.selected && (
+                    <svg
+                      className="w-4 h-4 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  )}
+                </div>
+                <span className="text-lg text-gray-700">{option.label}</span>
+              </div>
               <span className="text-2xl">{option.emoji}</span>
-              <span className={`text-lg ${option.selected ? "text-black" : "text-gray-700"}`}>
-                {option.label}
-              </span>
             </div>
           </button>
         ))}
       </div>
 
-      <div className="fixed bottom-0 left-0 right-0 p-4 bg-white border-t">
-        <button
-          onClick={handleContinue}
-          disabled={!hasSelection}
-          className={`w-full py-3 px-4 rounded-lg text-white font-medium transition-all duration-200 ${
-            hasSelection
-              ? "bg-black hover:bg-black/90"
-              : "bg-gray-300 cursor-not-allowed"
-          }`}
-        >
-          Continue
-        </button>
-      </div>
+      <button
+        onClick={handleContinue}
+        disabled={!hasSelectedOptions}
+        className={`fixed bottom-0 left-0 right-0 mx-4 mb-4 py-2 px-4 rounded-lg text-white font-medium transition-all duration-200 ${
+          hasSelectedOptions
+            ? "bg-black hover:bg-gray-800"
+            : "bg-gray-300 cursor-not-allowed"
+        }`}
+      >
+        Continue
+      </button>
     </div>
   );
 } 

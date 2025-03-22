@@ -11,10 +11,10 @@ interface ExerciseOption {
 }
 
 const exerciseOptions: ExerciseOption[] = [
-  { id: "yes", label: "Yes", emoji: "✅", selected: false },
-  { id: "somewhat", label: "Somewhat", emoji: "🤔", selected: false },
-  { id: "no", label: "No", emoji: "❌", selected: false },
-  { id: "not_tried", label: "Not tried", emoji: "⏳", selected: false },
+  { id: "yes", label: "Yes, I was able to reach my goals", emoji: "👍🏼", selected: false },
+  { id: "somewhat", label: "Somewhat", emoji: "😬", selected: false },
+  { id: "no", label: "No, nothing has helped", emoji: "❌", selected: false },
+  { id: "not_tried", label: "I haven't tried anything else", emoji: "🙄", selected: false },
 ];
 
 export default function StepTwentyOne() {
@@ -43,7 +43,13 @@ export default function StepTwentyOne() {
     <div className="space-y-8 pb-24">
       <div className="text-center">
         <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-          Has any other exercise program helped you reach goals over 40?
+          Has any other excercise
+        </h2>
+        <h2 className="text-2xl font-semibold text-gray-900 mb-2">
+          program helped you to
+        </h2>
+        <h2 className="text-2xl font-semibold text-gray-900 mb-8">
+          reach goals over 40?
         </h2>
       </div>
 
@@ -58,11 +64,9 @@ export default function StepTwentyOne() {
                 : "border-gray-200 hover:border-black/50"
             }`}
           >
-            <div className="flex items-center gap-4">
+            <div className="flex items-center justify-between">
+              <span className="text-lg text-gray-700">{option.label}</span>
               <span className="text-2xl">{option.emoji}</span>
-              <span className={`text-lg ${option.selected ? "text-black" : "text-gray-700"}`}>
-                {option.label}
-              </span>
             </div>
           </button>
         ))}

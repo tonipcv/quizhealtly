@@ -19,6 +19,25 @@ import StepFourteen from "../Steps/StepFourteen";
 import StepFifteen from "../Steps/StepFifteen";
 import StepSixteen from "../Steps/StepSixteen";
 import StepSeventeen from "../Steps/StepSeventeen";
+import StepEighteen from "../Steps/StepEighteen";
+import StepNineteen from "../Steps/StepNineteen";
+import StepTwenty from "../Steps/StepTwenty";
+import StepTwentyOne from "../Steps/StepTwentyOne";
+import StepTwentyTwo from "../Steps/StepTwentyTwo";
+import StepTwentyThree from "../Steps/StepTwentyThree";
+import StepTwentyFour from "../Steps/StepTwentyFour";
+import StepTwentyFive from "../Steps/StepTwentyFive";
+import StepTwentySix from "../Steps/StepTwentySix";
+import StepTwentySeven from "../Steps/StepTwentySeven";
+import StepTwentyEight from "../Steps/StepTwentyEight";
+import StepTwentyNine from "../Steps/StepTwentyNine";
+import StepThirty from "../Steps/StepThirty";
+import StepThirtyOne from "../Steps/StepThirtyOne";
+import StepThirtyTwo from "../Steps/StepThirtyTwo";
+import StepThirtyThree from "../Steps/StepThirtyThree";
+import StepThirtyFour from "../Steps/StepThirtyFour";
+import StepThirtyFive from "../Steps/StepThirtyFive";
+import StepThirtySix from "../Steps/StepThirtySix";
 
 const QuizSteps = () => {
   const { currentStep } = useQuizContext();
@@ -59,6 +78,44 @@ const QuizSteps = () => {
         return <StepSixteen />;
       case 17:
         return <StepSeventeen />;
+      case 18:
+        return <StepEighteen />;
+      case 19:
+        return <StepNineteen />;
+      case 20:
+        return <StepTwenty />;
+      case 21:
+        return <StepTwentyOne />;
+      case 22:
+        return <StepTwentyTwo />;
+      case 23:
+        return <StepTwentyThree />;
+      case 24:
+        return <StepTwentyFour />;
+      case 25:
+        return <StepTwentyFive />;
+      case 26:
+        return <StepTwentySix />;
+      case 27:
+        return <StepTwentySeven />;
+      case 28:
+        return <StepTwentyEight />;
+      case 29:
+        return <StepTwentyNine />;
+      case 30:
+        return <StepThirty />;
+      case 31:
+        return <StepThirtyOne />;
+      case 32:
+        return <StepThirtyTwo />;
+      case 33:
+        return <StepThirtyThree />;
+      case 34:
+        return <StepThirtyFour />;
+      case 35:
+        return <StepThirtyFive />;
+      case 36:
+        return <StepThirtySix />;
       default:
         return null;
     }

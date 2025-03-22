@@ -15,11 +15,11 @@ function QuizContent() {
     }
   };
 
-  return (
+    return (
     <div className="min-h-screen bg-white py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
         <div className="flex items-center justify-between mb-8">
-          <button
+            <button
             onClick={handleBack}
             disabled={currentStep === 1}
             className={`p-2 hover:bg-gray-100 rounded-full transition-colors ${
@@ -34,33 +34,33 @@ function QuizContent() {
               stroke="black"
               className="w-6 h-6"
             >
-              <path
+                <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
-              />
-            </svg>
+                />
+              </svg>
           </button>
-          <Image
-            src="/logo.png"
+                <Image
+                  src="/logo.png"
             alt="QuizHealtly Logo"
-            width={120}
+                  width={120}
             height={36}
             className="invert"
             priority
-          />
+                />
           <div className="w-10" /> {/* Spacer for alignment */}
-        </div>
+              </div>
         <div className="bg-white rounded-lg shadow-lg p-6 border border-gray-200">
           <QuizSteps />
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
 }
 
 export default function Quiz() {
-  return (
+    return (
     <QuizProvider>
       <QuizContent />
     </QuizProvider>

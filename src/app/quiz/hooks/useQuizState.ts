@@ -7,6 +7,7 @@ interface QuizStore extends QuizState {
   setUnit: (unit: Unit) => void;
   setWeight: (st: string, lbs: string, kg: string) => void;
   setTargetWeight: (st: string, lbs: string, kg: string) => void;
+  setHeight: (height: string) => void;
   toggleSelection: (field: keyof QuizState, id: string) => void;
   setSingleSelection: (field: keyof QuizState, id: string) => void;
   nextStep: () => void;
@@ -32,6 +33,7 @@ interface QuizStore extends QuizState {
 const initialState: QuizState = {
   currentStep: 1,
   unit: 'imperial',
+  height: '',
   weightSt: '',
   weightLbs: '',
   weightKg: '',
@@ -74,6 +76,7 @@ const initialState: QuizState = {
   sessionDuration: '',
   physicalCapabilities: [],
   sleepDuration: '',
+  answers: {},
 };
 
 export const useQuizState = create<QuizStore>((set) => ({
@@ -83,9 +86,13 @@ export const useQuizState = create<QuizStore>((set) => ({
 
   setUnit: (unit: Unit) => set({ unit }),
 
-  setWeight: (st: string, lbs: string, kg: string) => set({ weightSt: st, weightLbs: lbs, weightKg: kg }),
+  setWeight: (st: string, lbs: string, kg: string) => 
+    set({ weightSt: st, weightLbs: lbs, weightKg: kg }),
 
-  setTargetWeight: (st: string, lbs: string, kg: string) => set({ targetWeightSt: st, targetWeightLbs: lbs, targetWeightKg: kg }),
+  setTargetWeight: (st: string, lbs: string, kg: string) => 
+    set({ targetWeightSt: st, targetWeightLbs: lbs, targetWeightKg: kg }),
+
+  setHeight: (height: string) => set({ height }),
 
   toggleSelection: (field: keyof QuizState, id: string) =>
     set((state) => ({
@@ -107,7 +114,7 @@ export const useQuizState = create<QuizStore>((set) => ({
 
   nextStep: () =>
     set((state) => ({
-      currentStep: Math.min(state.currentStep + 1, 20),
+      currentStep: Math.min(state.currentStep + 1, 36),
     })),
 
   previousStep: () =>

@@ -3,7 +3,6 @@
 import React from "react";
 import { useQuizContext } from "../Quiz/QuizProvider";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
 
 const StepOne: React.FC = () => {
   const { setCurrentStep } = useQuizContext();
@@ -11,10 +10,10 @@ const StepOne: React.FC = () => {
   return (
     <div className="space-y-8">
       <div className="text-center">
-        <h1 className="text-black text-4xl font-bold mb-3">
+        <h1 className="text-black text-4xl font-bold mb-3 font-poppins">
           500,000+
         </h1>
-        <p className="text-gray-800 text-xl font-bold max-w-[75%] mx-auto leading-snug">
+        <p className="text-gray-800 text-xl font-bold max-w-[75%] mx-auto leading-snug font-poppins">
           women have already joined
         </p>
       </div>
@@ -30,23 +29,12 @@ const StepOne: React.FC = () => {
         />
       </div>
 
-      <div className="text-center">
-        <h2 className="text-gray-800 text-xl font-bold leading-tight">
-          Designed for women's bodies'
-          <br />
-          changing needs over 40
-        </h2>
-      </div>
-
-      <div className="mt-8">
+      <div className="flex justify-center">
         <button
           onClick={() => setCurrentStep(2)}
-          className="w-full h-14 bg-black rounded-full relative group flex items-center justify-center transition-all duration-300 hover:bg-gray-800 hover:shadow-md hover:shadow-black/20"
+          className="fixed bottom-0 left-1/2 -translate-x-1/2 mb-4 py-2.5 w-72 rounded-full text-white text-base font-medium bg-black hover:bg-gray-800 transition-all duration-200 sm:py-3 sm:w-96 sm:text-lg font-poppins"
         >
-          <span className="text-white text-lg font-bold">Continue</span>
-          <div className="absolute right-3 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform group-hover:bg-gray-700">
-            <ArrowRight className="w-6 h-6 text-white" />
-          </div>
+          Continue
         </button>
       </div>
     </div>

@@ -11,9 +11,10 @@ interface MenopauseOption {
 }
 
 const menopauseOptions: MenopauseOption[] = [
-  { id: "pre", label: "Pre-Menopause", emoji: "🌸", selected: false },
-  { id: "peri", label: "Peri-Menopause", emoji: "🌺", selected: false },
-  { id: "post", label: "Post-Menopause", emoji: "🌹", selected: false },
+  { id: "perimenopause", label: "I'm in perimenopause", emoji: "🙋🏻‍♀", selected: false },
+  { id: "menopause", label: "I'm in menopause", emoji: "🙋🏼‍♀️", selected: false },
+  { id: "postmenopause", label: "I'm in postmenopause", emoji: "🙋🏽‍♀️", selected: false },
+  { id: "none", label: "None of the above", emoji: "❌", selected: false },
 ];
 
 export default function StepEighteen() {
@@ -42,7 +43,10 @@ export default function StepEighteen() {
     <div className="space-y-8 pb-24">
       <div className="text-center">
         <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-          What's your menopause status?
+          Are you currently going
+        </h2>
+        <h2 className="text-2xl font-semibold text-gray-900 mb-8">
+          through menopause?
         </h2>
       </div>
 
@@ -57,11 +61,9 @@ export default function StepEighteen() {
                 : "border-gray-200 hover:border-black/50"
             }`}
           >
-            <div className="flex items-center gap-4">
+            <div className="flex items-center justify-between">
+              <span className="text-lg text-gray-700">{option.label}</span>
               <span className="text-2xl">{option.emoji}</span>
-              <span className={`text-lg ${option.selected ? "text-black" : "text-gray-700"}`}>
-                {option.label}
-              </span>
             </div>
           </button>
         ))}

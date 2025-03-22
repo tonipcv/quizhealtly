@@ -11,12 +11,12 @@ interface DietOption {
 }
 
 const dietOptions: DietOption[] = [
-  { id: "everything", label: "Everything", emoji: "🍽️", selected: false },
-  { id: "low_carb", label: "Low-carb", emoji: "🥑", selected: false },
-  { id: "vegetarian", label: "Vegetarian", emoji: "🥬", selected: false },
-  { id: "vegan", label: "Vegan", emoji: "🌱", selected: false },
-  { id: "pescatarian", label: "Pescatarian", emoji: "🐟", selected: false },
-  { id: "carnitarian", label: "Carnitarian", emoji: "🥩", selected: false },
+  { id: "everything", label: "I eat everything", emoji: "🥘", selected: false },
+  { id: "low_carb", label: "I eat low-carb", emoji: "🥑", selected: false },
+  { id: "vegetarian", label: "I'm a vegetarian", emoji: "🥬", selected: false },
+  { id: "vegan", label: "I'm a vegan", emoji: "🍆", selected: false },
+  { id: "pescatarian", label: "I'm a pescatarian", emoji: "🐟", selected: false },
+  { id: "carnitarian", label: "I'm a carnitarian", emoji: "🥩", selected: false },
 ];
 
 export default function StepNineteen() {
@@ -45,7 +45,10 @@ export default function StepNineteen() {
     <div className="space-y-8 pb-24">
       <div className="text-center">
         <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-          What's your diet type?
+          How would you define
+        </h2>
+        <h2 className="text-2xl font-semibold text-gray-900 mb-8">
+          your diet?
         </h2>
       </div>
 
@@ -60,11 +63,9 @@ export default function StepNineteen() {
                 : "border-gray-200 hover:border-black/50"
             }`}
           >
-            <div className="flex items-center gap-4">
+            <div className="flex items-center justify-between">
+              <span className="text-lg text-gray-700">{option.label}</span>
               <span className="text-2xl">{option.emoji}</span>
-              <span className={`text-lg ${option.selected ? "text-black" : "text-gray-700"}`}>
-                {option.label}
-              </span>
             </div>
           </button>
         ))}

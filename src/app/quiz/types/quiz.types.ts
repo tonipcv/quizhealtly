@@ -146,6 +146,7 @@ export type PricingPlan = {
 export type QuizState = {
   currentStep: number;
   unit: Unit;
+  height: string;
   weightSt: string;
   weightLbs: string;
   weightKg: string;

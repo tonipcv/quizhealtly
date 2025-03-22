@@ -1,29 +1,19 @@
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
-// Inicializar o Stripe com a chave diretamente
-const stripe = new Stripe('sk_test_51QuuAJDPMqLYcqY6LPy3EOTjZx9OZC6RiPSO1U2Rji6pFlMNnsm93xFfYWAiiQhfF3pCPIGnDFrEcHBYMlRb1sPO00xiRkIV8S', {
-  apiVersion: '2025-01-27.acacia',
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  apiVersion: '2025-02-24.acacia',
 });
 
-export async function POST(request: Request) {
+// Base URL for different environments
+const baseUrl = process.env.NODE_ENV === 'development' 
+  ? 'http://localhost:3000'
+  : process.env.NEXT_PUBLIC_DOMAIN || 'https://your-production-domain.com';
+
+export async function POST(req: Request) {
   try {
-    const { planId, email } = await request.json();
-
-    // Get plan details
-    const planPrices = {
-      '1-week': { price: 728, // in pence
-        successUrl: '/success?plan=1-week',
-        cancelUrl: '/quiz?step=36&plan=1-week' },
-      '4-week': { price: 1595,
-        successUrl: '/success?plan=4-week',
-        cancelUrl: '/quiz?step=36&plan=4-week' },
-      '12-week': { price: 2729,
-        successUrl: '/success?plan=12-week',
-        cancelUrl: '/quiz?step=36&plan=12-week' }
-    };
-
-    const plan = planPrices[planId as keyof typeof planPrices];
+    const body = await req.json();
+    const { planId, email, amount, duration } = body;
 
     // Create Stripe checkout session
     const session = await stripe.checkout.sessions.create({
@@ -33,22 +23,27 @@ export async function POST(request: Request) {
           price_data: {
             currency: 'gbp',
             product_data: {
-              name: `Wall Pilates ${planId} Plan`,
+              name: `Wall Pilates ${duration}`,
+              description: 'Custom Wall Pilates Program for Women Over 40',
             },
-            unit_amount: plan.price,
+            unit_amount: Math.round(amount * 100), // Convert to cents
           },
           quantity: 1,
         },
       ],
       mode: 'payment',
-      success_url: `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}${plan.successUrl}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}${plan.cancelUrl}`,
+      success_url: `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${baseUrl}/quiz`,
       customer_email: email,
+      metadata: {
+        planId,
+        duration,
+      },
     });
 
     return NextResponse.json({ sessionId: session.id });
-  } catch (err) {
-    console.error('Error:', err);
+  } catch (error) {
+    console.error('Error creating checkout session:', error);
     return NextResponse.json(
       { error: 'Error creating checkout session' },
       { status: 500 }

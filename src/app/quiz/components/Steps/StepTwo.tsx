@@ -102,7 +102,7 @@ export default function StepTwo() {
       <button
         onClick={handleContinue}
         disabled={!hasSelectedGoals}
-        className={`fixed bottom-0 left-0 right-0 mx-4 mb-4 py-3 px-6 rounded-lg text-white font-medium transition-all duration-200 ${
+        className={`fixed bottom-0 left-0 right-0 mx-4 mb-4 py-2 px-4 rounded-lg text-white font-medium transition-all duration-200 ${
           hasSelectedGoals
             ? "bg-black hover:bg-gray-800"
             : "bg-gray-300 cursor-not-allowed"

@@ -9,6 +9,7 @@ interface QuizContextType extends QuizState {
   setUnit: (unit: Unit) => void;
   setWeight: (st: string, lbs: string, kg: string) => void;
   setTargetWeight: (st: string, lbs: string, kg: string) => void;
+  setHeight: (height: string) => void;
   toggleSelection: (field: keyof QuizState, id: string) => void;
   setSingleSelection: (field: keyof QuizState, id: string) => void;
   nextStep: () => void;
@@ -22,6 +23,7 @@ const QuizContext = createContext<QuizContextType | undefined>(undefined);
 const initialState: QuizState = {
   currentStep: 1,
   unit: 'imperial',
+  height: '',
   weightSt: '',
   weightLbs: '',
   weightKg: '',
@@ -67,8 +69,9 @@ const initialState: QuizState = {
   answers: {},
 };
 
-export const QuizProvider = ({ children }: { children: ReactNode }) => {
+export const QuizProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [state, setState] = useState<QuizState>(initialState);
+  const [answers, setAnswers] = useState<Record<number, string | string[]>>({});
 
   useEffect(() => {
     const savedState = localStorage.getItem("quizState");
@@ -97,6 +100,10 @@ export const QuizProvider = ({ children }: { children: ReactNode }) => {
     setState(prev => ({ ...prev, targetWeightSt: st, targetWeightLbs: lbs, targetWeightKg: kg }));
   }, []);
 
+  const setHeight = useCallback((height: string) => {
+    setState(prev => ({ ...prev, height }));
+  }, []);
+
   const toggleSelection = useCallback((field: keyof QuizState, id: string) => {
     setState(prev => ({
       ...prev,
@@ -122,7 +129,7 @@ export const QuizProvider = ({ children }: { children: ReactNode }) => {
   const nextStep = useCallback(() => {
     setState(prev => ({
       ...prev,
-      currentStep: Math.min(prev.currentStep + 1, 17),
+      currentStep: Math.min(prev.currentStep + 1, 32),
     }));
   }, []);
 
@@ -144,12 +151,13 @@ export const QuizProvider = ({ children }: { children: ReactNode }) => {
     setUnit,
     setWeight,
     setTargetWeight,
+    setHeight,
     toggleSelection,
     setSingleSelection,
     nextStep,
     previousStep,
     resetQuiz,
-    answers: state.answers,
+    answers,
   };
 
   return <QuizContext.Provider value={value}>{children}</QuizContext.Provider>;

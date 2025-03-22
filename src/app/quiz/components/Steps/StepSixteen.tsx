@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useQuizContext } from "../Quiz/QuizProvider";
+import Image from "next/image";
 
 interface WaterOption {
   id: string;
@@ -11,10 +12,11 @@ interface WaterOption {
 }
 
 const waterOptions: WaterOption[] = [
-  { id: "only_coffee", label: "Only coffee", emoji: "☕️", selected: false },
-  { id: "less_than_2", label: "Less than 2L", emoji: "🚰", selected: false },
-  { id: "two_three", label: "2-3L", emoji: "💧", selected: false },
-  { id: "more_than_3", label: "More than 3L", emoji: "🌊", selected: false },
+  { id: "only_coffee", label: "Only coffee, tea or soda", emoji: "☕️", selected: false },
+  { id: "less_than_2", label: "Less than 2 glasses", emoji: "🚰", selected: false },
+  { id: "two_six", label: "2-6 glasses", emoji: "💧", selected: false },
+  { id: "seven_ten", label: "7-10 glasses", emoji: "💦", selected: false },
+  { id: "more_than_10", label: "More than 10 glasses", emoji: "🌊", selected: false },
 ];
 
 export default function StepSixteen() {
@@ -43,7 +45,10 @@ export default function StepSixteen() {
     <div className="space-y-8 pb-24">
       <div className="text-center">
         <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-          How much water do you drink daily?
+          How much water
+        </h2>
+        <h2 className="text-2xl font-semibold text-gray-900 mb-8">
+          do you drink daily?
         </h2>
       </div>
 
@@ -58,11 +63,9 @@ export default function StepSixteen() {
                 : "border-gray-200 hover:border-black/50"
             }`}
           >
-            <div className="flex items-center gap-4">
+            <div className="flex items-center justify-between">
+              <span className="text-lg text-gray-700">{option.label}</span>
               <span className="text-2xl">{option.emoji}</span>
-              <span className={`text-lg ${option.selected ? "text-black" : "text-gray-700"}`}>
-                {option.label}
-              </span>
             </div>
           </button>
         ))}
