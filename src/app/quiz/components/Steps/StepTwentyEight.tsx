@@ -58,15 +58,12 @@ export default function StepTwentyEight() {
       </div>
 
       {/* Continue Button */}
-      <div className="fixed bottom-0 left-0 right-0 p-4 bg-white border-t border-gray-100">
+      <div className="flex justify-center">
         <button 
           onClick={() => setCurrentStep(currentStep + 1)}
-          className="w-full h-14 rounded-lg bg-black hover:bg-gray-900 transition-all duration-200 flex items-center justify-center"
+          className="fixed bottom-0 left-1/2 -translate-x-1/2 mb-4 py-2.5 w-72 rounded-full text-white text-base font-medium bg-black hover:bg-gray-800 transition-all duration-200 sm:py-3 sm:w-96 sm:text-lg"
         >
-          <span className="text-white text-lg font-medium">Continue</span>
-          <div className="absolute right-4 w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center">
-            <ArrowRight className="w-6 h-6 text-white" />
-          </div>
+          Continue
         </button>
       </div>
     </div>
