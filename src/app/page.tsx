@@ -33,18 +33,6 @@ export default function Home() {
                 <Menu className="h-5 w-5" />
               </Button>
             </Link>
-
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex gap-8">
-              <Link href="/quiz">
-                <Button
-                  variant="ghost"
-                  className="text-gray-600 hover:text-black tracking-wide font-light"
-                >
-                  Start Your Journey
-                </Button>
-              </Link>
-            </nav>
           </div>
         </div>
       </header>
@@ -55,12 +43,12 @@ export default function Home() {
           <div className="max-w-6xl mx-auto px-6 pt-20">
             <div className="max-w-3xl">
               <h1 className="text-5xl sm:text-6xl font-extralight tracking-wide mb-8">
-                <span className="text-black">Natural wellness for </span>
-                <span className="text-gray-600">women over 40</span>
+                <span className="text-black">Specialized protocols for </span>
+                <span className="text-gray-600">longevity</span>
               </h1>
               <p className="text-xl text-gray-600 mb-12 leading-relaxed tracking-wide font-light">
-                Experience the power of natural treatments designed specifically for women over 40.
-                Our holistic approach combines ancient wisdom with modern science for optimal health and longevity.
+                Discover our tailored programs designed specifically for women over 40.
+                Our approach combines proven methods with modern science for effective and lasting results.
               </p>
               <Link href="/quiz">
                 <Button
@@ -75,57 +63,47 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Benefits Section */}
+        {/* Programs Section */}
         <section className="py-32 bg-gray-50">
           <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-16">
               <h2 className="text-3xl font-extralight mb-4 text-black tracking-wide">
-                Natural Treatments for Better Living
+                Our Specialized Programs
               </h2>
               <p className="text-gray-600 tracking-wide font-light">
-                Discover nature's most effective solutions for women's wellness after 40
+                Comprehensive solutions designed for women's evolving needs after 40
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
                 {
-                  icon: <Leaf className="h-6 w-6" />,
-                  title: 'Herbal Remedies',
-                  desc: 'Natural solutions for hormone balance and energy enhancement'
-                },
-                {
-                  icon: <Sun className="h-6 w-6" />,
-                  title: 'Light Therapy',
-                  desc: 'Boost mood and regulate sleep patterns naturally'
-                },
-                {
-                  icon: <Apple className="h-6 w-6" />,
-                  title: 'Nutritional Support',
-                  desc: 'Age-appropriate nutrition for vitality and longevity'
+                  icon: <Sparkles className="h-6 w-6" />,
+                  title: 'Anti-Age Protocol',
+                  desc: 'Natural treatments to reduce aging effects and promote vitality'
                 },
                 {
                   icon: <Heart className="h-6 w-6" />,
-                  title: 'Heart Health',
-                  desc: 'Natural approaches to cardiovascular wellness'
+                  title: 'Weight Loss',
+                  desc: 'Specialized program for healthy and lasting weight loss after 40'
+                },
+                {
+                  icon: <Leaf className="h-6 w-6" />,
+                  title: 'Pilates',
+                  desc: 'Pilates method adapted to strengthen, tone and rejuvenate the mature body'
                 },
                 {
                   icon: <Moon className="h-6 w-6" />,
-                  title: 'Sleep Enhancement',
-                  desc: 'Improve sleep quality with natural protocols'
-                },
-                {
-                  icon: <Sparkles className="h-6 w-6" />,
-                  title: 'Anti-Aging',
-                  desc: 'Natural ways to maintain youthful energy and appearance'
+                  title: 'Mind',
+                  desc: 'Techniques for emotional balance, mental clarity and stress management'
                 }
-              ].map((benefit) => (
-                <div key={benefit.title} className="group relative overflow-hidden p-8 bg-white rounded-lg transition-all duration-300 hover:bg-gray-50 border border-gray-100">
+              ].map((program) => (
+                <div key={program.title} className="group relative overflow-hidden p-8 bg-white rounded-lg transition-all duration-300 hover:bg-gray-50 border border-gray-100">
                   <div className="absolute top-0 left-0 w-1 h-full bg-gray-200 group-hover:bg-black transition-colors duration-300"></div>
-                  <div className="text-gray-400 mb-6 opacity-80 group-hover:opacity-100 transition-opacity duration-300">{benefit.icon}</div>
+                  <div className="text-gray-400 mb-6 opacity-80 group-hover:opacity-100 transition-opacity duration-300">{program.icon}</div>
                   <h3 className="text-lg font-light text-black mb-3 tracking-wide">
-                    {benefit.title}
+                    {program.title}
                   </h3>
-                  <p className="text-sm text-gray-600 tracking-wide leading-relaxed font-light">{benefit.desc}</p>
+                  <p className="text-sm text-gray-600 tracking-wide leading-relaxed font-light">{program.desc}</p>
                 </div>
               ))}
             </div>
@@ -137,10 +115,10 @@ export default function Home() {
           <div className="max-w-6xl mx-auto px-6">
             <Card className="p-12 bg-black text-white text-center">
               <h2 className="text-3xl font-extralight mb-4 tracking-wide">
-                Start Your Natural Wellness Journey Today
+                Start Your Personalized Protocol Today
               </h2>
               <p className="text-gray-200 mb-8 max-w-2xl mx-auto tracking-wide font-light">
-                Discover your personalized natural treatment plan designed specifically for your needs as a woman over 40. Experience the power of nature's most effective solutions.
+                Discover which program is ideal for your specific needs as a woman over 40. Experience the effectiveness of protocols developed exclusively for you.
               </p>
               <Link href="/quiz">
                 <Button
@@ -170,7 +148,7 @@ export default function Home() {
               />
             </div>
             <p className="text-sm text-gray-600 tracking-wide font-light">
-              © 2025 NaturalBloom. All rights reserved. Empowering women over 40 with natural wellness solutions.
+              © 2025 NaturalBloom. All rights reserved. Empowering women over 40 with specialized wellness protocols.
             </p>
           </div>
         </div>
