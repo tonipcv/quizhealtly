@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Longevify | Natural Treatments for Women Over 40",
+  title: "VUOM | Natural Treatments for Women Over 40",
   description: "Discover the best natural treatments for women over 40. Expert guidance on herbal remedies, light therapy, nutrition, and holistic wellness solutions for optimal health and longevity.",
   keywords: "natural treatments, women over 40, herbal remedies, light therapy, nutritional support, anti-aging, sleep enhancement, heart health, holistic wellness, natural healing",
   openGraph: {
