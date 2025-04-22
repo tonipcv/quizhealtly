@@ -16,7 +16,7 @@ declare global {
 function ThankYouContent() {
   const [countdown, setCountdown] = useState(10);
   const searchParams = useSearchParams();
-  const baseWhatsappUrl = "https://wa.me/5511976638147";
+  const baseWhatsappUrl = "https://wa.me/5511975873111";
   const message = encodeURIComponent(`Olá! Tenho interesse no Reset Hormonal +38.`);
   const whatsappUrl = `${baseWhatsappUrl}?text=${message}`;
 
