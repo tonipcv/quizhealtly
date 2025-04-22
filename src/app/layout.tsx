@@ -110,6 +110,22 @@ export default function RootLayout({
           />
         </noscript>
         {/* End Meta Pixel Code */}
+
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-G6NWYRRCYB"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-G6NWYRRCYB');
+          `}
+        </Script>
+        {/* End Google Analytics */}
       </head>
       <body className="font-satoshi antialiased">
         {/* Google Tag Manager (noscript) */}
