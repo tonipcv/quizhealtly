@@ -33,12 +33,11 @@ function ThankYouContent() {
         });
       }
       
-      // Google Analytics conversion tracking
+      // Google Analytics lead event
       if (window.gtag) {
-        window.gtag('event', 'conversion_event_contact', {
-          'send_to': 'G-G6NWYRRCYB',
-          'event_category': 'Face Protocol',
-          'event_label': 'Form Submission'
+        window.gtag('event', 'generate_lead', {
+          'protocol_type': 'Face Protocol',
+          'lead_source': 'Form Submission'
         });
       }
     }
