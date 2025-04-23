@@ -54,6 +54,7 @@ const defaultPlans = [
 
 export default function CheckoutPage() {
   const [loading, setLoading] = useState(false);
+  const [loadingPrices, setLoadingPrices] = useState(true);
   const [plans, setPlans] = useState(defaultPlans);
   const [minutes, setMinutes] = useState(10);
   const [seconds, setSeconds] = useState(0);
@@ -73,6 +74,7 @@ export default function CheckoutPage() {
   }, [minutes, seconds]);
 
   useEffect(() => {
+    setLoadingPrices(true);
     fetch('/api/setup-stripe-products-brl')
       .then(response => response.json())
       .then(data => {
@@ -85,7 +87,8 @@ export default function CheckoutPage() {
           })));
         }
       })
-      .catch(error => console.error('Error fetching prices:', error));
+      .catch(error => console.error('Error fetching prices:', error))
+      .finally(() => setLoadingPrices(false));
   }, []);
 
   const handleSubscribe = async (priceId: string) => {
@@ -173,77 +176,93 @@ export default function CheckoutPage() {
 
           {/* Pricing Plans */}
           <div id="select-membership" className="space-y-4">
-            {plans.map((plan) => (
-              <div
-                key={plan.name}
-                onClick={() => setSelectedPlan(plan.name)}
-                className={`relative bg-white rounded-xl p-6 cursor-pointer transition-all duration-200
-                  ${selectedPlan === plan.name 
-                    ? 'ring-2 ring-black shadow-lg scale-[1.02]' 
-                    : 'hover:shadow-md border border-gray-200'}`}
-              >
-                {plan.popular && (
-                  <div className="absolute -top-3 left-6 bg-black text-white px-4 py-1 rounded-full text-sm font-medium">
-                    Mais Vantajoso
+            {loadingPrices ? (
+              // Loading skeleton
+              Array(3).fill(0).map((_, i) => (
+                <div key={i} className="bg-white rounded-xl p-6 animate-pulse">
+                  <div className="h-6 bg-gray-200 rounded w-1/4 mb-4"></div>
+                  <div className="h-8 bg-gray-200 rounded w-1/3 mb-6"></div>
+                  <div className="space-y-3">
+                    {Array(4).fill(0).map((_, j) => (
+                      <div key={j} className="h-4 bg-gray-200 rounded w-full"></div>
+                    ))}
                   </div>
-                )}
+                </div>
+              ))
+            ) : (
+              plans.map((plan) => (
+                <div
+                  key={plan.name}
+                  onClick={() => !loading && setSelectedPlan(plan.name)}
+                  className={`relative bg-white rounded-xl p-6 cursor-pointer transition-all duration-200
+                    ${loading ? 'opacity-50 cursor-not-allowed' : ''}
+                    ${selectedPlan === plan.name 
+                      ? 'ring-2 ring-black shadow-lg scale-[1.02]' 
+                      : 'hover:shadow-md border border-gray-200'}`}
+                >
+                  {plan.popular && (
+                    <div className="absolute -top-3 left-6 bg-black text-white px-4 py-1 rounded-full text-sm font-medium">
+                      Mais Vantajoso
+                    </div>
+                  )}
 
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-                  <div className="flex items-center justify-between sm:block">
-                    <div>
-                      <div className="text-sm font-medium text-gray-500 mb-1">{plan.name}</div>
-                      <div className="flex items-baseline gap-2">
-                        <span className="line-through text-gray-400 text-sm">R${parseInt(plan.price) * 2}</span>
-                        <span className="text-lg sm:text-xl font-bold text-gray-900">R${plan.price}</span>
-                        <span className="text-sm text-gray-500">/mês</span>
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+                    <div className="flex items-center justify-between sm:block">
+                      <div>
+                        <div className="text-sm font-medium text-gray-500 mb-1">{plan.name}</div>
+                        <div className="flex items-baseline gap-2">
+                          <span className="line-through text-gray-400 text-sm">R${parseInt(plan.price) * 2}</span>
+                          <span className="text-lg sm:text-xl font-bold text-gray-900">R${plan.price}</span>
+                          <span className="text-sm text-gray-500">/mês</span>
+                        </div>
+                      </div>
+                      
+                      <div className="sm:hidden">
+                        <div className="text-sm font-medium text-gray-500 mb-1">Apenas</div>
+                        <div className="flex items-baseline gap-1">
+                          <span className="text-2xl font-bold text-gray-900">R${plan.pricePerDay}</span>
+                          <span className="text-sm text-gray-500">/dia</span>
+                        </div>
                       </div>
                     </div>
                     
-                    <div className="sm:hidden">
+                    <div className="hidden sm:block sm:text-right">
                       <div className="text-sm font-medium text-gray-500 mb-1">Apenas</div>
-                      <div className="flex items-baseline gap-1">
-                        <span className="text-2xl font-bold text-gray-900">R${plan.pricePerDay}</span>
+                      <div className="flex items-baseline gap-1 sm:justify-end">
+                        <span className="text-3xl sm:text-4xl font-bold text-gray-900">R${plan.pricePerDay}</span>
                         <span className="text-sm text-gray-500">/dia</span>
                       </div>
                     </div>
                   </div>
-                  
-                  <div className="hidden sm:block sm:text-right">
-                    <div className="text-sm font-medium text-gray-500 mb-1">Apenas</div>
-                    <div className="flex items-baseline gap-1 sm:justify-end">
-                      <span className="text-3xl sm:text-4xl font-bold text-gray-900">R${plan.pricePerDay}</span>
-                      <span className="text-sm text-gray-500">/dia</span>
-                    </div>
-                  </div>
-                </div>
 
-                <div className="space-y-3 mb-6">
-                  {plan.features.map((feature) => (
-                    <div key={feature} className="flex items-center gap-3">
-                      <div className="flex-shrink-0 w-5 h-5 rounded-full bg-black/5 flex items-center justify-center">
-                        <Check className="w-3 h-3 text-gray-900" />
+                  <div className="space-y-3 mb-6">
+                    {plan.features.map((feature) => (
+                      <div key={feature} className="flex items-center gap-3">
+                        <div className="flex-shrink-0 w-5 h-5 rounded-full bg-black/5 flex items-center justify-center">
+                          <Check className="w-3 h-3 text-gray-900" />
+                        </div>
+                        <span className="text-gray-600">{feature}</span>
                       </div>
-                      <span className="text-gray-600">{feature}</span>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
 
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    plan.priceId && handleSubscribe(plan.priceId);
-                  }}
-                  disabled={loading || !plan.priceId}
-                  className={`w-full py-3 px-4 rounded-lg font-medium text-center transition-all duration-200
-                    ${plan.popular
-                      ? 'bg-black text-white hover:bg-gray-900'
-                      : 'bg-white text-gray-900 border-2 border-black hover:bg-black hover:text-white'
-                    } ${(loading || !plan.priceId) ? 'opacity-50 cursor-not-allowed' : ''}`}
-                >
-                  {loading ? 'Processando...' : 'Escolher plano'}
-                </button>
-              </div>
-            ))}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (!loading && plan.priceId) {
+                        handleSubscribe(plan.priceId);
+                      }
+                    }}
+                    disabled={loading || !plan.priceId}
+                    className={`w-full mt-6 py-3 px-4 rounded-lg text-white font-medium transition-all
+                      ${selectedPlan === plan.name ? 'bg-black hover:bg-gray-800' : 'bg-gray-900 hover:bg-black'}
+                      ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  >
+                    {loading ? 'Processando...' : 'Selecionar este plano'}
+                  </button>
+                </div>
+              ))
+            )}
           </div>
 
           {/* Money Back Guarantee */}
