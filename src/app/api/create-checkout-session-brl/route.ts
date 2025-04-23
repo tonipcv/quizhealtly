@@ -47,19 +47,29 @@ export async function POST(req: Request) {
 
     const session = await stripe.checkout.sessions.create({
       mode: 'subscription',
-      payment_method_types: ['card'],
+      payment_method_types: ['card', 'boleto'],
       line_items: [
         {
           price: priceId,
           quantity: 1,
         },
       ],
-      success_url: successUrl,
-      cancel_url: cancelUrl,
+      success_url: `${successUrl}?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${cancelUrl}?error=payment_cancelled`,
       allow_promotion_codes: true,
       billing_address_collection: 'required',
       locale: 'pt-BR',
       payment_method_collection: 'if_required',
+      customer_creation: 'always',
+      phone_number_collection: {
+        enabled: true,
+      },
+      tax_id_collection: {
+        enabled: true,
+      },
+      metadata: {
+        source: 'protocol-face-checkout'
+      }
     });
 
     if (!session.id) {

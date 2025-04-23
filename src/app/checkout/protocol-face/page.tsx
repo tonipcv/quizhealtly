@@ -95,6 +95,9 @@ export default function CheckoutPage() {
     try {
       setLoading(true);
       
+      // Get the current domain
+      const domain = window.location.origin;
+      
       const response = await fetch('/api/create-checkout-session-brl', {
         method: 'POST',
         headers: {
@@ -102,23 +105,37 @@ export default function CheckoutPage() {
         },
         body: JSON.stringify({
           priceId,
-          successUrl: `${window.location.origin}/checkout/success`,
-          cancelUrl: `${window.location.origin}/checkout/protocol-face`,
+          successUrl: `${domain}/checkout/success`,
+          cancelUrl: `${domain}/checkout/protocol-face`,
         }),
       });
 
-      const { sessionId } = await response.json();
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
       
+      if (!data.sessionId) {
+        throw new Error('No session ID returned');
+      }
+
       const stripe = await stripePromise;
-      const result = await stripe?.redirectToCheckout({
-        sessionId
+      if (!stripe) {
+        throw new Error('Stripe not initialized');
+      }
+
+      const { error } = await stripe.redirectToCheckout({
+        sessionId: data.sessionId
       });
 
-      if (result?.error) {
-        console.error(result.error);
+      if (error) {
+        console.error('Stripe redirect error:', error);
+        throw new Error(error.message);
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Checkout error:', error);
+      alert('Ocorreu um erro ao processar o pagamento. Por favor, tente novamente.');
     } finally {
       setLoading(false);
     }
