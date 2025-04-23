@@ -10,6 +10,7 @@ import { useSearchParams } from "next/navigation";
 declare global {
   interface Window {
     fbq: any;
+    gtag?: (command: string, action: string, params?: any) => void;
   }
 }
 
@@ -22,14 +23,24 @@ function ThankYouContent() {
 
   useEffect(() => {
     // Track Lead event when thank you page loads
-    if (typeof window !== 'undefined' && window.fbq) {
-      window.fbq('track', 'Lead', {
-        content_name: 'Reset Hormonal +38',
-        content_category: 'Body Protocol Form',
-        value: 1.00,
-        currency: 'BRL',
-        status: 'complete'
-      });
+    if (typeof window !== 'undefined') {
+      // Facebook Pixel tracking
+      if (window.fbq) {
+        window.fbq('track', 'Lead', {
+          content_name: 'Reset Hormonal +38',
+          content_category: 'Body Protocol Form',
+          status: 'complete'
+        });
+      }
+      
+      // Google Analytics conversion tracking
+      if (window.gtag) {
+        window.gtag('event', 'conversion_event_contact', {
+          'send_to': 'G-G6NWYRRCYB',
+          'event_category': 'Body Protocol',
+          'event_label': 'Form Submission'
+        });
+      }
     }
   }, []);
 
