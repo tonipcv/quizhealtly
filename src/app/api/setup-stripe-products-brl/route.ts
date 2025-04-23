@@ -31,75 +31,111 @@ export async function GET() {
       });
 
       prices = {
-        monthly: existingPrices.data.find(p => p.recurring?.interval === 'month' && p.recurring.interval_count === 1),
-        semiannual: existingPrices.data.find(p => p.recurring?.interval === 'month' && p.recurring.interval_count === 6),
-        annual: existingPrices.data.find(p => p.recurring?.interval === 'month' && p.recurring.interval_count === 12),
+        ninetyDays: existingPrices.data.find(p => p.recurring?.interval === 'day' && p.recurring.interval_count === 90),
+        sevenDays: existingPrices.data.find(p => p.recurring?.interval === 'day' && p.recurring.interval_count === 7),
+        twentyEightDays: existingPrices.data.find(p => p.recurring?.interval === 'day' && p.recurring.interval_count === 28),
       };
 
       // Only create missing prices
-      if (!prices.monthly) {
-        prices.monthly = await stripe.prices.create({
+      if (!prices.sevenDays) {
+        prices.sevenDays = await stripe.prices.create({
           product: product.id,
-          unit_amount: 19700,
+          unit_amount: 6300,
           currency: 'brl',
-          recurring: { interval: 'month' },
-          metadata: { type: 'monthly' }
+          recurring: { 
+            interval: 'day',
+            interval_count: 7
+          },
+          metadata: { 
+            type: 'seven_days',
+            price_per_day: '9.00'
+          }
         });
       }
 
-      if (!prices.semiannual) {
-        prices.semiannual = await stripe.prices.create({
+      if (!prices.twentyEightDays) {
+        prices.twentyEightDays = await stripe.prices.create({
           product: product.id,
-          unit_amount: 58200,
+          unit_amount: 11200,
           currency: 'brl',
-          recurring: { interval: 'month', interval_count: 6 },
-          metadata: { type: 'semiannual' }
+          recurring: { 
+            interval: 'day',
+            interval_count: 28
+          },
+          metadata: { 
+            type: 'twenty_eight_days',
+            price_per_day: '4.00'
+          }
         });
       }
 
-      if (!prices.annual) {
-        prices.annual = await stripe.prices.create({
+      if (!prices.ninetyDays) {
+        prices.ninetyDays = await stripe.prices.create({
           product: product.id,
-          unit_amount: 68400,
+          unit_amount: 18000,
           currency: 'brl',
-          recurring: { interval: 'month', interval_count: 12 },
-          metadata: { type: 'annual' }
+          recurring: { 
+            interval: 'day',
+            interval_count: 90
+          },
+          metadata: { 
+            type: 'ninety_days',
+            price_per_day: '2.00'
+          }
         });
       }
     } else {
       // Create new product and prices if none exist
       product = await stripe.products.create({
-        name: 'Protocolo Facial',
-        description: 'Protocolo facial completo com suporte e garantia',
+        name: 'Protocolo FaceKorea',
+        description: 'Protocolo facial coreano para rejuvenescimento',
       });
 
       prices = {
-        monthly: await stripe.prices.create({
+        sevenDays: await stripe.prices.create({
           product: product.id,
-          unit_amount: 19700,
+          unit_amount: 6300, // R$63,00
           currency: 'brl',
-          recurring: { interval: 'month' },
-          metadata: { type: 'monthly' }
+          recurring: { 
+            interval: 'day',
+            interval_count: 7
+          },
+          metadata: { 
+            type: 'seven_days',
+            price_per_day: '9.00'
+          }
         }),
-        semiannual: await stripe.prices.create({
+        twentyEightDays: await stripe.prices.create({
           product: product.id,
-          unit_amount: 58200,
+          unit_amount: 11200, // R$112,00
           currency: 'brl',
-          recurring: { interval: 'month', interval_count: 6 },
-          metadata: { type: 'semiannual' }
+          recurring: { 
+            interval: 'day',
+            interval_count: 28
+          },
+          metadata: { 
+            type: 'twenty_eight_days',
+            price_per_day: '4.00'
+          }
         }),
-        annual: await stripe.prices.create({
+        ninetyDays: await stripe.prices.create({
           product: product.id,
-          unit_amount: 68400,
+          unit_amount: 18000, // R$180,00
           currency: 'brl',
-          recurring: { interval: 'month', interval_count: 12 },
-          metadata: { type: 'annual' }
+          recurring: { 
+            interval: 'day',
+            interval_count: 90
+          },
+          metadata: { 
+            type: 'ninety_days',
+            price_per_day: '2.00'
+          }
         })
       };
 
       // Set default price
       await stripe.products.update(product.id, {
-        default_price: prices.monthly.id
+        default_price: prices.ninetyDays.id
       });
     }
 

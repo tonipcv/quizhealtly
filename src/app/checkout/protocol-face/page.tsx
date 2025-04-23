@@ -11,46 +11,52 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY!);
 
 const defaultPlans = [
   {
-    name: "Anual",
-    price: "57",
-    pricePerDay: "1,90",
-    period: "por mês",
+    name: "Plano de 28 dias",
+    price: "112",
+    pricePerDay: "4,00",
+    period: "28 dias",
     priceId: "",
     popular: true,
     features: [
-      "Tudo do plano semestral",
-      "Economia de R$1.680",
-      "Acesso vitalício",
-      "Mentoria individual"
-    ]
-  },
-  {
-    name: "Mensal",
-    price: "197",
-    pricePerDay: "6,57",
-    period: "por mês",
-    priceId: "",
-    features: [
-      "Acesso ao protocolo completo",
+      "Protocolo Coreano Completo",
+      "Acesso ao App Exclusivo",
       "Suporte via WhatsApp",
-      "Atualizações mensais",
       "Garantia de 7 dias"
     ]
   },
   {
-    name: "Semestral",
-    price: "97",
-    pricePerDay: "3,23",
-    period: "por mês",
+    name: "Plano de 90 dias",
+    price: "180",
+    pricePerDay: "2,00",
+    period: "90 dias",
     priceId: "",
     features: [
-      "Tudo do plano mensal",
-      "Economia de R$600",
-      "Bônus exclusivos",
-      "Garantia estendida"
+      "Protocolo Coreano Completo",
+      "Acesso ao App Exclusivo",
+      "Suporte via WhatsApp",
+      "Atualizações e Bônus",
+      "Garantia de 7 dias"
+    ]
+  },
+  {
+    name: "Plano de 7 dias",
+    price: "63",
+    pricePerDay: "9,00",
+    period: "7 dias",
+    priceId: "",
+    features: [
+      "Protocolo Coreano Básico",
+      "Suporte via WhatsApp",
+      "Acesso por 7 dias",
+      "Garantia de 7 dias"
     ]
   }
 ];
+
+interface StripePrice {
+  id: string;
+  nickname: string;
+}
 
 export default function CheckoutPage() {
   const [loading, setLoading] = useState(false);
@@ -77,25 +83,41 @@ export default function CheckoutPage() {
     setLoadingPrices(true);
     fetch('/api/setup-stripe-products-brl')
       .then(response => response.json())
-      .then(data => {
-        if (data.prices) {
+      .then((data) => {
+        console.log('Received prices data:', data); // Debug log
+        if (data && data.prices) {
+          const ninetyDaysPrice = data.prices.ninetyDays?.id || "";
+          const sevenDaysPrice = data.prices.sevenDays?.id || "";
+          const twentyEightDaysPrice = data.prices.twentyEightDays?.id || "";
+
           setPlans(plans.map((plan, index) => ({
             ...plan,
-            priceId: index === 0 ? data.prices.annual.id :
-                     index === 1 ? data.prices.monthly.id :
-                     data.prices.semiannual.id
+            priceId: index === 0 ? twentyEightDaysPrice :
+                     index === 1 ? ninetyDaysPrice :
+                     sevenDaysPrice
           })));
+        } else {
+          console.error('Invalid prices data:', data);
+          setPlans(defaultPlans);
         }
       })
-      .catch(error => console.error('Error fetching prices:', error))
+      .catch(error => {
+        console.error('Error fetching prices:', error);
+        setPlans(defaultPlans);
+      })
       .finally(() => setLoadingPrices(false));
   }, []);
 
   const handleSubscribe = async (priceId: string) => {
     try {
+      if (!priceId) {
+        console.error('No price ID provided');
+        return;
+      }
+
       setLoading(true);
+      console.log('Starting checkout with priceId:', priceId); // Debug log
       
-      // Get the current domain
       const domain = window.location.origin;
       
       const response = await fetch('/api/create-checkout-session-brl', {
@@ -111,7 +133,8 @@ export default function CheckoutPage() {
       });
 
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Network response was not ok');
       }
 
       const data = await response.json();
@@ -142,9 +165,9 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F8F8]">
+    <div className="min-h-screen bg-gradient-to-b from-[#D6D2D3] to-[#F8FFFF]">
       {/* Fixed Header */}
-      <div className="fixed top-0 left-0 right-0 bg-white z-50 border-b border-gray-100">
+      <div className="fixed top-0 left-0 right-0 bg-[#D6D2D3]/80 backdrop-blur-lg z-50 border-b border-gray-100/20">
         <div className="max-w-3xl mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <Link href="/face-protocol" className="text-gray-600 hover:text-gray-900 transition-colors">
@@ -162,7 +185,7 @@ export default function CheckoutPage() {
             </div>
 
             <div className="flex items-center gap-3">
-              <div className="bg-gray-100 px-3 py-1.5 rounded text-sm font-medium">
+              <div className="bg-[#35426A] px-3 py-1.5 rounded text-white text-sm font-medium">
                 {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
               </div>
             </div>
@@ -174,20 +197,20 @@ export default function CheckoutPage() {
       <div className="pt-24 pb-16 px-4">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-8">
-            <h1 className="text-3xl sm:text-4xl font-bold text-black mb-2">
+            <h1 className="text-3xl sm:text-4xl font-bold text-[#35426A] mb-2">
               Protocolo FaceKorea
             </h1>
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3">
+            <h2 className="text-xl sm:text-2xl font-bold text-[#35426A] mb-3">
               Escolha seu plano
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="text-lg text-[#7286B2]">
               Comece sua transformação hoje mesmo
             </p>
           </div>
 
           {/* Discount Timer */}
-          <div className="bg-black text-white p-4 rounded-xl text-center mb-8">
-            <span className="font-medium">60% de desconto expira em: </span>
+          <div className="bg-[#35426A] text-white p-4 rounded-xl text-center mb-8">
+            <span className="font-medium">Oferta especial expira em: </span>
             <span className="font-bold">{String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}</span>
           </div>
 
@@ -226,12 +249,7 @@ export default function CheckoutPage() {
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
                     <div className="flex items-center justify-between sm:block">
                       <div>
-                        <div className="text-sm font-medium text-gray-500 mb-1">{plan.name}</div>
-                        <div className="flex items-baseline gap-2">
-                          <span className="line-through text-gray-400 text-sm">R${parseInt(plan.price) * 2}</span>
-                          <span className="text-lg sm:text-xl font-bold text-[#35426A]">R${plan.price}</span>
-                          <span className="text-sm text-gray-500">/mês</span>
-                        </div>
+                        <div className="text-lg sm:text-xl font-bold text-[#35426A]">{plan.name}</div>
                       </div>
                       
                       <div className="sm:hidden">
@@ -267,7 +285,10 @@ export default function CheckoutPage() {
                     onClick={(e) => {
                       e.stopPropagation();
                       if (!loading && plan.priceId) {
+                        console.log('Clicked plan:', plan.name, 'with priceId:', plan.priceId); // Debug log
                         handleSubscribe(plan.priceId);
+                      } else {
+                        console.log('Button clicked but disabled:', { loading, priceId: plan.priceId }); // Debug log
                       }
                     }}
                     disabled={loading || !plan.priceId}
