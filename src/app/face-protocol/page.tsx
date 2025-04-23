@@ -56,7 +56,7 @@ export default function FaceProtocol() {
               </h1>
               
               <p className="text-xl text-[#7286B2] leading-relaxed max-w-2xl mx-auto">
-                Resultados naturais superiores ao botox em 30 dias
+                Resultados naturais superiores ao procedimentos caros em 30 dias
               </p>
             </div>
 
