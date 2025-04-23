@@ -24,7 +24,7 @@ export default function Home() {
             </div>
             
             {/* Mobile Menu */}
-            <Link href="/quiz">
+            <Link href="/quiz-face">
               <Button
                 variant="ghost"
                 size="icon"
@@ -50,7 +50,7 @@ export default function Home() {
                 Discover our tailored programs designed specifically for women over 40.
                 Our approach combines proven methods with modern science for effective and lasting results.
               </p>
-              <Link href="/quiz">
+              <Link href="/quiz-face">
                 <Button
                   size="lg"
                   className="bg-[#35426A] hover:bg-[#7286B2] text-white font-medium rounded-full transition-all duration-300 px-8"
