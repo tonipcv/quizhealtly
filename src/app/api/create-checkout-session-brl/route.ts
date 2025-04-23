@@ -59,13 +59,14 @@ export async function POST(req: Request) {
       allow_promotion_codes: true,
       billing_address_collection: 'required',
       locale: 'pt-BR',
-      payment_method_collection: 'if_required',
-      customer_creation: 'always',
       phone_number_collection: {
         enabled: true,
       },
       tax_id_collection: {
         enabled: true,
+      },
+      subscription_data: {
+        trial_period_days: 7
       },
       metadata: {
         source: 'protocol-face-checkout'
