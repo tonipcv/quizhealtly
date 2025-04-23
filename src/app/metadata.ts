@@ -1,25 +1,25 @@
 export const metadata = {
-  metadataBase: new URL('https://naturalbloom.com'),
+  metadataBase: new URL('https://vuom.com'),
   title: {
-    default: 'NaturalBloom | Natural Treatments for Women Over 40',
-    template: '%s | NaturalBloom'
+    default: 'VUOM | Beauty Tech Innovation',
+    template: '%s | VUOM'
   },
-  description: 'Discover the best natural treatments for women over 40. Expert guidance on herbal remedies, light therapy, nutrition, and holistic wellness solutions.',
+  description: 'VUOM é uma empresa de beauty tech que revoluciona a beleza através de protocolos faciais inovadores baseados na tecnologia coreana. | VUOM is a beauty tech company revolutionizing beauty through innovative facial protocols based on Korean technology.',
   keywords: [
-    'natural treatments',
-    'women over 40',
-    'herbal remedies',
-    'light therapy',
-    'nutritional support',
-    'anti-aging',
-    'sleep enhancement',
-    'heart health',
-    'holistic wellness',
-    'natural healing'
+    'beauty tech',
+    'tecnologia coreana',
+    'korean beauty technology',
+    'inovação em beleza',
+    'beauty innovation',
+    'protocolos faciais',
+    'facial protocols',
+    'rejuvenescimento natural',
+    'natural rejuvenation',
+    'k-beauty tech'
   ],
-  authors: [{ name: 'NaturalBloom' }],
-  creator: 'NaturalBloom',
-  publisher: 'NaturalBloom',
+  authors: [{ name: 'VUOM' }],
+  creator: 'VUOM',
+  publisher: 'VUOM',
   formatDetection: {
     email: false,
     address: false,
@@ -27,24 +27,24 @@ export const metadata = {
   },
   openGraph: {
     type: 'website',
-    locale: 'en_US',
-    url: 'https://naturalbloom.com',
-    title: 'NaturalBloom | Natural Treatments for Women Over 40',
-    description: 'Discover the best natural treatments for women over 40. Expert guidance on herbal remedies, light therapy, nutrition, and holistic wellness solutions.',
-    siteName: 'NaturalBloom',
+    locale: 'pt_BR',
+    url: 'https://vuom.com',
+    title: 'VUOM | Beauty Tech Innovation',
+    description: 'VUOM: Revolucionando a beleza com tecnologia coreana avançada. Descubra nossos protocolos faciais inovadores para resultados transformadores. | VUOM: Revolutionizing beauty with advanced Korean technology. Discover our innovative facial protocols for transformative results.',
+    siteName: 'VUOM',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'NaturalBloom - Natural Treatments for Women Over 40'
+        alt: 'VUOM - Beauty Tech Innovation'
       }
     ]
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'NaturalBloom | Natural Treatments for Women Over 40',
-    description: 'Discover the best natural treatments for women over 40. Expert guidance on herbal remedies, light therapy, nutrition, and holistic wellness solutions.',
+    title: 'VUOM | Beauty Tech Innovation',
+    description: 'VUOM: Revolucionando a beleza com tecnologia coreana avançada. Descubra nossos protocolos faciais inovadores para resultados transformadores. | VUOM: Revolutionizing beauty with advanced Korean technology.',
     images: ['/og-image.jpg']
   },
   robots: {

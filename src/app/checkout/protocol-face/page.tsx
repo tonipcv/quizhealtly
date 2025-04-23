@@ -67,6 +67,30 @@ export default function CheckoutPage() {
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
 
   useEffect(() => {
+    // Track page view for checkout
+    if (typeof window !== 'undefined') {
+      // Facebook Pixel
+      if ((window as any).fbq) {
+        (window as any).fbq('track', 'PageView');
+        (window as any).fbq('track', 'InitiateCheckout', {
+          content_category: 'Protocol Face',
+          content_name: 'Checkout Page',
+          currency: 'BRL'
+        });
+      }
+
+      // Google Analytics
+      if ((window as any).gtag) {
+        (window as any).gtag('event', 'begin_checkout', {
+          currency: 'BRL',
+          event_category: 'ecommerce',
+          event_label: 'Protocol Face Checkout'
+        });
+      }
+    }
+  }, []);
+
+  useEffect(() => {
     const timer = setInterval(() => {
       if (seconds > 0) {
         setSeconds(seconds - 1);
@@ -117,6 +141,39 @@ export default function CheckoutPage() {
 
       setLoading(true);
       console.log('Starting checkout with priceId:', priceId); // Debug log
+      
+      // Track initiate checkout event
+      if (typeof window !== 'undefined') {
+        const selectedPlanDetails = plans.find(plan => plan.priceId === priceId);
+        
+        // Facebook Pixel
+        if ((window as any).fbq) {
+          (window as any).fbq('track', 'InitiateCheckout', {
+            content_category: 'Protocol Face',
+            content_name: selectedPlanDetails?.name || '',
+            content_type: 'product',
+            value: parseFloat(selectedPlanDetails?.price || '0'),
+            currency: 'BRL',
+            num_items: 1
+          });
+        }
+
+        // Google Analytics
+        if ((window as any).gtag) {
+          (window as any).gtag('event', 'add_to_cart', {
+            currency: 'BRL',
+            value: parseFloat(selectedPlanDetails?.price || '0'),
+            items: [{
+              item_id: priceId,
+              item_name: selectedPlanDetails?.name || '',
+              price: parseFloat(selectedPlanDetails?.price || '0'),
+              quantity: 1
+            }],
+            event_category: 'ecommerce',
+            event_label: selectedPlanDetails?.name || ''
+          });
+        }
+      }
       
       const domain = window.location.origin;
       

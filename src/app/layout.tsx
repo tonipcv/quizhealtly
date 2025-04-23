@@ -16,27 +16,27 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "VUOM | Natural Treatments for Women Over 40",
-  description: "Discover the best natural treatments for women over 40. Expert guidance on herbal remedies, light therapy, nutrition, and holistic wellness solutions for optimal health and longevity.",
-  keywords: "natural treatments, women over 40, herbal remedies, light therapy, nutritional support, anti-aging, sleep enhancement, heart health, holistic wellness, natural healing",
+  title: "VUOM | Beauty Tech Innovation",
+  description: "VUOM é uma empresa de beauty tech que revoluciona a beleza através de protocolos faciais inovadores baseados na tecnologia coreana. | VUOM is a beauty tech company revolutionizing beauty through innovative facial protocols based on Korean technology.",
+  keywords: "beauty tech, tecnologia coreana, korean beauty technology, inovação em beleza, beauty innovation, protocolos faciais, facial protocols, k-beauty tech",
   openGraph: {
-    title: "Longevify | Natural Treatments for Women Over 40",
-    description: "Expert guidance on natural treatments and holistic wellness solutions for women over 40",
+    title: "VUOM | Beauty Tech Innovation",
+    description: "VUOM: Revolucionando a beleza com tecnologia coreana avançada. Descubra nossos protocolos faciais inovadores para resultados transformadores. | VUOM: Revolutionizing beauty with advanced Korean technology.",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "LONGEVIFY Program",
+        alt: "VUOM - Beauty Tech Innovation",
       },
     ],
-    locale: "en_US",
+    locale: "pt_BR",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Longevify | Natural Treatments for Women Over 40",
-    description: "Expert guidance on natural treatments and holistic wellness solutions for women over 40",
+    title: "VUOM | Beauty Tech Innovation",
+    description: "VUOM: Revolucionando a beleza com tecnologia coreana avançada. Descubra nossos protocolos faciais inovadores para resultados transformadores. | VUOM: Revolutionizing beauty with advanced Korean technology.",
     images: ["/og-image.jpg"],
   },
   robots: {

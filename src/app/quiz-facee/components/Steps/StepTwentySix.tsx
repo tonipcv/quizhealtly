@@ -5,7 +5,7 @@ import { useQuizContext } from "../Quiz/QuizProvider";
 
 const ratingOptions = [1, 2, 3, 4, 5];
 
-export default function StepTwentySeven() {
+export default function StepTwentySix() {
   const { setCurrentStep } = useQuizContext();
   const [selectedRating, setSelectedRating] = useState<number | null>(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -15,7 +15,7 @@ export default function StepTwentySeven() {
     setIsTransitioning(true);
     setSelectedRating(value);
     setTimeout(() => {
-      setCurrentStep(28);
+      setCurrentStep(27);
     }, 600);
   };
 
@@ -24,10 +24,10 @@ export default function StepTwentySeven() {
       <div className="space-y-8">
         <div className="text-center space-y-3">
           <h2 className="text-2xl font-semibold text-gray-900">
-            Does your appearance affect your relationships?
+            Do you compare yourself to others and feel frustrated?
           </h2>
           <p className="text-gray-600">
-            Em uma escala de 1 a 5, onde 1 é "Nada" e 5 é "Totalmente"
+            On a scale of 1 to 5, where 1 is "Not at all" and 5 is "Completely"
           </p>
         </div>
 
@@ -53,14 +53,13 @@ export default function StepTwentySeven() {
 
       <div className="fixed bottom-4 left-0 w-full px-4">
         <button
-          onClick={() => setCurrentStep(26)}
+          onClick={() => setCurrentStep(25)}
           disabled={isTransitioning}
           className="mx-auto text-gray-500 hover:text-gray-900 transition-colors text-sm flex items-center gap-2 disabled:opacity-50"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
-          Back
           Voltar
         </button>
       </div>

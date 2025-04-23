@@ -3,21 +3,16 @@
 import React from "react";
 import { useQuizContext } from "../Quiz/QuizProvider";
 
-const eatingOptions = [
+const mealHabitsOptions = [
   {
-    id: "sandwiches",
-    text: "Como mais sanduíches e wraps",
-    description: "Prefiro refeições práticas e rápidas"
+    id: "quick",
+    text: "Quick and practical",
+    description: "I prefer quick and practical meals"
   },
   {
     id: "healthy",
-    text: "Como sopas e saladas",
-    description: "Opto por refeições mais leves e saudáveis"
-  },
-  {
-    id: "fast_food",
-    text: "Como fast food",
-    description: "Frequentemente opto por comidas prontas"
+    text: "Healthy and light",
+    description: "I opt for lighter and healthier meals"
   }
 ];
 
@@ -29,15 +24,15 @@ export default function StepTwentyThree() {
       <div className="space-y-8">
         <div className="text-center space-y-3">
           <h2 className="text-2xl font-semibold text-gray-900">
-            Como são seus hábitos alimentares?
+            What are your eating habits?
           </h2>
           <p className="text-gray-600">
-            Selecione a opção que melhor descreve sua alimentação
+            Select the option that best describes your diet
           </p>
         </div>
 
         <div className="space-y-3">
-          {eatingOptions.map((option) => (
+          {mealHabitsOptions.map((option) => (
             <button
               key={option.id}
               onClick={() => setCurrentStep(24)}
@@ -64,7 +59,7 @@ export default function StepTwentyThree() {
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
-          Voltar
+          Back
         </button>
       </div>
     </div>

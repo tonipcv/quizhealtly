@@ -3,30 +3,25 @@
 import React from "react";
 import { useQuizContext } from "../Quiz/QuizProvider";
 
-const vegetableOptions = [
+const timeOptions = [
   {
-    id: "daily",
-    text: "Todos os dias",
-    description: "Consumo diário de vegetais"
+    id: "ten_minutes",
+    text: "Até 10 minutos",
+    description: "Tenho pouco tempo disponível"
   },
   {
-    id: "frequently",
-    text: "Frequentemente",
-    description: "Várias vezes por semana"
+    id: "fifteen_minutes",
+    text: "Até 15 minutos",
+    description: "Posso dedicar um tempo moderado"
   },
   {
-    id: "sometimes",
-    text: "Às vezes",
-    description: "Ocasionalmente"
-  },
-  {
-    id: "never",
-    text: "Nunca",
-    description: "Não consumo vegetais"
+    id: "thirty_minutes",
+    text: "Até 30 minutos",
+    description: "Tenho mais tempo para dedicar"
   }
 ];
 
-export default function StepThirteen() {
+export default function StepTwentyFour() {
   const { setCurrentStep } = useQuizContext();
 
   return (
@@ -34,18 +29,21 @@ export default function StepThirteen() {
       <div className="space-y-8">
         <div className="text-center space-y-3">
           <h2 className="text-2xl font-semibold text-gray-900">
-            How often do you consume vegetables?
+            Quanto tempo por dia você pode dedicar ao programa?
           </h2>
+          <h3 className="text-xl font-medium text-gray-700 mb-2">
+            Protocolo Coreano
+          </h3>
           <p className="text-gray-600">
-            Consider greens, vegetables, and produce
+            Selecione o tempo que você tem disponível
           </p>
         </div>
 
         <div className="space-y-3">
-          {vegetableOptions.map((option) => (
+          {timeOptions.map((option) => (
             <button
               key={option.id}
-              onClick={() => setCurrentStep(14)}
+              onClick={() => setCurrentStep(25)}
               className="w-full p-5 rounded-xl border-2 border-gray-200 hover:border-gray-400 transition-all duration-200 group text-left"
             >
               <div className="space-y-1">
@@ -63,7 +61,7 @@ export default function StepThirteen() {
 
       <div className="fixed bottom-4 left-0 w-full px-4">
         <button
-          onClick={() => setCurrentStep(12)}
+          onClick={() => setCurrentStep(23)}
           className="mx-auto text-gray-500 hover:text-gray-900 transition-colors text-sm flex items-center gap-2"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
