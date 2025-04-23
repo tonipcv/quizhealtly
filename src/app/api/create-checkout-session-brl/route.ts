@@ -65,9 +65,6 @@ export async function POST(req: Request) {
       tax_id_collection: {
         enabled: true,
       },
-      subscription_data: {
-        trial_period_days: 7
-      },
       metadata: {
         source: 'protocol-face-checkout'
       }
