@@ -214,11 +214,11 @@ export default function CheckoutPage() {
                   className={`relative bg-white rounded-xl p-6 cursor-pointer transition-all duration-200
                     ${loading ? 'opacity-50 cursor-not-allowed' : ''}
                     ${selectedPlan === plan.name 
-                      ? 'ring-2 ring-black shadow-lg scale-[1.02]' 
+                      ? 'ring-2 ring-[#35426A] shadow-lg scale-[1.02]' 
                       : 'hover:shadow-md border border-gray-200'}`}
                 >
                   {plan.popular && (
-                    <div className="absolute -top-3 left-6 bg-black text-white px-4 py-1 rounded-full text-sm font-medium">
+                    <div className="absolute -top-3 left-6 bg-[#35426A] text-white px-4 py-1 rounded-full text-sm font-medium">
                       Mais Vantajoso
                     </div>
                   )}
@@ -229,7 +229,7 @@ export default function CheckoutPage() {
                         <div className="text-sm font-medium text-gray-500 mb-1">{plan.name}</div>
                         <div className="flex items-baseline gap-2">
                           <span className="line-through text-gray-400 text-sm">R${parseInt(plan.price) * 2}</span>
-                          <span className="text-lg sm:text-xl font-bold text-gray-900">R${plan.price}</span>
+                          <span className="text-lg sm:text-xl font-bold text-[#35426A]">R${plan.price}</span>
                           <span className="text-sm text-gray-500">/mês</span>
                         </div>
                       </div>
@@ -237,7 +237,7 @@ export default function CheckoutPage() {
                       <div className="sm:hidden">
                         <div className="text-sm font-medium text-gray-500 mb-1">Apenas</div>
                         <div className="flex items-baseline gap-1">
-                          <span className="text-2xl font-bold text-gray-900">R${plan.pricePerDay}</span>
+                          <span className="text-2xl font-bold text-[#35426A]">R${plan.pricePerDay}</span>
                           <span className="text-sm text-gray-500">/dia</span>
                         </div>
                       </div>
@@ -246,7 +246,7 @@ export default function CheckoutPage() {
                     <div className="hidden sm:block sm:text-right">
                       <div className="text-sm font-medium text-gray-500 mb-1">Apenas</div>
                       <div className="flex items-baseline gap-1 sm:justify-end">
-                        <span className="text-3xl sm:text-4xl font-bold text-gray-900">R${plan.pricePerDay}</span>
+                        <span className="text-3xl sm:text-4xl font-bold text-[#35426A]">R${plan.pricePerDay}</span>
                         <span className="text-sm text-gray-500">/dia</span>
                       </div>
                     </div>
@@ -255,8 +255,8 @@ export default function CheckoutPage() {
                   <div className="space-y-3 mb-6">
                     {plan.features.map((feature) => (
                       <div key={feature} className="flex items-center gap-3">
-                        <div className="flex-shrink-0 w-5 h-5 rounded-full bg-black/5 flex items-center justify-center">
-                          <Check className="w-3 h-3 text-gray-900" />
+                        <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#35426A]/5 flex items-center justify-center">
+                          <Check className="w-3 h-3 text-[#35426A]" />
                         </div>
                         <span className="text-gray-600">{feature}</span>
                       </div>
@@ -272,7 +272,7 @@ export default function CheckoutPage() {
                     }}
                     disabled={loading || !plan.priceId}
                     className={`w-full mt-6 py-3 px-4 rounded-lg text-white font-medium transition-all
-                      ${selectedPlan === plan.name ? 'bg-black hover:bg-gray-800' : 'bg-gray-900 hover:bg-black'}
+                      ${selectedPlan === plan.name ? 'bg-[#35426A] hover:bg-[#35426A]/90' : 'bg-[#35426A]/90 hover:bg-[#35426A]'}
                       ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
                   >
                     {loading ? 'Processando...' : 'Selecionar este plano'}
