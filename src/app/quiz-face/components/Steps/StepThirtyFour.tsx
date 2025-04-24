@@ -11,15 +11,41 @@ export default function StepThirtyFour() {
   const [whatsapp, setWhatsapp] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     
-    // Store WhatsApp number in localStorage or your preferred state management
-    localStorage.setItem("userWhatsapp", whatsapp);
-    
-    // Redirect to checkout
-    router.push("/checkout/protocol-face");
+    try {
+      // Save to database
+      const response = await fetch('/api/quiz/save-whatsapp', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          whatsapp,
+          // Get UTM parameters from URL if they exist
+          utmSource: new URLSearchParams(window.location.search).get('utm_source'),
+          utmMedium: new URLSearchParams(window.location.search).get('utm_medium'),
+          utmCampaign: new URLSearchParams(window.location.search).get('utm_campaign'),
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to save WhatsApp');
+      }
+
+      // Store WhatsApp number in localStorage
+      localStorage.setItem("userWhatsapp", whatsapp);
+      
+      // Redirect to checkout
+      router.push("/checkout/protocol-face");
+    } catch (error) {
+      console.error('Error saving WhatsApp:', error);
+      alert('Ocorreu um erro. Por favor, tente novamente.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const formatWhatsApp = (value: string) => {
