@@ -34,3 +34,27 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Prisma
+node_modules
+.env
+.env.*
+!.env.example
+.vercel
+.next
+dist
+build
+coverage
+
+# Prisma specific
+prisma/.env
+prisma/migrations/
+generated/
+*.db
+*.db-journal
+
+# Next.js
+.next
+out/
+build
+dist

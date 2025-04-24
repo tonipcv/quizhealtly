@@ -16,15 +16,78 @@ declare global {
 
 export default function FaceProtocol() {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     whatsapp: ""
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    router.push("/face-protocol/thank-you");
+    setIsLoading(true);
+
+    try {
+      // Save lead data
+      const response = await fetch('/api/leads/save', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          // Get UTM parameters from URL if they exist
+          utmSource: new URLSearchParams(window.location.search).get('utm_source'),
+          utmMedium: new URLSearchParams(window.location.search).get('utm_medium'),
+          utmCampaign: new URLSearchParams(window.location.search).get('utm_campaign'),
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to save lead data');
+      }
+
+      // Track lead capture event
+      if (typeof window !== 'undefined') {
+        if (window.fbq) {
+          window.fbq('track', 'Lead', {
+            content_name: 'Face Protocol Form',
+            status: 'complete'
+          });
+        }
+        
+        if ((window as any).gtag) {
+          (window as any).gtag('event', 'generate_lead', {
+            'event_category': 'lead',
+            'event_label': 'Face Protocol Form'
+          });
+        }
+      }
+
+      // Store data in localStorage
+      localStorage.setItem("userName", formData.name);
+      localStorage.setItem("userEmail", formData.email);
+      localStorage.setItem("userWhatsapp", formData.whatsapp);
+      
+      // Redirect to thank you page
+      router.push("/face-protocol/thank-you");
+    } catch (error) {
+      console.error('Error saving lead:', error);
+      alert('Ocorreu um erro. Por favor, tente novamente.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const formatWhatsApp = (value: string) => {
+    // Remove any non-digit characters
+    const numbers = value.replace(/\D/g, "");
+    
+    // Format as (XX) XXXXX-XXXX
+    if (numbers.length <= 11) {
+      return numbers.replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
+    }
+    return numbers;
   };
 
   return (
@@ -91,17 +154,22 @@ export default function FaceProtocol() {
                     required
                     className="w-full p-4 rounded-full border-gray-100 focus:border-[#35426A] focus:ring-[#35426A] text-[#35426A] font-light"
                     value={formData.whatsapp}
-                    onChange={(e) => setFormData({...formData, whatsapp: e.target.value})}
+                    onChange={(e) => setFormData({...formData, whatsapp: formatWhatsApp(e.target.value)})}
                   />
                 </div>
 
                 <Button
                   type="submit"
                   size="lg"
-                  className="w-full bg-[#35426A] hover:bg-[#7286B2] text-white font-medium rounded-full transition-all duration-300 px-8 py-6"
+                  disabled={isLoading}
+                  className="w-full bg-[#35426A] hover:bg-[#7286B2] text-white font-medium rounded-full transition-all duration-300 px-8 py-6 disabled:opacity-70 disabled:cursor-not-allowed"
                 >
-                  Começar Agora
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  {isLoading ? "Processando..." : (
+                    <>
+                      Começar Agora
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </>
+                  )}
                 </Button>
               </form>
             </div>
