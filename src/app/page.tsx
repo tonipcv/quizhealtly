@@ -53,7 +53,7 @@ export default function Home() {
                   Sign In
                 </Button>
               </Link>
-              <Link href="/quiz-face">
+              <Link href="/onboarding">
                 <Button
                   variant="ghost"
                   size="icon"
@@ -80,7 +80,7 @@ export default function Home() {
                   Experience the fusion of Korean beauty protocols and regenerative medicine in our premium cellular rejuvenation journey. Exclusively crafted for discerning women who embrace ageless beauty with confidence.
                 </p>
                 <div className="flex flex-wrap gap-4">
-                  <Link href="/quiz-face">
+                  <Link href="/onboarding">
                     <Button
                       size="lg"
                       className="bg-[#35426A] hover:bg-[#7286B2] text-white font-semibold rounded-full transition-all duration-300 px-8"
@@ -172,7 +172,7 @@ export default function Home() {
                   Discover the perfect harmony of high-performance beauty technology and sophisticated design. 
                   Begin your journey to timeless beauty today.
                 </p>
-                <Link href="/quiz-face">
+                <Link href="/onboarding">
                   <Button size="lg" className="bg-[#35426A] hover:bg-[#7286B2] text-white font-semibold rounded-full transition-all duration-300 px-8">
                     Begin Your Journey
                     <ArrowRight className="ml-2 h-4 w-4" />
