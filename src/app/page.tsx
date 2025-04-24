@@ -13,7 +13,7 @@ export default function Home() {
       <header className="fixed w-full top-0 bg-[#D6D2D3]/80 backdrop-blur-lg z-50 border-b border-gray-100/20">
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
-            <div className="p-2">
+            <Link href="/" className="p-2">
               <Image
                 src="/logo.png"
                 alt="VUOM"
@@ -21,18 +21,47 @@ export default function Home() {
                 height={42}
                 className="h-10 w-auto brightness-0"
               />
+            </Link>
+            
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center gap-4">
+              <Link href="https://app.vuom.life/login">
+                <Button
+                  variant="ghost"
+                  className="text-[#35426A] hover:text-[#7286B2] font-medium"
+                >
+                  Sign In
+                </Button>
+              </Link>
+              <Link href="https://app.vuom.life/register">
+                <Button
+                  className="bg-[#35426A] hover:bg-[#7286B2] text-white font-medium rounded-full px-6"
+                >
+                  Get Started
+                </Button>
+              </Link>
             </div>
             
             {/* Mobile Menu */}
-            <Link href="/quiz-face">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="md:hidden"
-              >
-                <Menu className="h-5 w-5" />
-              </Button>
-            </Link>
+            <div className="md:hidden flex items-center gap-2">
+              <Link href="https://app.vuom.life/login">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-[#35426A]"
+                >
+                  Sign In
+                </Button>
+              </Link>
+              <Link href="/quiz-face">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                >
+                  <Menu className="h-5 w-5" />
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </header>
@@ -50,15 +79,26 @@ export default function Home() {
                 <p className="text-xl text-[#7286B2] mb-12 leading-relaxed font-normal">
                   Experience the fusion of Korean beauty protocols and regenerative medicine in our premium cellular rejuvenation journey. Exclusively crafted for discerning women who embrace ageless beauty with confidence.
                 </p>
-                <Link href="/quiz-face">
-                  <Button
-                    size="lg"
-                    className="bg-[#35426A] hover:bg-[#7286B2] text-white font-semibold rounded-full transition-all duration-300 px-8"
-                  >
-                    Discover Your Protocol
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
+                <div className="flex flex-wrap gap-4">
+                  <Link href="/quiz-face">
+                    <Button
+                      size="lg"
+                      className="bg-[#35426A] hover:bg-[#7286B2] text-white font-semibold rounded-full transition-all duration-300 px-8"
+                    >
+                      Discover Your Protocol
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
+                  <Link href="https://app.vuom.life/register">
+                    <Button
+                      size="lg"
+                      className="bg-transparent border-2 border-[#35426A] text-[#35426A] hover:bg-[#35426A] hover:text-white font-semibold rounded-full transition-all duration-300 px-8"
+                    >
+                      Create Account
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
+                </div>
               </div>
               <div className="lg:flex-1 relative">
                 <Image
