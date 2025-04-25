@@ -3,26 +3,26 @@
 import React from "react";
 import { useQuizContext } from "../Quiz/QuizProvider";
 
-const sleepOptions = [
+const waterOptions = [
   {
-    id: "less_than_5",
-    text: "Less than 5 hours",
-    description: "I sleep very little during the night"
+    id: "more_than_2L",
+    text: "Mais de 2 litros",
+    description: "Bebo mais de 8 copos de água por dia"
   },
   {
-    id: "five_to_six",
-    text: "5 to 6 hours",
-    description: "I sleep slightly below recommended"
+    id: "1_to_2L",
+    text: "1 a 2 litros",
+    description: "Bebo entre 4 e 8 copos de água por dia"
   },
   {
-    id: "seven_to_eight",
-    text: "7 to 8 hours",
-    description: "I sleep the recommended amount"
+    id: "less_than_1L",
+    text: "Menos de 1 litro",
+    description: "Bebo menos de 4 copos de água por dia"
   },
   {
-    id: "more_than_eight",
-    text: "More than 8 hours",
-    description: "I sleep a lot during the night"
+    id: "rarely",
+    text: "Raramente",
+    description: "Bebo água com pouca frequência"
   }
 ];
 
@@ -34,18 +34,18 @@ export default function StepSixteen() {
       <div className="space-y-8">
         <div className="text-center space-y-3">
           <h2 className="text-2xl font-semibold text-gray-900">
-            How many hours do you sleep per night?
+            Qual seu consumo diário de água?
           </h2>
           <p className="text-gray-600">
-            Select your average sleep duration
+            Considere apenas água pura, não inclua outras bebidas
           </p>
         </div>
 
         <div className="space-y-3">
-          {sleepOptions.map((option) => (
+          {waterOptions.map((option) => (
             <button
               key={option.id}
-              onClick={() => setCurrentStep(17)}
+              onClick={() => setCurrentStep(23)}
               className="w-full p-5 rounded-xl border-2 border-gray-200 hover:border-gray-400 transition-all duration-200 group text-left"
             >
               <div className="space-y-1">
@@ -69,7 +69,7 @@ export default function StepSixteen() {
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
-          Back
+          Voltar
         </button>
       </div>
     </div>

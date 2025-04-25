@@ -1,51 +1,61 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { useQuizContext } from "../Quiz/QuizProvider";
 
-const ratingOptions = [1, 2, 3, 4, 5];
+const exerciseOptions = [
+  {
+    id: "daily",
+    text: "Todos os dias",
+    description: "Pratico exercícios físicos diariamente"
+  },
+  {
+    id: "frequently",
+    text: "3-4 vezes por semana",
+    description: "Pratico exercícios com frequência regular"
+  },
+  {
+    id: "occasionally",
+    text: "1-2 vezes por semana",
+    description: "Pratico exercícios ocasionalmente"
+  },
+  {
+    id: "rarely",
+    text: "Raramente",
+    description: "Pratico exercícios com pouca frequência"
+  }
+];
 
 export default function StepTwentySeven() {
   const { setCurrentStep } = useQuizContext();
-  const [selectedRating, setSelectedRating] = useState<number | null>(null);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-
-  const handleSelect = (value: number) => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setSelectedRating(value);
-    setTimeout(() => {
-      setCurrentStep(28);
-    }, 600);
-  };
 
   return (
     <div className="pb-24">
       <div className="space-y-8">
         <div className="text-center space-y-3">
           <h2 className="text-2xl font-semibold text-gray-900">
-            Does your appearance affect your relationships?
+            Com que frequência você pratica exercícios?
           </h2>
           <p className="text-gray-600">
-            Em uma escala de 1 a 5, onde 1 é "Nada" e 5 é "Totalmente"
+            Considere atividades físicas como caminhada, academia, esportes
           </p>
         </div>
 
-        <div className="flex justify-center items-center gap-4">
-          {ratingOptions.map((value) => (
+        <div className="space-y-3">
+          {exerciseOptions.map((option) => (
             <button
-              key={value}
-              onClick={() => handleSelect(value)}
-              disabled={isTransitioning}
-              className={`w-10 h-10 rounded-md border-2 transition-all duration-200 flex items-center justify-center text-gray-900 font-medium
-                ${selectedRating === value 
-                  ? "border-gray-900 bg-gray-900 text-white transform scale-110" 
-                  : "border-gray-200 hover:border-gray-400 hover:bg-gray-50"
-                }
-                ${isTransitioning && selectedRating !== value ? "opacity-50" : ""}
-              `}
+              key={option.id}
+              onClick={() => setCurrentStep(28)}
+              className="w-full p-5 rounded-xl border-2 border-gray-200 hover:border-gray-400 transition-all duration-200 group text-left"
             >
-              {value}
+              <div className="space-y-1">
+                <p className="font-medium text-gray-900 text-lg">
+                  {option.text}
+                </p>
+                <p className="text-sm text-gray-500 group-hover:text-gray-600">
+                  {option.description}
+                </p>
+              </div>
             </button>
           ))}
         </div>
@@ -53,14 +63,12 @@ export default function StepTwentySeven() {
 
       <div className="fixed bottom-4 left-0 w-full px-4">
         <button
-          onClick={() => setCurrentStep(26)}
-          disabled={isTransitioning}
-          className="mx-auto text-gray-500 hover:text-gray-900 transition-colors text-sm flex items-center gap-2 disabled:opacity-50"
+          onClick={() => setCurrentStep(23)}
+          className="mx-auto text-gray-500 hover:text-gray-900 transition-colors text-sm flex items-center gap-2"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
-          Back
           Voltar
         </button>
       </div>

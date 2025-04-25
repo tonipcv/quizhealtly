@@ -6,18 +6,18 @@ import { useQuizContext } from "../Quiz/QuizProvider";
 const mealOptions = [
   {
     id: "less_than_3",
-    text: "Less than 3",
-    description: "1-2 meals per day"
+    text: "Menos de 3",
+    description: "1-2 refeições por dia"
   },
   {
     id: "at_least_3",
-    text: "At least 3",
-    description: "3 or more meals per day"
+    text: "Pelo menos 3",
+    description: "3 ou mais refeições por dia"
   },
   {
     id: "varies",
-    text: "Varies",
-    description: "Irregular number of meals"
+    text: "Varia",
+    description: "Número irregular de refeições"
   }
 ];
 
@@ -29,10 +29,10 @@ export default function StepTen() {
       <div className="space-y-8">
         <div className="text-center space-y-3">
           <h2 className="text-2xl font-semibold text-gray-900">
-            How many meals do you have per day?
+            Quantas refeições você faz por dia?
           </h2>
           <p className="text-gray-600">
-            Choose the option that best describes your eating habits
+            Escolha a opção que melhor descreve seus hábitos alimentares
           </p>
         </div>
 
@@ -64,7 +64,7 @@ export default function StepTen() {
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
-          Back
+          Voltar
         </button>
       </div>
     </div>

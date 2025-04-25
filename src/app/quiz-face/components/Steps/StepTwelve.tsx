@@ -3,26 +3,36 @@
 import React from "react";
 import { useQuizContext } from "../Quiz/QuizProvider";
 
-const sugarOptions = [
+const dietaryRestrictions = [
   {
-    id: "daily",
-    text: "Todos os dias",
-    description: "Consumo diário de açúcar"
+    id: "none",
+    text: "Nenhuma",
+    description: "Não tenho restrições alimentares"
   },
   {
-    id: "frequently",
-    text: "Frequentemente",
-    description: "Várias vezes por semana"
+    id: "gluten",
+    text: "Glúten",
+    description: "Evito alimentos com glúten"
   },
   {
-    id: "sometimes",
-    text: "Às vezes",
-    description: "Ocasionalmente"
+    id: "lactose",
+    text: "Lactose",
+    description: "Evito produtos lácteos"
   },
   {
-    id: "never",
-    text: "Nunca",
-    description: "Evito açúcar"
+    id: "nuts",
+    text: "Nozes e Amendoim",
+    description: "Evito nozes e amendoim"
+  },
+  {
+    id: "shellfish",
+    text: "Frutos do Mar",
+    description: "Evito frutos do mar"
+  },
+  {
+    id: "eggs",
+    text: "Ovos",
+    description: "Evito ovos e derivados"
   }
 ];
 
@@ -34,15 +44,15 @@ export default function StepTwelve() {
       <div className="space-y-8">
         <div className="text-center space-y-3">
           <h2 className="text-2xl font-semibold text-gray-900">
-            How often do you consume sugar?
+            Você tem alguma restrição alimentar?
           </h2>
           <p className="text-gray-600">
-            Consider sweets, desserts, and sugary drinks
+            Selecione todas as restrições alimentares que se aplicam
           </p>
         </div>
 
         <div className="space-y-3">
-          {sugarOptions.map((option) => (
+          {dietaryRestrictions.map((option) => (
             <button
               key={option.id}
               onClick={() => setCurrentStep(13)}

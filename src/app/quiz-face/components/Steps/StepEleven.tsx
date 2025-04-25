@@ -5,34 +5,19 @@ import { useQuizContext } from "../Quiz/QuizProvider";
 
 const dietOptions = [
   {
-    id: "none",
-    text: "Não sigo nenhuma",
-    description: "Sem restrições específicas"
+    id: "strict",
+    text: "Rigoroso",
+    description: "Sigo uma dieta estrita"
   },
   {
-    id: "no_restrictions",
-    text: "Sem restrições",
-    description: "Como de tudo de forma equilibrada"
+    id: "moderate",
+    text: "Moderado",
+    description: "Tento manter uma dieta equilibrada"
   },
   {
-    id: "vegetarian",
-    text: "Vegetariana",
-    description: "Não consumo carnes"
-  },
-  {
-    id: "no_meat",
-    text: "Sem carne, peixe ou frango",
-    description: "Dieta baseada em vegetais"
-  },
-  {
-    id: "gluten_free",
-    text: "Sem glúten",
-    description: "Evito alimentos com glúten"
-  },
-  {
-    id: "vegan",
-    text: "Vegana",
-    description: "Sem produtos de origem animal"
+    id: "flexible",
+    text: "Flexível",
+    description: "Como o que quero, quando quero"
   }
 ];
 
@@ -44,10 +29,10 @@ export default function StepEleven() {
       <div className="space-y-8">
         <div className="text-center space-y-3">
           <h2 className="text-2xl font-semibold text-gray-900">
-            Do you follow any diet?
+            Como você descreveria sua dieta?
           </h2>
           <p className="text-gray-600">
-            Select the type of diet you practice
+            Escolha a opção que melhor descreve seus hábitos alimentares
           </p>
         </div>
 

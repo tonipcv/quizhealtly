@@ -3,26 +3,26 @@
 import React from "react";
 import { useQuizContext } from "../Quiz/QuizProvider";
 
-const vegetableOptions = [
+const sugarOptions = [
   {
     id: "daily",
     text: "Todos os dias",
-    description: "Consumo diário de vegetais"
+    description: "Consumo doces ou bebidas açucaradas diariamente"
   },
   {
     id: "frequently",
     text: "Frequentemente",
-    description: "Várias vezes por semana"
+    description: "Consumo açúcar várias vezes por semana"
   },
   {
-    id: "sometimes",
-    text: "Às vezes",
-    description: "Ocasionalmente"
+    id: "occasionally",
+    text: "Ocasionalmente",
+    description: "Consumo açúcar com moderação"
   },
   {
-    id: "never",
-    text: "Nunca",
-    description: "Não consumo vegetais"
+    id: "rarely",
+    text: "Raramente",
+    description: "Evito ao máximo o consumo de açúcar"
   }
 ];
 
@@ -34,15 +34,15 @@ export default function StepThirteen() {
       <div className="space-y-8">
         <div className="text-center space-y-3">
           <h2 className="text-2xl font-semibold text-gray-900">
-            How often do you consume vegetables?
+            Com que frequência você consome açúcar?
           </h2>
           <p className="text-gray-600">
-            Consider greens, vegetables, and produce
+            Considere doces, sobremesas e bebidas açucaradas
           </p>
         </div>
 
         <div className="space-y-3">
-          {vegetableOptions.map((option) => (
+          {sugarOptions.map((option) => (
             <button
               key={option.id}
               onClick={() => setCurrentStep(14)}

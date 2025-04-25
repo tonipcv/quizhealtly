@@ -3,26 +3,26 @@
 import React from "react";
 import { useQuizContext } from "../Quiz/QuizProvider";
 
-const genderOptions = [
+const proteinOptions = [
   {
-    id: "female",
-    text: "Feminino",
-    description: "Identifico-me como mulher"
+    id: "daily",
+    text: "Todos os dias",
+    description: "Consumo proteínas em todas as refeições principais"
   },
   {
-    id: "male",
-    text: "Masculino",
-    description: "Identifico-me como homem"
+    id: "frequently",
+    text: "Frequentemente",
+    description: "Consumo proteínas várias vezes por semana"
   },
   {
-    id: "non_binary",
-    text: "Não binário",
-    description: "Identifico-me fora do binário masculino/feminino"
+    id: "occasionally",
+    text: "Ocasionalmente",
+    description: "Consumo proteínas algumas vezes por semana"
   },
   {
-    id: "other",
-    text: "Outro",
-    description: "Prefiro me identificar de outra forma"
+    id: "rarely",
+    text: "Raramente",
+    description: "Consumo proteínas com pouca frequência"
   }
 ];
 
@@ -34,15 +34,15 @@ export default function StepFifteen() {
       <div className="space-y-8">
         <div className="text-center space-y-3">
           <h2 className="text-2xl font-semibold text-gray-900">
-            What is your gender?
+            Com que frequência você consome proteínas?
           </h2>
           <p className="text-gray-600">
-            Select the option you most identify with
+            Considere carnes, ovos, peixes e proteínas vegetais
           </p>
         </div>
 
         <div className="space-y-3">
-          {genderOptions.map((option) => (
+          {proteinOptions.map((option) => (
             <button
               key={option.id}
               onClick={() => setCurrentStep(16)}
