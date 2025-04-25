@@ -1,60 +1,89 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useQuizContext } from "../Quiz/QuizProvider";
 
 const options = [
   {
     id: "satisfied",
-    text: "Sim, só quero manter esse resultado para sempre",
-    description: "Manter a pele saudável e prevenir o envelhecimento",
+    text: "Sim, quero manter",
+    description: "Prevenir o envelhecimento",
     emoji: "✨"
   },
   {
     id: "somewhat",
-    text: "Não muito, ainda preciso de alguns ajustes",
-    description: "Melhorar aspectos específicos da pele",
+    text: "Preciso de ajustes",
+    description: "Melhorar alguns aspectos",
     emoji: "💫"
   },
   {
     id: "not_satisfied",
-    text: "Não, tenho muitos problemas com a pele",
-    description: "Transformação completa para uma pele saudável",
+    text: "Não estou satisfeita",
+    description: "Transformação completa",
     emoji: "🌱"
   }
 ];
 
 export default function StepFour() {
   const { setCurrentStep } = useQuizContext();
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+
+  const handleSelect = (optionId: string) => {
+    setSelectedOption(optionId);
+    setTimeout(() => {
+      setCurrentStep(5);
+    }, 400);
+  };
 
   return (
     <div className="pb-24">
-      <div className="space-y-8">
-        <div className="text-center space-y-3">
-          <h2 className="text-2xl font-semibold text-gray-900">
-            Você está satisfeita com o estado atual da sua pele?
+      <div className="space-y-6">
+        <div className="text-center space-y-2">
+          <h2 className="text-xl font-semibold text-gray-900">
+            Você está satisfeita com sua pele?
           </h2>
-          <p className="text-gray-500 text-lg">
-            Escolha a opção que melhor descreve sua situação
+          <p className="text-gray-500 text-base">
+            Escolha a melhor opção
           </p>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-3">
           {options.map((option) => (
             <button
               key={option.id}
-              onClick={() => setCurrentStep(5)}
-              className="w-full p-6 rounded-2xl border-2 border-gray-100 hover:border-gray-900 bg-white transition-all duration-300 group"
+              onClick={() => handleSelect(option.id)}
+              className={`w-full p-4 rounded-xl border-2 transition-all duration-200 hover:shadow-md
+                ${selectedOption === option.id 
+                  ? "border-gray-900 bg-gray-900 text-white transform scale-[1.02]" 
+                  : "border-gray-200 hover:border-gray-400 bg-white"
+                }
+                ${selectedOption && selectedOption !== option.id ? "opacity-50" : ""}
+              `}
             >
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 p-3 rounded-xl bg-gray-50 group-hover:bg-gray-100 transition-colors">
-                  <span className="text-3xl">{option.emoji}</span>
+              <div className="flex items-center gap-3">
+                <div className={`flex-shrink-0 p-2 rounded-lg transition-colors
+                  ${selectedOption === option.id 
+                    ? "bg-white/10" 
+                    : "bg-gray-50"
+                  }`}
+                >
+                  <span className="text-2xl">{option.emoji}</span>
                 </div>
-                <div className="text-left space-y-1">
-                  <p className="font-medium text-gray-900 text-lg">
+                <div className="text-left">
+                  <p className={`font-medium text-base leading-snug
+                    ${selectedOption === option.id 
+                      ? "text-white" 
+                      : "text-gray-900"
+                    }`}
+                  >
                     {option.text}
                   </p>
-                  <p className="text-gray-500">
+                  <p className={`text-sm
+                    ${selectedOption === option.id 
+                      ? "text-white/80" 
+                      : "text-gray-500"
+                    }`}
+                  >
                     {option.description}
                   </p>
                 </div>

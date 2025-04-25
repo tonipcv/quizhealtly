@@ -9,46 +9,47 @@ export default function StepOne() {
   const { setCurrentStep } = useQuizContext();
 
   return (
-    <div className="pb-20">
-      <div className="space-y-10">
-        <div className="text-center">
-          <h1 className="text-black text-4xl font-bold mb-3 tracking-[-0.03em]">
-            Protocolo Coreano para Rejuvenescimento
-          </h1>
-          <p className="text-gray-600 text-xl font-bold max-w-[75%] mx-auto leading-snug tracking-[-0.03em]">
+    <div className="pb-24">
+      <div className="space-y-8">
+        {/* Cabeçalho */}
+        <div className="text-center space-y-3">
+          <h2 className="text-2xl font-semibold text-gray-900">
+            Protocolo Coreano para
+            <br className="sm:hidden" /> Rejuvenescimento
+          </h2>
+          <p className="text-gray-600 text-lg">
             Plano Personalizado para 28 dias
           </p>
         </div>
 
-        <div className="w-[75%] mx-auto">
+        {/* Imagem Principal */}
+        <div className="relative mx-auto w-full max-w-lg aspect-[4/3]">
           <Image
             src="/ad-vuom.png"
             alt="Protocolo Coreano"
-            width={600}
-            height={338}
-            className="w-full h-auto rounded-xl shadow-md"
+            fill
+            className="object-contain rounded-xl shadow-lg"
             priority
           />
         </div>
 
-        <div className="text-center">
-          <h2 className="text-gray-600 text-xl font-bold leading-tight tracking-[-0.03em]">
-            Descubra como transformar sua pele
-            <br />
-            e elevar sua autoestima com o protocolo
-            <br />
-            coreano personalizado da VUOM™
-          </h2>
+        {/* Descrição */}
+        <div className="text-center space-y-3">
+          <h3 className="text-gray-700 text-lg leading-relaxed">
+            Descubra como transformar sua pele e elevar sua autoestima com o protocolo coreano personalizado da{" "}
+            <span className="text-gray-900 font-semibold">VUOM™</span>
+          </h3>
         </div>
-      </div>
 
-      <div className="flex justify-center">
-        <button
-          onClick={() => setCurrentStep(2)}
-          className="fixed bottom-0 left-1/2 -translate-x-1/2 mb-4 py-2.5 w-72 rounded-full text-white text-base font-medium bg-black hover:bg-gray-800 transition-all duration-200 sm:py-3 sm:w-96 sm:text-lg"
-        >
-          Criar plano agora!
-        </button>
+        {/* Botão */}
+        <div className="pt-6">
+          <button
+            onClick={() => setCurrentStep(2)}
+            className="w-full h-14 rounded-full font-medium text-lg bg-gray-900 text-white hover:bg-gray-800 transition-all duration-200 shadow-lg"
+          >
+            Criar plano agora!
+          </button>
+        </div>
       </div>
     </div>
   );

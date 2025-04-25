@@ -1,133 +1,87 @@
 "use client";
 
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
-import { useQuizContext } from "../Quiz/QuizProvider";
-import Image from "next/image";
+import React, { useState, useEffect } from "react";
 
 export default function StepThirtyFour() {
-  const router = useRouter();
-  const { setCurrentStep, currentStep } = useQuizContext();
-  const [whatsapp, setWhatsapp] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [seconds, setSeconds] = useState(10);
+  const [step, setStep] = useState(0);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    
-    try {
-      // Save to database
-      const response = await fetch('/api/quiz/save-whatsapp', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          whatsapp,
-          // Get UTM parameters from URL if they exist
-          utmSource: new URLSearchParams(window.location.search).get('utm_source'),
-          utmMedium: new URLSearchParams(window.location.search).get('utm_medium'),
-          utmCampaign: new URLSearchParams(window.location.search).get('utm_campaign'),
-        }),
-      });
+  useEffect(() => {
+    // Sequência de timers para mostrar as mensagens
+    const step1 = setTimeout(() => setStep(1), 1000);
+    const step2 = setTimeout(() => setStep(2), 3000);
+    const step3 = setTimeout(() => setStep(3), 5000);
 
-      if (!response.ok) {
-        throw new Error('Failed to save WhatsApp');
+    return () => {
+      clearTimeout(step1);
+      clearTimeout(step2);
+      clearTimeout(step3);
+    };
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (seconds > 0) {
+        setSeconds(seconds - 1);
+      } else {
+        clearInterval(timer);
+        window.location.href = "https://app.vuom.life/register";
       }
+    }, 1000);
 
-      // Store WhatsApp number in localStorage
-      localStorage.setItem("userWhatsapp", whatsapp);
-      
-      // Redirect to checkout
-      router.push("/checkout/protocol-face");
-    } catch (error) {
-      console.error('Error saving WhatsApp:', error);
-      alert('Ocorreu um erro. Por favor, tente novamente.');
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const formatWhatsApp = (value: string) => {
-    // Remove any non-digit characters
-    const numbers = value.replace(/\D/g, "");
-    
-    // Format as (XX) XXXXX-XXXX
-    if (numbers.length <= 11) {
-      return numbers.replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
-    }
-    return numbers;
-  };
-
-  const handleWhatsAppChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const formatted = formatWhatsApp(e.target.value);
-    setWhatsapp(formatted);
-  };
+    return () => clearInterval(timer);
+  }, [seconds]);
 
   return (
-    <div className="min-h-screen flex items-center">
-      <div className="w-full max-w-2xl mx-auto px-4">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
-            Parabéns, com apenas 10-15 minutos por dia você sentirá a transformação
-          </h2>
-          <p className="text-lg text-gray-600 mb-6">
-            Insira seu WhatsApp para começar sua jornada
-          </p>
+    <div className="min-h-screen flex items-center justify-center">
+      <div className=" mx-auto px-4 text-center space-y-8">
+        {/* Loading Spinner */}
+        <div className="flex justify-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black"></div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label htmlFor="whatsapp" className="block text-sm font-medium text-gray-700 mb-2">
-              Seu WhatsApp
-            </label>
-            <input
-              type="tel"
-              id="whatsapp"
-              value={whatsapp}
-              onChange={handleWhatsAppChange}
-              placeholder="(00) 00000-0000"
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent transition-all duration-200 text-black"
-              required
-            />
-          </div>
-
-          <button
-            type="submit"
-            disabled={isLoading}
-            className="w-full bg-black text-white py-4 rounded-xl font-semibold hover:bg-gray-800 transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
-          >
-            {isLoading ? "Processando..." : "Entrar Agora"}
-          </button>
-
-          <div className="text-center">
-            <p className="text-sm text-gray-500">
-              Ao continuar, você concorda em receber mensagens sobre seu progresso
+        {/* Loading Messages */}
+        <div className="space-y-4">
+          {step >= 1 && (
+            <h2 className="text-xl font-light text-gray-900 animate-fade-in">
+              Agora você poderá criar sua conta para receber o plano...
+            </h2>
+          )}
+          
+          {step >= 2 && (
+            <p className="text-xl text-gray-600 font-light animate-fade-in">
+              Liberamos um Plano com valor de custo para você
             </p>
-          </div>
-        </form>
+          )}
 
-        <div className="mt-8 space-y-4">
-          <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-xl">
-            <svg className="w-6 h-6 text-green-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-            </svg>
-            <p className="text-gray-700">Programa personalizado baseado em suas respostas</p>
-          </div>
-          <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-xl">
-            <svg className="w-6 h-6 text-green-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-            </svg>
-            <p className="text-gray-700">Suporte exclusivo via WhatsApp</p>
-          </div>
-          <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-xl">
-            <svg className="w-6 h-6 text-green-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-            </svg>
-            <p className="text-gray-700">Acesso imediato após a confirmação</p>
-          </div>
+          {step >= 3 && (
+            <div className="space-y-4 animate-fade-in">
+              <p className="text-xl text-gray-600 font-light">
+                Mas só ficará disponível por 10 minutos, iremos te redirecionar em...
+              </p>
+              <div className="text-2xl font-bold text-gray-900">
+                {String(seconds).padStart(2, "0")}s
+              </div>
+            </div>
+          )}
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-fade-in {
+          animation: fadeIn 0.5s ease-out forwards;
+        }
+      `}</style>
     </div>
   );
 } 

@@ -41,8 +41,8 @@ export default function StepThree() {
   const { setCurrentStep } = useQuizContext();
 
   return (
-    <div className="pb-24">
-      <div className="space-y-8">
+    <div className="min-h-screen flex flex-col">
+      <div className="flex-1 pb-24 space-y-8">
         {/* Image Section */}
         <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden">
           <Image
@@ -55,7 +55,7 @@ export default function StepThree() {
         </div>
 
         {/* Header Section */}
-        <div className="text-center space-y-3">
+        <div className="text-center space-y-3 px-4">
           <h2 className="text-3xl font-light text-gray-900 tracking-tight">
             Harmonização Facial Natural
           </h2>
@@ -65,7 +65,7 @@ export default function StepThree() {
         </div>
 
         {/* Benefits Cards */}
-        <div className="space-y-4">
+        <div className="space-y-4 px-4">
           {benefits.map((benefit, index) => (
             <div
               key={index}
@@ -84,7 +84,7 @@ export default function StepThree() {
         </div>
 
         {/* Features List */}
-        <div className="bg-white rounded-2xl p-8 space-y-6 border border-gray-100">
+        <div className="bg-white rounded-2xl p-8 space-y-6 border border-gray-100 mx-4">
           <h3 className="font-light text-xl text-gray-900 tracking-tight">
             Resultados Naturais
           </h3>
@@ -99,12 +99,15 @@ export default function StepThree() {
         </div>
       </div>
 
-      <button
-        onClick={() => setCurrentStep(4)}
-        className="fixed bottom-0 left-1/2 -translate-x-1/2 mb-6 py-4 px-8 w-[90%] max-w-md rounded-full text-white font-light bg-black hover:bg-gray-900 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2 text-lg tracking-wide"
-      >
-        Receber plano
-      </button>
+      {/* Botão fixo na parte inferior */}
+      <div className="sticky bottom-0 left-0 right-0 p-4 bg-white/80 backdrop-blur-sm">
+        <button
+          onClick={() => setCurrentStep(4)}
+          className="w-full max-w-md mx-auto h-14 rounded-full text-white font-light bg-black hover:bg-gray-900 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center text-lg tracking-wide"
+        >
+          Receber plano
+        </button>
+      </div>
     </div>
   );
 } 

@@ -31,29 +31,29 @@ export default function StepFive() {
   };
 
   return (
-    <div className="pb-24">
-      <div className="space-y-8">
-        <div className="text-center space-y-3">
-          <h2 className="text-2xl font-semibold text-gray-900">
+    <div className="pb-20">
+      <div className="space-y-6">
+        <div className="text-center space-y-2">
+          <h2 className="text-xl font-semibold text-gray-900">
             Qual é o seu principal foco agora?
           </h2>
-          <p className="text-gray-600 text-lg">
+          <p className="text-gray-600 text-base">
             Escolha quantos quiser
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-2">
           {goals.map((goal) => (
             <button
               key={goal.id}
               onClick={() => toggleGoal(goal.id)}
-              className={`p-4 rounded-xl border-2 transition-all duration-200 hover:shadow-sm ${
+              className={`p-3 rounded-lg border transition-all duration-200 ${
                 selectedGoals.includes(goal.id)
                   ? "border-black bg-black/5"
                   : "border-gray-200 hover:border-gray-400"
               }`}
             >
-              <span className={`text-base font-medium ${
+              <span className={`text-sm font-medium ${
                 selectedGoals.includes(goal.id)
                   ? "text-black"
                   : "text-gray-700"
@@ -65,11 +65,11 @@ export default function StepFive() {
         </div>
       </div>
 
-      <div className="fixed bottom-4 left-0 w-full px-4 space-y-4">
+      <div className="fixed bottom-4 left-0 w-full px-4 space-y-3">
         <button
           onClick={() => setCurrentStep(6)}
           disabled={selectedGoals.length === 0}
-          className={`w-full py-4 rounded-xl font-medium text-white transition-all duration-300 ${
+          className={`w-full h-12 rounded-xl font-medium text-white transition-all duration-200 text-base ${
             selectedGoals.length > 0
               ? "bg-black hover:bg-gray-900"
               : "bg-gray-300 cursor-not-allowed"
