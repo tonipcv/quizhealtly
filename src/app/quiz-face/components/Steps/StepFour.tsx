@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { useQuizContext } from "../Quiz/QuizProvider";
+import { quizStyles } from "../../styles/theme";
 
 const options = [
   {
@@ -36,13 +37,13 @@ export default function StepFour() {
   };
 
   return (
-    <div className="pb-24">
+    <div className={quizStyles.container}>
       <div className="space-y-6">
         <div className="text-center space-y-2">
-          <h2 className="text-xl font-semibold text-gray-900">
+          <h2 className={quizStyles.title}>
             Você está satisfeita com sua pele?
           </h2>
-          <p className="text-gray-500 text-base">
+          <p className={quizStyles.subtitle}>
             Escolha a melhor opção
           </p>
         </div>
@@ -52,10 +53,10 @@ export default function StepFour() {
             <button
               key={option.id}
               onClick={() => handleSelect(option.id)}
-              className={`w-full p-4 rounded-xl border-2 transition-all duration-200 hover:shadow-md
+              className={`w-full p-4 rounded-xl border-2 transition-all duration-200 hover:shadow-md font-["Avenir"]
                 ${selectedOption === option.id 
-                  ? "border-gray-900 bg-gray-900 text-white transform scale-[1.02]" 
-                  : "border-gray-200 hover:border-gray-400 bg-white"
+                  ? "border-[#35426A] bg-[#35426A] text-white transform scale-[1.02]" 
+                  : "border-gray-200 hover:border-[#35426A]/30 bg-white"
                 }
                 ${selectedOption && selectedOption !== option.id ? "opacity-50" : ""}
               `}
@@ -96,7 +97,7 @@ export default function StepFour() {
       <div className="fixed bottom-4 left-0 w-full px-4 flex justify-center">
         <button
           onClick={() => setCurrentStep(3)}
-          className="text-gray-500 hover:text-gray-900 transition-colors text-sm flex items-center gap-2"
+          className={`text-gray-500 hover:text-[#35426A] transition-colors text-sm flex items-center gap-2 font-["Avenir"]`}
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />

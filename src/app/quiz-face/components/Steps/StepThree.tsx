@@ -3,6 +3,7 @@
 import React from "react";
 import { useQuizContext } from "../Quiz/QuizProvider";
 import Image from "next/image";
+import { quizStyles } from "../../styles/theme";
 
 const benefits = [
   {
@@ -41,7 +42,7 @@ export default function StepThree() {
   const { setCurrentStep } = useQuizContext();
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className={`min-h-screen flex flex-col font-["Avenir"]`}>
       <div className="flex-1 pb-24 space-y-8">
         {/* Image Section */}
         <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden">
@@ -56,10 +57,10 @@ export default function StepThree() {
 
         {/* Header Section */}
         <div className="text-center space-y-3 px-4">
-          <h2 className="text-3xl font-light text-gray-900 tracking-tight">
+          <h2 className={`text-3xl font-light text-gray-900 tracking-tight font-["Avenir"]`}>
             Harmonização Facial Natural
           </h2>
-          <p className="text-gray-600 text-lg max-w-xl mx-auto leading-relaxed font-light">
+          <p className={`text-gray-600 text-lg max-w-xl mx-auto leading-relaxed font-light font-["Avenir"]`}>
             Transforme seu rosto com técnicas coreanas 100% naturais, sem procedimentos invasivos
           </p>
         </div>
@@ -69,7 +70,7 @@ export default function StepThree() {
           {benefits.map((benefit, index) => (
             <div
               key={index}
-              className={`p-6 rounded-2xl bg-gradient-to-r ${benefit.color} border border-gray-100 transition-all duration-300 hover:shadow-md`}
+              className={`p-6 rounded-2xl bg-gradient-to-r ${benefit.color} border border-gray-100 transition-all duration-300 hover:shadow-md font-["Avenir"]`}
             >
               <div className="space-y-2">
                 <h3 className="font-medium text-gray-900 text-lg tracking-tight">
@@ -84,7 +85,7 @@ export default function StepThree() {
         </div>
 
         {/* Features List */}
-        <div className="bg-white rounded-2xl p-8 space-y-6 border border-gray-100 mx-4">
+        <div className={`bg-white rounded-2xl p-8 space-y-6 border border-gray-100 mx-4 font-["Avenir"]`}>
           <h3 className="font-light text-xl text-gray-900 tracking-tight">
             Resultados Naturais
           </h3>
@@ -103,7 +104,7 @@ export default function StepThree() {
       <div className="sticky bottom-0 left-0 right-0 p-4 bg-white/80 backdrop-blur-sm">
         <button
           onClick={() => setCurrentStep(4)}
-          className="w-full max-w-md mx-auto h-14 rounded-full text-white font-light bg-black hover:bg-gray-900 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center text-lg tracking-wide"
+          className={`w-full max-w-md mx-auto h-14 rounded-full text-white font-light bg-[#35426A] hover:bg-[#2A3557] transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center text-lg tracking-wide font-["Avenir"]`}
         >
           Receber plano
         </button>
