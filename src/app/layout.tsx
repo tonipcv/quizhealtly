@@ -1,23 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import "./fonts.css";
 import { ThemeProvider } from "./components/ThemeProvider";
+import { ContactProvider } from "@/contexts/ContactContext";
 import Script from "next/script";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "VUOM | Beauty Tech Innovation",
-  description: "VUOM é uma empresa de beauty tech que revoluciona a beleza através de protocolos faciais inovadores baseados na tecnologia coreana. | VUOM is a beauty tech company revolutionizing beauty through innovative facial protocols based on Korean technology.",
+  title: "VUOM - Advanced Korean Beauty Protocol",
+  description: "Experience the fusion of Korean beauty protocols and regenerative medicine in our premium cellular rejuvenation journey.",
   keywords: "beauty tech, tecnologia coreana, korean beauty technology, inovação em beleza, beauty innovation, protocolos faciais, facial protocols, k-beauty tech",
   openGraph: {
     title: "VUOM | Beauty Tech Innovation",
@@ -125,8 +118,18 @@ export default function RootLayout({
           `}
         </Script>
         {/* End Google Analytics */}
+        <link
+          rel="preconnect dns-prefetch"
+          href="https://api.config-security.com/"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preconnect dns-prefetch"
+          href="https://conf.config-security.com/"
+          crossOrigin="anonymous"
+        />
       </head>
-      <body className="font-satoshi antialiased">
+      <body className={inter.className}>
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe 
@@ -137,8 +140,15 @@ export default function RootLayout({
           ></iframe>
         </noscript>
         {/* End Google Tag Manager (noscript) */}
+        <Script
+          id="triple-whale-pixel"
+          src="/triple-whale.js"
+          strategy="beforeInteractive"
+        />
         <ThemeProvider defaultTheme="dark">
-          {children}
+          <ContactProvider>
+            {children}
+          </ContactProvider>
         </ThemeProvider>
       </body>
     </html>
