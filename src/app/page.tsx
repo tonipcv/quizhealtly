@@ -89,15 +89,6 @@ export default function Home() {
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </Link>
-                  <Link href="https://app.vuom.life/register">
-                    <Button
-                      size="lg"
-                      className="bg-transparent border-2 border-[#35426A] text-[#35426A] hover:bg-[#35426A] hover:text-white font-semibold rounded-full transition-all duration-300 px-8"
-                    >
-                      Create Account
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </Link>
                 </div>
               </div>
               <div className="lg:flex-1 relative">
