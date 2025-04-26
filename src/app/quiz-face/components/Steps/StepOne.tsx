@@ -26,7 +26,7 @@ export default function StepOne() {
         {/* Imagem Principal */}
         <div className="relative mx-auto w-full max-w-lg aspect-[4/3]">
           <Image
-            src="/ad-vuom .png"
+            src="/ad-vuom.png"
             alt="Protocolo Coreano"
             fill
             className="object-contain rounded-xl shadow-lg"
