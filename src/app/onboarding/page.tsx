@@ -5,14 +5,12 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { ArrowRight, Check, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useTripleWhale } from "@/hooks/useTripleWhale";
 
 export default function OnboardingPage() {
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [loadingStep, setLoadingStep] = useState(1);
   const router = useRouter();
-  const { trackContact } = useTripleWhale();
 
   const handleNext = () => {
     if (step < 8) {
@@ -26,18 +24,7 @@ export default function OnboardingPage() {
       const timer1 = setTimeout(() => setLoadingStep(2), 2000);
       const timer2 = setTimeout(() => setLoadingStep(3), 4000);
       const timer3 = setTimeout(() => {
-        // Track the contact event before redirecting
-        const storedEmail = localStorage.getItem('vuom_contact_email');
-        const storedPhone = localStorage.getItem('vuom_contact_phone');
-        
-        if (storedEmail || storedPhone) {
-          trackContact({
-            email: storedEmail || undefined,
-            phone: storedPhone || undefined
-          });
-        }
-
-        router.push("https://app.vuom.life/register");
+        router.push("/register");
       }, 6000);
 
       return () => {
@@ -46,7 +33,7 @@ export default function OnboardingPage() {
         clearTimeout(timer3);
       };
     }
-  }, [step, router, trackContact]);
+  }, [step, router]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#D6D2D3] to-[#F8FFFF] flex items-center justify-center p-4">

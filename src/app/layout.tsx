@@ -1,84 +1,23 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import "./fonts.css";
-import { ThemeProvider } from "./components/ThemeProvider";
-import { ContactProvider } from "@/contexts/ContactContext";
-import Script from "next/script";
+import './globals.css';
+import { Inter } from 'next/font/google';
+import Script from 'next/script';
+import { Metadata } from 'next';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "VUOM - Advanced Korean Beauty Protocol",
-  description: "Experience the fusion of Korean beauty protocols and regenerative medicine in our premium cellular rejuvenation journey.",
-  keywords: "beauty tech, tecnologia coreana, korean beauty technology, inovação em beleza, beauty innovation, protocolos faciais, facial protocols, k-beauty tech",
-  openGraph: {
-    title: "VUOM | Beauty Tech Innovation",
-    description: "VUOM: Revolucionando a beleza com tecnologia coreana avançada. Descubra nossos protocolos faciais inovadores para resultados transformadores. | VUOM: Revolutionizing beauty with advanced Korean technology.",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "VUOM - Beauty Tech Innovation",
-      },
-    ],
-    locale: "pt_BR",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "VUOM | Beauty Tech Innovation",
-    description: "VUOM: Revolucionando a beleza com tecnologia coreana avançada. Descubra nossos protocolos faciais inovadores para resultados transformadores. | VUOM: Revolutionizing beauty with advanced Korean technology.",
-    images: ["/og-image.jpg"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-  verification: {
-    google: "your-google-verification-code",
-  },
-  icons: {
-    icon: [
-      { 
-        url: "/favicon.svg",
-        type: "image/svg+xml"
-      }
-    ]
-  },
-  manifest: "/manifest.json",
+  title: 'VUOM™ | Protocolos Coreanos',
+  description: 'Descubra os segredos da beleza coreana com a VUOM™. Protocolos personalizados para sua pele.',
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="pt-BR">
       <head>
-        {/* Google Tag Manager */}
-        <Script id="google-tag-manager" strategy="afterInteractive">
-          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer','GTM-PK59TV5N');`}
-        </Script>
-        {/* End Google Tag Manager */}
-        <link 
-          rel="icon" 
-          href="/favicon.svg" 
-          type="image/svg+xml"
-        />
         {/* Meta Pixel Code */}
         <Script id="facebook-pixel" strategy="afterInteractive">
           {`
@@ -90,7 +29,7 @@ export default function RootLayout({
             t.src=v;s=b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '1018570103108535');
+            fbq('init', '1338006007492580');
             fbq('track', 'PageView');
           `}
         </Script>
@@ -99,58 +38,12 @@ export default function RootLayout({
             height="1" 
             width="1" 
             style={{ display: 'none' }}
-            src="https://www.facebook.com/tr?id=1018570103108535&ev=PageView&noscript=1"
+            src="https://www.facebook.com/tr?id=1338006007492580&ev=PageView&noscript=1"
           />
         </noscript>
         {/* End Meta Pixel Code */}
-
-        {/* Google Analytics */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-G6NWYRRCYB"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-G6NWYRRCYB');
-          `}
-        </Script>
-        {/* End Google Analytics */}
-        <link
-          rel="preconnect dns-prefetch"
-          href="https://api.config-security.com/"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preconnect dns-prefetch"
-          href="https://conf.config-security.com/"
-          crossOrigin="anonymous"
-        />
       </head>
-      <body className={inter.className}>
-        {/* Google Tag Manager (noscript) */}
-        <noscript>
-          <iframe 
-            src="https://www.googletagmanager.com/ns.html?id=GTM-PK59TV5N"
-            height="0" 
-            width="0" 
-            style={{ display: 'none', visibility: 'hidden' }}
-          ></iframe>
-        </noscript>
-        {/* End Google Tag Manager (noscript) */}
-        <Script
-          id="triple-whale-pixel"
-          src="/triple-whale.js"
-          strategy="beforeInteractive"
-        />
-        <ThemeProvider defaultTheme="dark">
-          <ContactProvider>
-            {children}
-          </ContactProvider>
-        </ThemeProvider>
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }
