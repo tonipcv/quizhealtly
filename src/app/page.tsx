@@ -80,7 +80,7 @@ export default function Home() {
                   Experience the fusion of Korean beauty protocols and regenerative medicine in our premium cellular rejuvenation journey. Exclusively crafted for discerning women who embrace ageless beauty with confidence.
                 </p>
                 <div className="flex flex-wrap gap-4">
-                  <Link href="/quiz-face">
+                  <Link href="https://app.vuom.life/register">
                     <Button
                       size="lg"
                       className="bg-[#35426A] hover:bg-[#7286B2] text-white font-semibold rounded-full transition-all duration-300 px-8"
