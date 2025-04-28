@@ -29,9 +29,6 @@ function QuizContent() {
                 className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-[#35426A] transition-all duration-500"
               />
             </div>
-            <div className="text-center mt-2 text-sm text-white/80">
-              Step {currentStep} of 36
-            </div>
           </div>
         </div>
 
