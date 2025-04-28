@@ -6,8 +6,8 @@ import { Metadata } from 'next';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'VUOM™ | Protocolos Coreanos',
-  description: 'Descubra os segredos da beleza coreana com a VUOM™. Protocolos personalizados para sua pele.',
+  title: 'VUOM™ | Beauty & Health',
+  description: 'Protocolos Naturais para Rejuvenescimento.',
 };
 
 export default function RootLayout({
