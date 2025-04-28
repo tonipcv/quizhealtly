@@ -17,8 +17,8 @@ function QuizContent() {
           <Image
             src="/logo-2.png"
             alt="VUOM"
-            width={120}
-            height={36}
+            width={200}
+            height={60}
             className="brightness-0"
             priority
           />

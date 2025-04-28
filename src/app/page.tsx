@@ -13,13 +13,13 @@ export default function Home() {
       <header className="fixed w-full top-0 bg-[#D6D2D3]/80 backdrop-blur-lg z-50 border-b border-gray-100/20">
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
-            <Link href="/" className="p-2">
+            <Link href="/q-register-gb">
               <Image
                 src="/logo-2.png"
                 alt="VUOM"
-                width={140}
-                height={42}
-                className="h-10 w-auto brightness-0"
+                width={400}
+                height={120}
+                className="h-16 w-auto brightness-0"
               />
             </Link>
             
