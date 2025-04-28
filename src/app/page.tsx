@@ -53,7 +53,7 @@ export default function Home() {
                   Sign In
                 </Button>
               </Link>
-              <Link href="/quiz-face">
+              <Link href="https://app.vuom.life/register">
                 <Button
                   variant="ghost"
                   size="icon"
