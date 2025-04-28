@@ -45,7 +45,7 @@ export default function StepTwentyThree() {
           {sleepOptions.map((option) => (
             <button
               key={option.id}
-              onClick={() => setCurrentStep(27)}
+              onClick={() => setCurrentStep(24)}
               className="w-full p-5 rounded-xl border-2 border-gray-200 hover:border-gray-400 transition-all duration-200 group text-left"
             >
               <div className="space-y-1">

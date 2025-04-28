@@ -20,6 +20,21 @@ function QuizContent() {
   return (
     <div className={`min-h-screen bg-gradient-to-b from-[${theme.colors.background.gradient.from}] to-[${theme.colors.background.gradient.to}] py-12 px-4 sm:px-6 lg:px-8 font-[${theme.fontFamily.primary}] tracking-[-0.03em]`}>
       <div className="max-w-3xl mx-auto">
+        {/* Progress Bar */}
+        <div className="mb-8">
+          <div className="relative">
+            <div className="overflow-hidden h-2 text-xs flex rounded-full bg-white/20">
+              <div
+                style={{ width: `${(currentStep / 36) * 100}%` }}
+                className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-[#35426A] transition-all duration-500"
+              />
+            </div>
+            <div className="text-center mt-2 text-sm text-white/80">
+              Step {currentStep} of 36
+            </div>
+          </div>
+        </div>
+
         <div className="flex items-center justify-between mb-8">
           <button
             onClick={handleBack}

@@ -45,15 +45,7 @@ export default function StepThree() {
     <div className={`min-h-screen flex flex-col font-["Avenir"]`}>
       <div className="flex-1 pb-24 space-y-8">
         {/* Image Section */}
-        <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden">
-          <Image
-            src="/dep2.jpeg"
-            alt="Depoimentos"
-            fill
-            className="object-cover"
-            priority
-          />
-        </div>
+       
 
         {/* Header Section */}
         <div className="text-center space-y-3 px-4">

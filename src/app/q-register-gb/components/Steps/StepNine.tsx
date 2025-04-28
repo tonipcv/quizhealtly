@@ -25,15 +25,15 @@ export default function StepNine() {
           {/* Header Section */}
           <div className="text-center space-y-2 px-4">
             <h2 className="text-xl font-light text-gray-900 tracking-tight">
-              Elimine Rugas, Papada e Rejuvenesça
+              Estamos começando a preparar um plano personalizado para você
               <br />
-              <span className="font-medium">Até 10 Anos Sem Botox!</span>
+              <span className="font-medium">Mais de 3.234 mulheres já estão rejuvenescendo conosco!</span>
             </h2>
           </div>
 
           <div className="bg-white rounded-xl p-6 space-y-4 border border-gray-100 mx-4">
             <p className="text-gray-600 text-base leading-relaxed text-center font-light">
-              Aumente sua confiança com uma combinação única de exercícios de Face Yoga e uma rotina de skincare personalizada.
+              Aumente sua confiança com uma combinação única de exercícios de massagem facial e uma rotina de skincare personalizada.
             </p>
 
             <div className="grid gap-3">

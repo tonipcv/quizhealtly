@@ -129,7 +129,7 @@ export const QuizProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const nextStep = useCallback(() => {
     setState(prev => ({
       ...prev,
-      currentStep: Math.min(prev.currentStep + 1, 32),
+      currentStep: Math.min(prev.currentStep + 1, 36),
     }));
   }, []);
 

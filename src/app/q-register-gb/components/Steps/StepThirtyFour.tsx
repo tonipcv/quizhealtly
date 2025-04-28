@@ -44,7 +44,7 @@ export default function StepThirtyFour() {
       case 2:
         return (
           <p className={`text-xl text-gray-600 font-light font-['Avenir'] animate-fade-in`}>
-            Liberamos um Plano com valor de custo para você
+            Você terá acesso por 14 dias de teste ao plano
           </p>
         );
       case 3:

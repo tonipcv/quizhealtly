@@ -29,7 +29,7 @@ export default function StepTwentyOne() {
     return (
       <div className={stepStyles.container}>
         <div className={stepStyles.content}>
-          <div className="flex flex-col items-center justify-center h-full p-4">
+          <div className="flex flex-col items-center justify-center p-2">
             <div className="w-full max-w-md space-y-4">
               <div className="text-center space-y-3">
                 <h2 className="text-lg font-light text-gray-900">
@@ -53,9 +53,9 @@ export default function StepTwentyOne() {
   return (
     <div className={stepStyles.container}>
       <div className={stepStyles.content}>
-        <div className="flex flex-col items-center py-6 px-4">
+        <div className="flex flex-col items-center p-4">
           <div className="w-full max-w-md space-y-6">
-            <div className="text-center space-y-3 mb-6">
+            <div className="text-center space-y-3">
               <h2 className="text-lg font-light text-gray-900">
                 Plano de 28 dias para você está quase sendo finalizado...
               </h2>
