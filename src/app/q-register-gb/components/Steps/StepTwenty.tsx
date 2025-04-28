@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useQuizContext } from "../Quiz/QuizProvider";
+import StepLayout from "../Layout/StepLayout";
 import { stepStyles } from "./styles";
 
 const motivationOptions = [
@@ -41,52 +42,30 @@ export default function StepTwenty() {
   const { setCurrentStep } = useQuizContext();
 
   return (
-    <div className={stepStyles.container}>
-      <div className={stepStyles.content}>
-        <div className={stepStyles.section}>
-          <div className={stepStyles.header}>
-            <h2 className={stepStyles.title}>
-              O que te motiva a manter uma rotina de Protocolo Coreano e skincare?
-            </h2>
-            <p className={stepStyles.subtitle}>
-              Selecione sua principal motivação
-            </p>
-          </div>
-
-          <div className="space-y-3">
-            {motivationOptions.map((option) => (
-              <button
-                key={option.id}
-                onClick={() => setCurrentStep(21)}
-                className={`${stepStyles.button.base} w-full ${stepStyles.button.unselected}`}
-              >
-                <div className="space-y-1">
-                  <p className={`font-medium text-gray-900 ${stepStyles.button.text}`}>
-                    {option.text}
-                  </p>
-                  <p className={stepStyles.button.description}>
-                    {option.description}
-                  </p>
-                </div>
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className={stepStyles.bottomNav.container}>
-        <div className={stepStyles.bottomNav.wrapper}>
+    <StepLayout
+      title="O que te motiva a manter uma rotina de Protocolo Coreano e skincare?"
+      subtitle="Selecione sua principal motivação"
+      onBack={() => setCurrentStep(19)}
+      onNext={() => setCurrentStep(21)}
+    >
+      <div className="space-y-3">
+        {motivationOptions.map((option) => (
           <button
-            onClick={() => setCurrentStep(19)}
-            className={stepStyles.bottomNav.back}
+            key={option.id}
+            onClick={() => setCurrentStep(21)}
+            className={`${stepStyles.button.base} w-full ${stepStyles.button.unselected}`}
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            Voltar
+            <div className="space-y-1">
+              <p className={`font-medium text-gray-900 ${stepStyles.button.text}`}>
+                {option.text}
+              </p>
+              <p className={stepStyles.button.description}>
+                {option.description}
+              </p>
+            </div>
           </button>
-        </div>
+        ))}
       </div>
-    </div>
+    </StepLayout>
   );
 } 

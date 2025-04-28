@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { useQuizContext } from "../Quiz/QuizProvider";
+import StepLayout from "../Layout/StepLayout";
 import { stepStyles } from "./styles";
 
 const skinConcerns = [
@@ -65,68 +66,34 @@ export default function StepNineteen() {
   };
 
   return (
-    <div className={stepStyles.container}>
-      <div className={stepStyles.content}>
-        <div className={stepStyles.section}>
-          <div className={stepStyles.header}>
-            <h2 className={stepStyles.title}>
-              Você tem alguma dessas preocupações com a pele?
-            </h2>
-            <p className={stepStyles.subtitle}>
-              Selecione todas as opções que se aplicam
-            </p>
-          </div>
-
-          <div className={stepStyles.grid}>
-            {skinConcerns.map((concern) => (
-              <button
-                key={concern.id}
-                onClick={() => toggleConcern(concern.id)}
-                className={`${stepStyles.button.base} ${
-                  selectedConcerns.includes(concern.id)
-                    ? stepStyles.button.selected
-                    : stepStyles.button.unselected
-                }`}
-              >
-                <div className="space-y-1">
-                  <p className={`font-medium text-gray-900 ${stepStyles.button.text}`}>
-                    {concern.text}
-                  </p>
-                  <p className={stepStyles.button.description}>
-                    {concern.description}
-                  </p>
-                </div>
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className={stepStyles.bottomNav.container}>
-        <div className={stepStyles.bottomNav.wrapper}>
+    <StepLayout
+      title="Você tem alguma dessas preocupações com a pele?"
+      subtitle="Selecione todas as opções que se aplicam"
+      onBack={() => setCurrentStep(18)}
+      onNext={() => setCurrentStep(20)}
+    >
+      <div className={stepStyles.grid}>
+        {skinConcerns.map((concern) => (
           <button
-            onClick={() => setCurrentStep(20)}
-            className={`${stepStyles.bottomNav.primary} ${
-              selectedConcerns.length > 0
-                ? stepStyles.bottomNav.primaryEnabled
-                : stepStyles.bottomNav.primaryDisabled
+            key={concern.id}
+            onClick={() => toggleConcern(concern.id)}
+            className={`${stepStyles.button.base} ${
+              selectedConcerns.includes(concern.id)
+                ? stepStyles.button.selected
+                : stepStyles.button.unselected
             }`}
-            disabled={selectedConcerns.length === 0}
           >
-            Continuar
+            <div className="space-y-1">
+              <p className={`font-medium text-gray-900 ${stepStyles.button.text}`}>
+                {concern.text}
+              </p>
+              <p className={stepStyles.button.description}>
+                {concern.description}
+              </p>
+            </div>
           </button>
-
-          <button
-            onClick={() => setCurrentStep(18)}
-            className={stepStyles.bottomNav.back}
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            Voltar
-          </button>
-        </div>
+        ))}
       </div>
-    </div>
+    </StepLayout>
   );
 } 

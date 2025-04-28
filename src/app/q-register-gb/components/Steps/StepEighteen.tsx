@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useQuizContext } from "../Quiz/QuizProvider";
+import StepLayout from "../Layout/StepLayout";
 import { stepStyles } from "./styles";
 
 const skinOptions = [
@@ -36,52 +37,30 @@ export default function StepEighteen() {
   const { setCurrentStep } = useQuizContext();
 
   return (
-    <div className={stepStyles.container}>
-      <div className={stepStyles.content}>
-        <div className={stepStyles.section}>
-          <div className={stepStyles.header}>
-            <h2 className={stepStyles.title}>
-              Como você descreveria sua pele?
-            </h2>
-            <p className={stepStyles.subtitle}>
-              Selecione o tipo que melhor descreve sua pele
-            </p>
-          </div>
-
-          <div className="space-y-3">
-            {skinOptions.map((option) => (
-              <button
-                key={option.id}
-                onClick={() => setCurrentStep(19)}
-                className={`${stepStyles.button.base} w-full ${stepStyles.button.unselected}`}
-              >
-                <div className="space-y-1">
-                  <p className={`font-medium text-gray-900 ${stepStyles.button.text}`}>
-                    {option.text}
-                  </p>
-                  <p className={stepStyles.button.description}>
-                    {option.description}
-                  </p>
-                </div>
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className={stepStyles.bottomNav.container}>
-        <div className={stepStyles.bottomNav.wrapper}>
+    <StepLayout
+      title="Como você descreveria sua pele?"
+      subtitle="Selecione o tipo que melhor descreve sua pele"
+      onBack={() => setCurrentStep(17)}
+      onNext={() => setCurrentStep(19)}
+    >
+      <div className="space-y-3">
+        {skinOptions.map((option) => (
           <button
-            onClick={() => setCurrentStep(17)}
-            className={stepStyles.bottomNav.back}
+            key={option.id}
+            onClick={() => setCurrentStep(19)}
+            className={`${stepStyles.button.base} w-full ${stepStyles.button.unselected}`}
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            Voltar
+            <div className="space-y-1">
+              <p className={`font-medium text-gray-900 ${stepStyles.button.text}`}>
+                {option.text}
+              </p>
+              <p className={stepStyles.button.description}>
+                {option.description}
+              </p>
+            </div>
           </button>
-        </div>
+        ))}
       </div>
-    </div>
+    </StepLayout>
   );
 } 

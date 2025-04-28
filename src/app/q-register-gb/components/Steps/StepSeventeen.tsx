@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { useQuizContext } from "../Quiz/QuizProvider";
+import StepLayout from "../Layout/StepLayout";
 import { stepStyles } from "./styles";
 
 const areaOptions = [
@@ -67,68 +68,34 @@ export default function StepSeventeen() {
   };
 
   return (
-    <div className={stepStyles.container}>
-      <div className={stepStyles.content}>
-        <div className={stepStyles.section}>
-          <div className={stepStyles.header}>
-            <h2 className={stepStyles.title}>
-              Quais áreas você gostaria de melhorar?
-            </h2>
-            <p className={stepStyles.subtitle}>
-              Selecione todas as áreas que você deseja focar
-            </p>
-          </div>
-
-          <div className={stepStyles.grid}>
-            {areaOptions.map((option) => (
-              <button
-                key={option.id}
-                onClick={() => toggleArea(option.id)}
-                className={`${stepStyles.button.base} text-left ${
-                  selectedAreas.includes(option.id)
-                    ? stepStyles.button.selected
-                    : stepStyles.button.unselected
-                }`}
-              >
-                <div className="space-y-0.5">
-                  <p className={`font-medium text-gray-900 ${stepStyles.button.text}`}>
-                    {option.text}
-                  </p>
-                  <p className={stepStyles.button.description}>
-                    {option.description}
-                  </p>
-                </div>
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className={stepStyles.bottomNav.container}>
-        <div className={stepStyles.bottomNav.wrapper}>
+    <StepLayout
+      title="Quais áreas você gostaria de melhorar?"
+      subtitle="Selecione todas as áreas que você deseja focar"
+      onBack={() => setCurrentStep(16)}
+      onNext={() => setCurrentStep(18)}
+    >
+      <div className={stepStyles.grid}>
+        {areaOptions.map((option) => (
           <button
-            onClick={() => setCurrentStep(18)}
-            className={`${stepStyles.bottomNav.primary} ${
-              selectedAreas.length > 0
-                ? stepStyles.bottomNav.primaryEnabled
-                : stepStyles.bottomNav.primaryDisabled
+            key={option.id}
+            onClick={() => toggleArea(option.id)}
+            className={`${stepStyles.button.base} text-left ${
+              selectedAreas.includes(option.id)
+                ? stepStyles.button.selected
+                : stepStyles.button.unselected
             }`}
-            disabled={selectedAreas.length === 0}
           >
-            Continuar
+            <div className="space-y-0.5">
+              <p className={`font-medium text-gray-900 ${stepStyles.button.text}`}>
+                {option.text}
+              </p>
+              <p className={stepStyles.button.description}>
+                {option.description}
+              </p>
+            </div>
           </button>
-
-          <button
-            onClick={() => setCurrentStep(16)}
-            className={stepStyles.bottomNav.back}
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            Voltar
-          </button>
-        </div>
+        ))}
       </div>
-    </div>
+    </StepLayout>
   );
 } 

@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { useQuizContext } from "../Quiz/QuizProvider";
+import StepLayout from "../Layout/StepLayout";
 
 const products = [
   { id: "cleanser", text: "Sabonete facial" },
@@ -36,63 +37,34 @@ export default function StepSeven() {
   };
 
   return (
-    <div className="pb-24">
-      <div className="space-y-8">
-        <div className="text-center space-y-3">
-          <h2 className="text-2xl font-semibold text-gray-900">
-            Quais desses produtos você usa?
-          </h2>
-          <p className="text-gray-600 text-lg">
-            Selecione todos que você utiliza
-          </p>
-        </div>
-
-        <div className="grid grid-cols-2 gap-3">
-          {products.map((product) => (
-            <button
-              key={product.id}
-              onClick={() => toggleProduct(product.id)}
-              className={`p-4 rounded-xl border-2 transition-all duration-200 text-left ${
-                selectedProducts.includes(product.id)
-                  ? "border-black bg-black/5"
-                  : "border-gray-200 hover:border-gray-400"
-              }`}
-            >
-              <span className={`text-base font-medium ${
-                selectedProducts.includes(product.id)
-                  ? "text-black"
-                  : "text-gray-700"
-              }`}>
-                {product.text}
-              </span>
-            </button>
-          ))}
-        </div>
+    <StepLayout
+      title="Quais desses produtos você usa?"
+      subtitle="Selecione todos que você utiliza"
+      onBack={() => setCurrentStep(6)}
+      onNext={() => setCurrentStep(8)}
+      nextDisabled={selectedProducts.length === 0}
+    >
+      <div className="grid grid-cols-2 gap-2">
+        {products.map((product) => (
+          <button
+            key={product.id}
+            onClick={() => toggleProduct(product.id)}
+            className={`p-2 sm:p-3 rounded-lg border transition-all duration-200 ${
+              selectedProducts.includes(product.id)
+                ? "border-[#35426A] bg-[#35426A]/5"
+                : "border-gray-200 hover:border-[#35426A]/30"
+            }`}
+          >
+            <span className={`text-xs sm:text-sm font-medium ${
+              selectedProducts.includes(product.id)
+                ? "text-[#35426A]"
+                : "text-gray-700"
+            }`}>
+              {product.text}
+            </span>
+          </button>
+        ))}
       </div>
-
-      <div className="fixed bottom-4 left-0 w-full px-4 space-y-4">
-        <button
-          onClick={() => setCurrentStep(8)}
-          disabled={selectedProducts.length === 0}
-          className={`w-full py-4 rounded-xl font-medium text-white transition-all duration-300 ${
-            selectedProducts.length > 0
-              ? "bg-black hover:bg-gray-900"
-              : "bg-gray-300 cursor-not-allowed"
-          }`}
-        >
-          Continuar
-        </button>
-
-        <button
-          onClick={() => setCurrentStep(6)}
-          className="mx-auto text-gray-500 hover:text-gray-900 transition-colors text-sm flex items-center gap-2"
-        >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-          Voltar
-        </button>
-      </div>
-    </div>
+    </StepLayout>
   );
 } 
