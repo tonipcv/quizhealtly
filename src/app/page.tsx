@@ -15,7 +15,7 @@ export default function Home() {
           <div className="flex justify-between items-center">
             <Link href="/" className="p-2">
               <Image
-                src="/logo.png"
+                src="/logo-2.png"
                 alt="VUOM"
                 width={140}
                 height={42}
