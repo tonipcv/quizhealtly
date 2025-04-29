@@ -7,6 +7,8 @@ interface StepLayoutProps {
   subtitle?: string;
   onBack?: () => void;
   onNext?: () => void;
+  nextDisabled?: boolean;
+  hideButtons?: boolean;
   children: React.ReactNode;
   titleClassName?: string;
   subtitleClassName?: string;
@@ -20,6 +22,8 @@ export default function StepLayout({
   subtitle,
   onBack,
   onNext,
+  nextDisabled = false,
+  hideButtons = false,
   children,
   titleClassName = "",
   subtitleClassName = "",
@@ -30,12 +34,17 @@ export default function StepLayout({
   return (
     <div className="flex flex-col min-h-screen">
       {/* Botão de avançar no topo */}
-      {onNext && (
+      {!hideButtons && (
         <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-sm">
           <div className="px-4 py-3">
             <button
               onClick={onNext}
-              className={`w-full py-3 bg-black text-white rounded-full font-light hover:bg-gray-900 transition-colors ${buttonClassName}`}
+              disabled={nextDisabled}
+              className={`w-full py-3 rounded-full font-light transition-colors ${
+                nextDisabled
+                  ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                  : "bg-black text-white hover:bg-gray-900"
+              } ${buttonClassName}`}
             >
               Continuar
             </button>
@@ -64,16 +73,18 @@ export default function StepLayout({
       </div>
 
       {/* Botão de voltar no final */}
-      <div className="sticky bottom-0 z-50 bg-white/80 backdrop-blur-sm">
-        <div className="px-4 py-3">
-          <button
-            onClick={onBack}
-            className={`w-full py-3 bg-white text-black border border-gray-200 rounded-full font-light hover:bg-gray-50 transition-colors ${backButtonClassName}`}
-          >
-            Voltar
-          </button>
+      {!hideButtons && (
+        <div className="sticky bottom-0 z-50 bg-white/80 backdrop-blur-sm">
+          <div className="px-4 py-3">
+            <button
+              onClick={onBack}
+              className={`w-full py-3 bg-white text-black border border-gray-200 rounded-full font-light hover:bg-gray-50 transition-colors ${backButtonClassName}`}
+            >
+              Voltar
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 } 
