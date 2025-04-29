@@ -1,77 +1,79 @@
-import React from 'react';
+"use client";
+
+import React from "react";
 
 interface StepLayoutProps {
   title: string;
   subtitle?: string;
-  children: React.ReactNode;
-  onBack: () => void;
+  onBack?: () => void;
   onNext?: () => void;
-  nextDisabled?: boolean;
-  showBackButton?: boolean;
-  hideButtons?: boolean;
+  children: React.ReactNode;
+  titleClassName?: string;
+  subtitleClassName?: string;
+  contentClassName?: string;
+  buttonClassName?: string;
+  backButtonClassName?: string;
 }
 
 export default function StepLayout({
   title,
   subtitle,
-  children,
   onBack,
   onNext,
-  nextDisabled = false,
-  showBackButton = true,
-  hideButtons = false
+  children,
+  titleClassName = "",
+  subtitleClassName = "",
+  contentClassName = "",
+  buttonClassName = "",
+  backButtonClassName = "",
 }: StepLayoutProps) {
   return (
-    <div className={`min-h-screen flex flex-col font-["Avenir"]`}>
-      <div className="flex-1 pb-20">
-        <div className="text-center space-y-1 px-4">
-          <h2 className="text-xl sm:text-2xl font-light text-gray-900">
-            {title}
-          </h2>
-          {subtitle && (
-            <p className="text-sm sm:text-base text-gray-600">
-              {subtitle}
-            </p>
-          )}
-        </div>
-
-        <div className="px-4 mt-4">
-          {children}
-        </div>
-      </div>
-
-      {/* Botões fixos na parte inferior */}
-      {!hideButtons && (
-        <div className="sticky bottom-0 left-0 right-0 z-50">
-          <div className="px-4 py-3 bg-white/80 backdrop-blur-sm space-y-2">
-            {onNext && (
-              <button
-                onClick={onNext}
-                disabled={nextDisabled}
-                className={`w-full h-10 sm:h-12 rounded-full text-white transition-all duration-200 text-sm sm:text-base ${
-                  nextDisabled
-                    ? "bg-gray-300 cursor-not-allowed"
-                    : "bg-[#35426A] hover:bg-[#2A3557]"
-                }`}
-              >
-                Continuar
-              </button>
-            )}
-
-            {showBackButton && (
-              <button
-                onClick={onBack}
-                className="mx-auto text-gray-500 hover:text-[#35426A] transition-colors text-xs sm:text-sm flex items-center gap-1"
-              >
-                <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-                Voltar
-              </button>
-            )}
+    <div className="flex flex-col min-h-screen">
+      {/* Botão de avançar no topo */}
+      {onNext && (
+        <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-sm">
+          <div className="px-4 py-3">
+            <button
+              onClick={onNext}
+              className={`w-full py-3 bg-black text-white rounded-full font-light hover:bg-gray-900 transition-colors ${buttonClassName}`}
+            >
+              Continuar
+            </button>
           </div>
         </div>
       )}
+
+      {/* Conteúdo principal */}
+      <div className="flex-1 px-4 pb-4">
+        <div className="space-y-4">
+          {/* Título e subtítulo */}
+          <div className="text-center space-y-2">
+            <h2 className={`text-xl md:text-2xl font-light text-gray-900 ${titleClassName}`}>
+              {title}
+            </h2>
+            {subtitle && (
+              <p className={`text-sm md:text-base text-gray-600 ${subtitleClassName}`}>
+                {subtitle}
+              </p>
+            )}
+          </div>
+
+          {/* Conteúdo */}
+          <div className={contentClassName}>{children}</div>
+        </div>
+      </div>
+
+      {/* Botão de voltar no final */}
+      <div className="sticky bottom-0 z-50 bg-white/80 backdrop-blur-sm">
+        <div className="px-4 py-3">
+          <button
+            onClick={onBack}
+            className={`w-full py-3 bg-white text-black border border-gray-200 rounded-full font-light hover:bg-gray-50 transition-colors ${backButtonClassName}`}
+          >
+            Voltar
+          </button>
+        </div>
+      </div>
     </div>
   );
 } 
