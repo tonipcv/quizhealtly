@@ -32,78 +32,98 @@ export default function StepTwentyNine() {
   const { setCurrentStep } = useQuizContext();
 
   return (
-    <StepLayout
-      title="Seu Protocolo Exclusivo para Rejuvenescimento foi criado!"
-      subtitle="Baseado em suas respostas, seu plano personalizado será revelado agora."
-      onBack={() => setCurrentStep(28)}
-      onNext={() => setCurrentStep(30)}
-    >
-      <div className="space-y-6 px-4">
-        {/* Comparison Graphs */}
-        <div className="grid md:grid-cols-2 gap-4">
-          {/* Without Plan Graph */}
-          <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
-            <div className="space-y-3">
-              <h3 className="font-medium text-gray-900 text-sm">Sem o Protocolo</h3>
-              <div className="h-44">
-                <ResponsiveContainer width="100%" height="100%">
-                  <LineChart data={withoutPlanData} margin={{ top: 5, right: 5, bottom: 5, left: 5 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                    <XAxis 
-                      dataKey="month"
-                      stroke="#9CA3AF"
-                      tick={{ fontSize: 10 }}
-                      tickMargin={5}
-                    />
-                    <YAxis hide={true} />
-                    <Line
-                      type="monotone"
-                      dataKey="value"
-                      stroke="#EF4444"
-                      strokeWidth={2}
-                      dot={{ stroke: '#EF4444', strokeWidth: 2, r: 3 }}
-                    />
-                  </LineChart>
-                </ResponsiveContainer>
-                <p className="text-center text-xs font-medium text-red-600 mt-2">
-                  Sinais de Envelhecimento ↗
-                </p>
+    <div className="flex flex-col min-h-screen">
+      <div className="flex-1">
+        <StepLayout
+          title="Seu Protocolo Exclusivo para Rejuvenescimento foi criado!"
+          subtitle="Baseado em suas respostas, seu plano personalizado será revelado agora."
+          onBack={() => setCurrentStep(28)}
+          hideButtons={true}
+        >
+          <div className="space-y-6 px-4">
+            {/* Comparison Graphs */}
+            <div className="grid md:grid-cols-2 gap-4">
+              {/* Without Plan Graph */}
+              <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+                <div className="space-y-3">
+                  <h3 className="font-medium text-gray-900 text-sm">Sem o Protocolo</h3>
+                  <div className="h-44">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <LineChart data={withoutPlanData} margin={{ top: 5, right: 5, bottom: 5, left: 5 }}>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                        <XAxis 
+                          dataKey="month"
+                          stroke="#9CA3AF"
+                          tick={{ fontSize: 10 }}
+                          tickMargin={5}
+                        />
+                        <YAxis hide={true} />
+                        <Line
+                          type="monotone"
+                          dataKey="value"
+                          stroke="#EF4444"
+                          strokeWidth={2}
+                          dot={{ stroke: '#EF4444', strokeWidth: 2, r: 3 }}
+                        />
+                      </LineChart>
+                    </ResponsiveContainer>
+                    <p className="text-center text-xs font-medium text-red-600 mt-2">
+                      Sinais de Envelhecimento ↗
+                    </p>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
 
-          {/* With Plan Graph */}
-          <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
-            <div className="space-y-3">
-              <h3 className="font-medium text-gray-900 text-sm">Com o Protocolo</h3>
-              <div className="h-44">
-                <ResponsiveContainer width="100%" height="100%">
-                  <LineChart data={withPlanData} margin={{ top: 5, right: 5, bottom: 5, left: 5 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                    <XAxis 
-                      dataKey="month"
-                      stroke="#9CA3AF"
-                      tick={{ fontSize: 10 }}
-                      tickMargin={5}
-                    />
-                    <YAxis hide={true} />
-                    <Line
-                      type="monotone"
-                      dataKey="value"
-                      stroke="#10B981"
-                      strokeWidth={2}
-                      dot={{ stroke: '#10B981', strokeWidth: 2, r: 3 }}
-                    />
-                  </LineChart>
-                </ResponsiveContainer>
-                <p className="text-center text-xs font-medium text-green-600 mt-2">
-                  Rejuvenescimento ↘
-                </p>
+              {/* With Plan Graph */}
+              <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+                <div className="space-y-3">
+                  <h3 className="font-medium text-gray-900 text-sm">Com o Protocolo</h3>
+                  <div className="h-44">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <LineChart data={withPlanData} margin={{ top: 5, right: 5, bottom: 5, left: 5 }}>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                        <XAxis 
+                          dataKey="month"
+                          stroke="#9CA3AF"
+                          tick={{ fontSize: 10 }}
+                          tickMargin={5}
+                        />
+                        <YAxis hide={true} />
+                        <Line
+                          type="monotone"
+                          dataKey="value"
+                          stroke="#10B981"
+                          strokeWidth={2}
+                          dot={{ stroke: '#10B981', strokeWidth: 2, r: 3 }}
+                        />
+                      </LineChart>
+                    </ResponsiveContainer>
+                    <p className="text-center text-xs font-medium text-green-600 mt-2">
+                      Rejuvenescimento ↘
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </StepLayout>
       </div>
-    </StepLayout>
+
+      {/* Botões fixos no final */}
+      <div className="sticky bottom-0 left-0 right-0 p-4 bg-white border-t border-gray-100">
+        <button
+          onClick={() => setCurrentStep(30)}
+          className="w-full h-12 rounded-xl font-medium text-white bg-black hover:bg-gray-900 transition-all duration-200 text-base"
+        >
+          Ver meu plano personalizado
+        </button>
+        <button
+          onClick={() => setCurrentStep(28)}
+          className="mx-auto mt-2 text-gray-400 hover:text-gray-900 transition-colors text-sm flex items-center gap-2"
+        >
+          Voltar
+        </button>
+      </div>
+    </div>
   );
 } 

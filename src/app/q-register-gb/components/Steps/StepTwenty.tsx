@@ -42,30 +42,44 @@ export default function StepTwenty() {
   const { setCurrentStep } = useQuizContext();
 
   return (
-    <StepLayout
-      title="O que te motiva a manter uma rotina de Protocolo Coreano e skincare?"
-      subtitle="Selecione sua principal motivação"
-      onBack={() => setCurrentStep(19)}
-      onNext={() => setCurrentStep(21)}
-    >
-      <div className="space-y-3">
-        {motivationOptions.map((option) => (
-          <button
-            key={option.id}
-            onClick={() => setCurrentStep(21)}
-            className={`${stepStyles.button.base} w-full ${stepStyles.button.unselected}`}
-          >
-            <div className="space-y-1">
-              <p className={`font-medium text-gray-900 ${stepStyles.button.text}`}>
-                {option.text}
-              </p>
-              <p className={stepStyles.button.description}>
-                {option.description}
-              </p>
-            </div>
-          </button>
-        ))}
+    <div className="flex flex-col min-h-screen">
+      <div className="flex-1">
+        <StepLayout
+          title="O que te motiva a manter uma rotina de Protocolo Coreano e skincare?"
+          subtitle="Selecione sua principal motivação"
+          onBack={() => setCurrentStep(19)}
+          hideButtons={true}
+        >
+          <div className="space-y-3">
+            {motivationOptions.map((option) => (
+              <button
+                key={option.id}
+                onClick={() => setCurrentStep(21)}
+                className={`${stepStyles.button.base} w-full ${stepStyles.button.unselected}`}
+              >
+                <div className="space-y-1">
+                  <p className={`font-medium text-gray-900 ${stepStyles.button.text}`}>
+                    {option.text}
+                  </p>
+                  <p className={stepStyles.button.description}>
+                    {option.description}
+                  </p>
+                </div>
+              </button>
+            ))}
+          </div>
+        </StepLayout>
       </div>
-    </StepLayout>
+
+      {/* Apenas botão de voltar */}
+      <div className="sticky bottom-0 left-0 right-0 p-4 bg-white border-t border-gray-100">
+        <button
+          onClick={() => setCurrentStep(19)}
+          className="mx-auto text-gray-400 hover:text-gray-900 transition-colors text-sm flex items-center gap-2"
+        >
+          Voltar
+        </button>
+      </div>
+    </div>
   );
 } 

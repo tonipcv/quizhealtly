@@ -37,30 +37,44 @@ export default function StepEighteen() {
   const { setCurrentStep } = useQuizContext();
 
   return (
-    <StepLayout
-      title="Como você descreveria sua pele?"
-      subtitle="Selecione o tipo que melhor descreve sua pele"
-      onBack={() => setCurrentStep(17)}
-      onNext={() => setCurrentStep(19)}
-    >
-      <div className="space-y-3">
-        {skinOptions.map((option) => (
-          <button
-            key={option.id}
-            onClick={() => setCurrentStep(19)}
-            className={`${stepStyles.button.base} w-full ${stepStyles.button.unselected}`}
-          >
-            <div className="space-y-1">
-              <p className={`font-medium text-gray-900 ${stepStyles.button.text}`}>
-                {option.text}
-              </p>
-              <p className={stepStyles.button.description}>
-                {option.description}
-              </p>
-            </div>
-          </button>
-        ))}
+    <div className="flex flex-col min-h-screen">
+      <div className="flex-1">
+        <StepLayout
+          title="Como você descreveria sua pele?"
+          subtitle="Selecione o tipo que melhor descreve sua pele"
+          onBack={() => setCurrentStep(17)}
+          hideButtons={true}
+        >
+          <div className="space-y-3">
+            {skinOptions.map((option) => (
+              <button
+                key={option.id}
+                onClick={() => setCurrentStep(19)}
+                className={`${stepStyles.button.base} w-full ${stepStyles.button.unselected}`}
+              >
+                <div className="space-y-1">
+                  <p className={`font-medium text-gray-900 ${stepStyles.button.text}`}>
+                    {option.text}
+                  </p>
+                  <p className={stepStyles.button.description}>
+                    {option.description}
+                  </p>
+                </div>
+              </button>
+            ))}
+          </div>
+        </StepLayout>
       </div>
-    </StepLayout>
+
+      {/* Apenas botão de voltar */}
+      <div className="sticky bottom-0 left-0 right-0 p-4 bg-white border-t border-gray-100">
+        <button
+          onClick={() => setCurrentStep(17)}
+          className="mx-auto text-gray-400 hover:text-gray-900 transition-colors text-sm flex items-center gap-2"
+        >
+          Voltar
+        </button>
+      </div>
+    </div>
   );
 } 

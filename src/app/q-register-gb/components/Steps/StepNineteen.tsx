@@ -66,34 +66,59 @@ export default function StepNineteen() {
   };
 
   return (
-    <StepLayout
-      title="Você tem alguma dessas preocupações com a pele?"
-      subtitle="Selecione todas as opções que se aplicam"
-      onBack={() => setCurrentStep(18)}
-      onNext={() => setCurrentStep(20)}
-    >
-      <div className={stepStyles.grid}>
-        {skinConcerns.map((concern) => (
-          <button
-            key={concern.id}
-            onClick={() => toggleConcern(concern.id)}
-            className={`${stepStyles.button.base} ${
-              selectedConcerns.includes(concern.id)
-                ? stepStyles.button.selected
-                : stepStyles.button.unselected
-            }`}
-          >
-            <div className="space-y-1">
-              <p className={`font-medium text-gray-900 ${stepStyles.button.text}`}>
-                {concern.text}
-              </p>
-              <p className={stepStyles.button.description}>
-                {concern.description}
-              </p>
-            </div>
-          </button>
-        ))}
+    <div className="flex flex-col min-h-screen">
+      <div className="flex-1">
+        <StepLayout
+          title="Você tem alguma dessas preocupações com a pele?"
+          subtitle="Selecione todas as opções que se aplicam"
+          onBack={() => setCurrentStep(18)}
+          hideButtons={true}
+        >
+          <div className={stepStyles.grid}>
+            {skinConcerns.map((concern) => (
+              <button
+                key={concern.id}
+                onClick={() => toggleConcern(concern.id)}
+                className={`${stepStyles.button.base} ${
+                  selectedConcerns.includes(concern.id)
+                    ? stepStyles.button.selected
+                    : stepStyles.button.unselected
+                }`}
+              >
+                <div className="space-y-1">
+                  <p className={`font-medium text-gray-900 ${stepStyles.button.text}`}>
+                    {concern.text}
+                  </p>
+                  <p className={stepStyles.button.description}>
+                    {concern.description}
+                  </p>
+                </div>
+              </button>
+            ))}
+          </div>
+        </StepLayout>
       </div>
-    </StepLayout>
+
+      {/* Botões fixos no final */}
+      <div className="sticky bottom-0 left-0 right-0 p-4 bg-white border-t border-gray-100">
+        <button
+          onClick={() => setCurrentStep(20)}
+          disabled={selectedConcerns.length === 0}
+          className={`w-full h-12 rounded-xl font-medium text-white transition-all duration-200 text-base ${
+            selectedConcerns.length === 0
+              ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+              : "bg-black hover:bg-gray-900"
+          }`}
+        >
+          Continuar
+        </button>
+        <button
+          onClick={() => setCurrentStep(18)}
+          className="mx-auto mt-2 text-gray-400 hover:text-gray-900 transition-colors text-sm flex items-center gap-2"
+        >
+          Voltar
+        </button>
+      </div>
+    </div>
   );
 } 

@@ -59,39 +59,62 @@ export default function StepThirtyOne() {
     });
   };
 
-  const handleNext = () => {
-    if (isTransitioning || selectedOptions.length === 0) return;
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setCurrentStep(32);
-    }, 600);
-  };
-
   return (
-    <StepLayout
-      title="Nos últimos tempos você tem sentido:"
-      subtitle="Selecione todas as opções que se aplicam"
-      onBack={() => setCurrentStep(30)}
-      onNext={handleNext}
-    >
-      <div className="space-y-3">
-        {symptomOptions.map((option) => (
-          <button
-            key={option.id}
-            onClick={() => handleSelect(option.id)}
-            disabled={isTransitioning}
-            className={`w-full p-3 md:p-4 rounded-xl border transition-all duration-200 text-left
-              ${selectedOptions.includes(option.id)
-                ? "border-black bg-black text-white shadow-lg transform scale-[1.02]" 
-                : "border-gray-300 hover:border-black hover:bg-gray-50 text-gray-900 hover:shadow-md"
-              }
-              ${isTransitioning && !selectedOptions.includes(option.id) ? "opacity-50" : ""}
-            `}
-          >
-            <span className="text-base md:text-lg font-medium">{option.text}</span>
-          </button>
-        ))}
+    <div className="flex flex-col min-h-screen">
+      <div className="flex-1">
+        <StepLayout
+          title="Nos últimos tempos você tem sentido:"
+          subtitle="Selecione todas as opções que se aplicam"
+          onBack={() => setCurrentStep(30)}
+          hideButtons={true}
+        >
+          <div className="space-y-3">
+            {symptomOptions.map((option) => (
+              <button
+                key={option.id}
+                onClick={() => handleSelect(option.id)}
+                disabled={isTransitioning}
+                className={`w-full p-3 md:p-4 rounded-xl border transition-all duration-200 text-left
+                  ${selectedOptions.includes(option.id)
+                    ? "border-black bg-black text-white shadow-lg transform scale-[1.02]" 
+                    : "border-gray-300 hover:border-black hover:bg-gray-50 text-gray-900 hover:shadow-md"
+                  }
+                  ${isTransitioning && !selectedOptions.includes(option.id) ? "opacity-50" : ""}
+                `}
+              >
+                <span className="text-base md:text-lg font-medium">{option.text}</span>
+              </button>
+            ))}
+          </div>
+        </StepLayout>
       </div>
-    </StepLayout>
+
+      {/* Botões fixos no final */}
+      <div className="sticky bottom-0 left-0 right-0 p-4 bg-white border-t border-gray-100">
+        <button
+          onClick={() => {
+            if (selectedOptions.length === 0) return;
+            setIsTransitioning(true);
+            setTimeout(() => {
+              setCurrentStep(32);
+            }, 600);
+          }}
+          disabled={selectedOptions.length === 0 || isTransitioning}
+          className={`w-full h-12 rounded-xl font-medium text-white transition-all duration-200 text-base ${
+            selectedOptions.length === 0 || isTransitioning
+              ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+              : "bg-black hover:bg-gray-900"
+          }`}
+        >
+          Continuar
+        </button>
+        <button
+          onClick={() => setCurrentStep(30)}
+          className="mx-auto mt-2 text-gray-400 hover:text-gray-900 transition-colors text-sm flex items-center gap-2"
+        >
+          Voltar
+        </button>
+      </div>
+    </div>
   );
 } 
