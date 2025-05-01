@@ -31,6 +31,15 @@ export default function StepOne() {
               />
             </div>
 
+            {/* Facebook Disclaimer */}
+            <div className="bg-blue-50 border border-blue-200 rounded-xl p-3 text-sm text-blue-800">
+              <p className="font-medium mb-1">Aviso de Privacidade</p>
+              <p className="text-xs">
+                Este questionário não é patrocinado, endossado ou administrado pelo Facebook/Meta.
+                Ao participar, você entende que está fornecendo suas informações à VUOM™ e não ao Facebook.
+              </p>
+            </div>
+
             {/* Descrição */}
             <div className="text-center space-y-2">
               <h3 className="text-base md:text-lg text-gray-900">

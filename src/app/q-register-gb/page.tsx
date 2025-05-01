@@ -6,6 +6,26 @@ import QuizSteps from "./components/Quiz/QuizSteps";
 import Image from "next/image";
 import { useQuizContext } from "./components/Quiz/QuizProvider";
 import { theme } from "./styles/theme";
+import Link from "next/link";
+
+// Facebook-compliant disclaimer footer
+const Disclaimer = () => {
+  return (
+    <div className="mt-8 pt-4 pb-2 px-4 text-xs text-gray-500 text-center max-w-3xl mx-auto">
+      <p className="mb-1">
+        Este questionário não é patrocinado, endossado ou administrado pelo Facebook.
+      </p>
+      <p className="mb-1">
+        As informações fornecidas são confidenciais e serão utilizadas apenas para personalizar sua experiência com o protocolo VUOM™.
+      </p>
+      <p>
+        <Link href="/politicas" className="text-blue-600 hover:underline">
+          Política de Privacidade
+        </Link>
+      </p>
+    </div>
+  );
+};
 
 function QuizContent() {
   const { currentStep } = useQuizContext();
@@ -40,6 +60,7 @@ function QuizContent() {
           <QuizSteps />
         </div>
       </div>
+      <Disclaimer />
     </div>
   );
 }

@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Menu, ArrowRight, Sparkles, Heart, Star, Zap, Instagram, Facebook, Youtube } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Footer from './components/Footer';
 
 export default function Home() {
   return (
@@ -184,26 +185,7 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="py-8 border-t border-gray-100">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="text-[#7286B2] text-sm font-normal">
-              © 2024 VUOM™ - All rights reserved
-            </div>
-            <div className="flex items-center gap-6">
-              <Link href="#" className="text-[#7286B2] hover:text-[#35426A] transition-all duration-300 hover:scale-110">
-                <Instagram className="h-5 w-5" />
-              </Link>
-              <Link href="#" className="text-[#7286B2] hover:text-[#35426A] transition-all duration-300 hover:scale-110">
-                <Facebook className="h-5 w-5" />
-              </Link>
-              <Link href="#" className="text-[#7286B2] hover:text-[#35426A] transition-all duration-300 hover:scale-110">
-                <Youtube className="h-5 w-5" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

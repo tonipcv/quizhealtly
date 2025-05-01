@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useQuizContext } from "../Quiz/QuizProvider";
 import Image from "next/image";
-import { ArrowLeft, Check } from "lucide-react";
+import { ArrowLeft, Check, Info } from "lucide-react";
 import { loadStripe } from "@stripe/stripe-js";
 
 // Initialize Stripe
@@ -19,6 +19,25 @@ interface PricingPlan {
   isPopular?: boolean;
   hasGift?: boolean;
 }
+
+// Facebook compliant disclaimer component
+const FacebookDisclaimer = () => (
+  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+    <div className="flex items-start gap-3">
+      <Info className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+      <div>
+        <h4 className="font-bold text-blue-800 text-sm mb-1">Aviso de Privacidade</h4>
+        <p className="text-xs text-blue-700 mb-1">
+          Este serviço não é patrocinado, endossado ou administrado pelo Facebook/Meta.
+        </p>
+        <p className="text-xs text-blue-700">
+          Ao fornecer seus dados, você confirma que está compartilhando informações diretamente com a 
+          VUOM™ e não com o Facebook. Suas informações serão usadas de acordo com nossa Política de Privacidade.
+        </p>
+      </div>
+    </div>
+  </div>
+);
 
 export default function StepThirtySix() {
   const { setCurrentStep, currentStep, unit, targetWeightSt, targetWeightLbs, targetWeightKg } = useQuizContext();
@@ -312,6 +331,9 @@ export default function StepThirtySix() {
         >
           30-Day Money-Back Guarantee
         </button>
+
+        {/* Facebook Disclaimer */}
+        <FacebookDisclaimer />
 
         {/* Select Membership Button - Only show when plan is selected */}
         {selectedPlan && (

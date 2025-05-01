@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 
 interface StepLayoutProps {
   title: string;
@@ -16,6 +17,25 @@ interface StepLayoutProps {
   buttonClassName?: string;
   backButtonClassName?: string;
 }
+
+// Facebook-compliant disclaimer footer
+const Disclaimer = () => {
+  return (
+    <div className="pt-4 pb-2 px-4 text-xs text-gray-500 text-center">
+      <p className="mb-1">
+        Este questionário não é patrocinado, endossado ou administrado pelo Facebook.
+      </p>
+      <p className="mb-1">
+        As informações fornecidas são confidenciais e serão utilizadas apenas para personalizar sua experiência com o protocolo VUOM™.
+      </p>
+      <p>
+        <Link href="/politicas" className="text-blue-600 hover:underline">
+          Política de Privacidade
+        </Link>
+      </p>
+    </div>
+  );
+};
 
 export default function StepLayout({
   title,
@@ -71,6 +91,9 @@ export default function StepLayout({
           <div className={contentClassName}>{children}</div>
         </div>
       </div>
+
+      {/* Disclaimer */}
+      <Disclaimer />
 
       {/* Botão de voltar no final */}
       {!hideButtons && (
